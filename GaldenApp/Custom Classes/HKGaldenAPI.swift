@@ -50,7 +50,12 @@ class HKGaldenAPI {
     func fetchContent(postId: String, pageNo: String, completion : @escaping (_ op: OP,_ comments: [Replies],_ rated: String, _ error: Error?)->Void) {
         let keychain = KeychainSwift()
         let par: Parameters = ["id": postId, "ofs": pageNo]
-        let head: HTTPHeaders = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed", "X-GALUSER-KEY": keychain.get("userKey")!]
+        var head: HTTPHeaders
+        if keychain.get("userKey") != nil {
+            head = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed", "X-GALUSER-KEY": keychain.get("userKey")!]
+        } else {
+            head = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed"]
+        }
         Alamofire.request("https://api.hkgalden.com/f/t", method: .get, parameters: par, headers: head).responseJSON {
             response in
             switch response.result {
