@@ -18,6 +18,7 @@ class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var leaveNameTextField: UITextField!
     @IBOutlet weak var blocklistButton: UIButton!
+    @IBOutlet weak var leaveNameStack: UIStackView!
     
     var email = ""
     var password = ""
@@ -30,22 +31,9 @@ class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate
         passwordTextField.delegate = self
         let keychain = KeychainSwift()
         if (keychain.get("userKey") != nil) {
-            loginButton.isHidden = true
-            logoutButton.isHidden = false
-            emailTextField.isHidden = true
-            passwordTextField.isHidden = true
-            blocklistButton.isHidden = false
-            self.userName.text = "已登入為: " + keychain.get("userName")! + " (UID: " + keychain.get("userID")! + ")"
-            leaveNameTextField.text = keychain.get("LeaveNameText")
-            self.userName.textColor = UIColor.white
+            loggedIn()
         } else {
-            loginButton.isHidden = false
-            logoutButton.isHidden = true
-            emailTextField.isHidden = false
-            passwordTextField.isHidden = false
-            blocklistButton.isHidden = true
-            userName.text = "未登入 (UID: Unknown)"
-            userName.textColor = UIColor.lightGray
+            loggedOut()
         }
         // Do any additional setup after loading the view.
     }
@@ -85,27 +73,14 @@ class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate
                 username, userid in
                 keychain.set(username, forKey: "userName")
                 keychain.set(userid, forKey: "userID")
-                self.loginButton.isHidden = true
-                self.logoutButton.isHidden = false
-                self.emailTextField.isHidden = true
-                self.passwordTextField.isHidden = true
-                self.blocklistButton.isHidden = false
-                self.userName.text = "已登入為: " + keychain.get("userName")! + " (UID: " + keychain.get("userID")! + ")"
-                self.leaveNameTextField.text = keychain.get("LeaveNameText")
-                self.userName.textColor = UIColor.white
+                self.loggedIn()
             })
         })
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         api.logout {
-            self.loginButton.isHidden = false
-            self.logoutButton.isHidden = true
-            self.emailTextField.isHidden = false
-            self.passwordTextField.isHidden = false
-            self.blocklistButton.isHidden = true
-            self.userName.text = "未登入 (UID: Unknown)"
-            self.userName.textColor = UIColor.lightGray
+            self.loggedOut()
         }
     }
     
@@ -143,5 +118,30 @@ class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate
         leaveNameTextField.endEditing(true)
         let keychain = KeychainSwift()
         keychain.set(leaveNameTextField.text!, forKey: "LeaveNameText")
+    }
+    
+    func loggedIn() {
+        let keychain = KeychainSwift()
+        loginButton.isHidden = true
+        logoutButton.isHidden = false
+        emailTextField.isHidden = true
+        passwordTextField.isHidden = true
+        blocklistButton.isHidden = false
+        leaveNameStack.isHidden = false
+        self.userName.text = "已登入為: " + keychain.get("userName")! + " (UID: " + keychain.get("userID")! + ")"
+        leaveNameTextField.text = keychain.get("LeaveNameText")
+        self.userName.textColor = UIColor.white
+
+    }
+    
+    func loggedOut() {
+        loginButton.isHidden = false
+        logoutButton.isHidden = true
+        emailTextField.isHidden = false
+        passwordTextField.isHidden = false
+        blocklistButton.isHidden = true
+        leaveNameStack.isHidden = true
+        userName.text = "未登入 (UID: Unknown)"
+        userName.textColor = UIColor.lightGray
     }
 }

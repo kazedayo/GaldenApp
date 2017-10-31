@@ -36,6 +36,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var f5View: UIView!
     @IBOutlet weak var goodButton: UIBarButtonItem!
     @IBOutlet weak var badButton: UIBarButtonItem!
+    @IBOutlet weak var leaveNameButton: UIBarButtonItem!
+    @IBOutlet weak var commentButton: UIBarButtonItem!
     @IBOutlet weak var backgroundImage: UIImageView!
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
@@ -55,6 +57,13 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if keychain.getData("BackgroundImage") != nil {
             backgroundImage.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
+        }
+        
+        if keychain.get("userKey") == nil {
+            goodButton.isEnabled = false
+            badButton.isEnabled = false
+            leaveNameButton.isEnabled = false
+            commentButton.isEnabled = false
         }
         
         self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow)
@@ -402,13 +411,19 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self?.title = op.title
                 self?.goodCount.title = op.good
                 self?.badCount.title = op.bad
-                if self?.isRated == "true"{
-                    self?.goodButton.isEnabled = false
-                    self?.badButton.isEnabled = false
-                } else {
-                    self?.goodButton.isEnabled = true
-                    self?.badButton.isEnabled = true
+                
+                let keychain = KeychainSwift()
+                
+                if keychain.get("userKey") != nil {
+                    if self?.isRated == "true"{
+                        self?.goodButton.isEnabled = false
+                        self?.badButton.isEnabled = false
+                    } else {
+                        self?.goodButton.isEnabled = true
+                        self?.badButton.isEnabled = true
+                    }
                 }
+                
                 self?.backgroundIndicator.isHidden = true
                 self?.contentTableView.isHidden = false
                 self?.contentTableView.tableFooterView = self?.f5View

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Fc-GU-3Fl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Fc-GU-3Fl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -50,16 +50,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ep-3J-AMT">
-                                                    <rect key="frame" x="15" y="16" width="327" height="43"/>
+                                                    <rect key="frame" x="8" y="13" width="334" height="48.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="327" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="25.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-nC-GAb">
-                                                            <rect key="frame" x="0.0" y="30" width="327" height="13"/>
+                                                            <rect key="frame" x="0.0" y="35.5" width="334" height="13"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="SOO-1f-kn7"/>
                                                             </constraints>
@@ -123,6 +123,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="NewThreadButton" destination="mge-tu-nKI" id="WF5-Zy-agU"/>
                         <outlet property="backgroundImage" destination="Vln-c4-g8c" id="D3C-xY-Bj5"/>
                         <outlet property="loggedIn" destination="dEk-Yb-Mve" id="pJV-zK-Ob8"/>
                         <outlet property="threadListTableView" destination="Y8X-tJ-JvF" id="ScC-BD-5Z0"/>
@@ -548,6 +549,7 @@
                     <connections>
                         <outlet property="blocklistButton" destination="8f2-0Q-vk0" id="Clx-wa-Hcj"/>
                         <outlet property="emailTextField" destination="lSb-Yg-ywU" id="1TL-ej-Ib1"/>
+                        <outlet property="leaveNameStack" destination="RhM-lF-BPC" id="hhl-he-Peq"/>
                         <outlet property="leaveNameTextField" destination="TAU-vS-5y7" id="wKD-DY-mAf"/>
                         <outlet property="loginButton" destination="RWK-kx-wn3" id="PDB-Qs-zFw"/>
                         <outlet property="logoutButton" destination="JSq-LN-hce" id="nyt-Cb-1Yk"/>
@@ -1116,7 +1118,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvv-KJ-EB8">
-                                                    <rect key="frame" x="15" y="60" width="345" height="129"/>
+                                                    <rect key="frame" x="16" y="60" width="343" height="129"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <attributedString key="attributedText"/>
@@ -1226,10 +1228,12 @@
                         <outlet property="backgroundImage" destination="kBh-pb-qCM" id="f7b-Wi-MBv"/>
                         <outlet property="badButton" destination="EQf-v8-kK4" id="Ha9-sA-wpz"/>
                         <outlet property="badCount" destination="9cN-9g-WdL" id="KPW-3c-Z8X"/>
+                        <outlet property="commentButton" destination="aix-UI-Hhq" id="qGt-wK-ZXl"/>
                         <outlet property="contentTableView" destination="Ont-uz-NZy" id="gHB-e0-PTC"/>
                         <outlet property="f5View" destination="9bH-hL-ZDt" id="Zgo-SR-L7j"/>
                         <outlet property="goodButton" destination="GCW-Mh-i9Q" id="oOH-Go-2Ku"/>
                         <outlet property="goodCount" destination="eNm-Bz-Xlu" id="CLR-72-mcl"/>
+                        <outlet property="leaveNameButton" destination="SPO-Kv-Am5" id="fBW-IR-hsB"/>
                         <outlet property="nextButton" destination="iaX-Bw-hc2" id="CcR-KU-JQd"/>
                         <outlet property="pageButton" destination="5dS-3K-35z" id="8wW-AW-E4l"/>
                         <outlet property="prevButton" destination="vg8-lz-lZe" id="ysN-lb-GCu"/>
@@ -1265,7 +1269,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ltf-V5-u7X">
-                                            <rect key="frame" x="15" y="0.0" width="119" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="120" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1334,16 +1338,16 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vYG-lh-P3R">
-                                                                <rect key="frame" x="15" y="11" width="335" height="53"/>
+                                                                <rect key="frame" x="8" y="8" width="349" height="58.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tg-RE-tQC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="36"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="349" height="41.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV8-OG-4pa">
-                                                                        <rect key="frame" x="0.0" y="41" width="335" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="46.5" width="349" height="12"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>

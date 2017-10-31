@@ -70,3 +70,4 @@ xcuserdata/
 
 # End of https://www.gitignore.io/api/macos,xcode,cocoapods
 *.xcuserstate
+*.xcuserstate

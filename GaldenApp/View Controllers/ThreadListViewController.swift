@@ -15,6 +15,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var threadListTableView: UITableView!
     @IBOutlet weak var loggedIn: UIBarButtonItem!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var NewThreadButton: UIBarButtonItem!
     
     //HKGaldenAPI.swift required (NOT included in GitHub repo)
     let api: HKGaldenAPI = HKGaldenAPI()
@@ -44,6 +45,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if keychain.getData("BackgroundImage") != nil {
             backgroundImage.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
+        }
+        
+        if keychain.get("userKey") == nil {
+            NewThreadButton.isEnabled = false
         }
         
         self.threadListTableView.es.addPullToRefresh {
