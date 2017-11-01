@@ -137,6 +137,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.cellForRow(at: indexPath)
         cell?.heroID = "Title"
         cell?.heroModifiers = [.fade, .scale(0.5)]
+        self.ipath = indexPath
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -229,7 +230,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 contentViewController.threadIdReceived = selectedThread
                 contentViewController.goToLastPage = false
                 contentViewController.channelNow = threads[(indexPath?.row)!].ident
-                contentViewController.segueID = "dismiss"
             }
             else if (sender is IndexPath) {
                 let selectedThreadCell = sender as? IndexPath
@@ -238,7 +238,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 contentViewController.threadIdReceived = selectedThread
                 contentViewController.goToLastPage = true
                 contentViewController.channelNow = threads[(indexPath)!].ident
-                contentViewController.segueID = "segue"
             }
             
         case "StartNewPost":

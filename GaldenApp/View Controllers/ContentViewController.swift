@@ -28,7 +28,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var pageCount = 0.0
     var quoteContent = ""
     var blockedUsers = [String]()
-    var segueID = ""
     
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var pageButton: UIBarButtonItem!
@@ -374,11 +373,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     @IBAction func dismiss(_ sender: UIButton) {
-        if segueID == "dismiss" {
-            dismiss(animated: true, completion: nil)
-        } else if segueID == "segue" {
-            self.performSegue(withIdentifier: "unwindToThreadListFromContent", sender: self)
-        }
+        self.performSegue(withIdentifier: "unwindToThreadListFromContent", sender: self)
     }
     
     @IBAction func unwindToPage(segue: UIStoryboardSegue) {
