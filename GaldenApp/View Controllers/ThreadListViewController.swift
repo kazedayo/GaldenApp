@@ -229,6 +229,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 contentViewController.threadIdReceived = selectedThread
                 contentViewController.goToLastPage = false
                 contentViewController.channelNow = threads[(indexPath?.row)!].ident
+                contentViewController.segueID = "dismiss"
             }
             else if (sender is IndexPath) {
                 let selectedThreadCell = sender as? IndexPath
@@ -237,6 +238,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 contentViewController.threadIdReceived = selectedThread
                 contentViewController.goToLastPage = true
                 contentViewController.channelNow = threads[(indexPath)!].ident
+                contentViewController.segueID = "segue"
             }
             
         case "StartNewPost":
