@@ -21,8 +21,9 @@ class OP {
     var gender: String
     var channel: String
     var quoteID: String
+    var userID: String
     
-    init(t: String,n: String,l: String,c: String,cA: NSAttributedString,a: String,d: String,gd: String,b: String,ge: String,ch: String,qid: String) {
+    init(t: String,n: String,l: String,c: String,cA: NSAttributedString,a: String,d: String,gd: String,b: String,ge: String,ch: String,qid: String,uid: String) {
         title = t
         name = n
         level = l
@@ -35,5 +36,6 @@ class OP {
         gender = ge
         channel = ch
         quoteID = qid
+        userID = uid
     }
 }

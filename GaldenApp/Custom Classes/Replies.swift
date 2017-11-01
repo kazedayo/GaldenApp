@@ -17,8 +17,9 @@ class Replies {
     var date: String
     var gender: String
     var quoteID: String
+    var userID: String
     
-    init(n: String,l: String,c: String,cA: NSAttributedString,a: String,d: String,g: String,qid: String) {
+    init(n: String,l: String,c: String,cA: NSAttributedString,a: String,d: String,g: String,qid: String,uid: String) {
         name = n
         level = l
         content = c
@@ -27,5 +28,6 @@ class Replies {
         date = d
         gender = g
         quoteID = qid
+        userID = uid
     }
 }

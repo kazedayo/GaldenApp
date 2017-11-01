@@ -25,6 +25,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var channelNow: String?
     var pageNow: String?
     var selectedThread: String!
+    var blockedUsers = [String]()
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -55,9 +56,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             [unowned self] in
             self.pageNow = "1"
             self.api.fetchThreadList(currentChannel: self.channelNow!, pageNumber: self.pageNow!, completion: {
-                [weak self] threads,error in
+                [weak self] threads,blocked,error in
                 if (error == nil) {
                     self?.threads = threads
+                    self?.blockedUsers = blocked
                     self?.threadListTableView.reloadData()
                     self?.threadListTableView.es.stopPullToRefresh()
                 }
@@ -68,9 +70,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             [unowned self] in
             self.pageNow = String(Int(self.pageNow!)! + 1)
             self.api.fetchThreadList(currentChannel: self.channelNow!, pageNumber: self.pageNow!, completion: {
-                [weak self] threads,error in
+                [weak self] threads,blocked,error in
                 if (error == nil) {
                     self?.threads.append(contentsOf: threads)
+                    self?.blockedUsers = blocked
                     self?.threadListTableView.reloadData()
                     self?.threadListTableView.es.stopLoadingMore()
                 }
@@ -92,9 +95,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         button.setTitle(api.channelNameFunc(ch: channelNow!), for: .normal)
         self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
-            [weak self] threads,error in
+            [weak self] threads,blocked,error in
             if (error == nil) {
                 self?.threads = threads
+                self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
                 self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false
@@ -124,9 +128,15 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadListTableViewCell", for: indexPath) as! ThreadListTableViewCell
 
         // Configure the cell...
-        cell.threadTitleLabel.text = threads[indexPath.row].title
-        cell.detailLabel.text = threads[indexPath.row].userName + "  " + "回覆:" + threads[indexPath.row].count + "  " + "評分:" + threads[indexPath.row].rate
-        //cell.blurView.backgroundColor = api.channelColorFunc(ch: threads[indexPath.row].ident)
+        if (blockedUsers.contains(threads[indexPath.row].userID)) {
+            cell.threadTitleLabel.text = "扑ed"
+            cell.threadTitleLabel.textColor = .gray
+            cell.detailLabel.text = "扑ed"
+            cell.detailLabel.textColor = .gray
+        } else {
+            cell.threadTitleLabel.text = threads[indexPath.row].title
+            cell.detailLabel.text = threads[indexPath.row].userName + "  " + "回覆:" + threads[indexPath.row].count + "  " + "評分:" + threads[indexPath.row].rate
+        }
         
         return cell
     }
@@ -249,9 +259,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         button.setTitle(api.channelNameFunc(ch: channelNow!), for: .normal)
         self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
-            [weak self] threads,error in
+            [weak self] threads,blocked,error in
             if (error == nil) {
                 self?.threads = threads
+                self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
                 self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false
@@ -270,9 +281,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.title = api.channelNameFunc(ch: channelNow!)
         self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
-            [weak self] threads,error in
+            [weak self] threads,blocked,error in
             if (error == nil) {
                 self?.threads = threads
+                self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
                 self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false

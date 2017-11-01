@@ -6,7 +6,7 @@ PODS:
   - ESPullToRefresh (2.7)
   - ImagePicker (3.0.0)
   - IQKeyboardManagerSwift (5.0.4)
-  - KeychainSwift (9.0.2)
+  - KeychainSwift (10.0.0)
   - Kingfisher (4.2.0)
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
@@ -32,7 +32,7 @@ SPEC CHECKSUMS:
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   ImagePicker: 973953c25960fe04729a7082a56194321c6762d2
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
-  KeychainSwift: 3ab1d428d0dbff59cd056f1d0bfc640b36c2b081
+  KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220

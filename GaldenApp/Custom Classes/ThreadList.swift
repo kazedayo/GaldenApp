@@ -17,14 +17,16 @@ class ThreadList {
     var userName: String
     var count: String
     var rate: String
+    var userID: String
     
-    init(iD: String, iDent: String, tit: String, userN: String, cnt: String, rt: String) {
+    init(iD: String, iDent: String, tit: String, userN: String, cnt: String, rt: String,uid: String) {
         id = iD
         ident = iDent
         title = tit
         userName = userN
         count = cnt
         rate = rt
+        userID = uid
     }
     
 }

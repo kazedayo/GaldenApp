@@ -13,7 +13,7 @@ import KeychainSwift
 
 class HKGaldenAPI {
     
-    func fetchThreadList(currentChannel: String,pageNumber: String, completion : @escaping (_ threads: [ThreadList], _ error: Error?)->Void) {
+    func fetchThreadList(currentChannel: String,pageNumber: String, completion : @escaping (_ threads: [ThreadList],_ blockedUsers: [String], _ error: Error?)->Void) {
         let par: Parameters = ["ident": currentChannel, "ofs": pageNumber]
         let head: HTTPHeaders = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed"]
         Alamofire.request("https://api.hkgalden.com/f/l", method: .get, parameters: par, headers: head).responseJSON {
@@ -34,20 +34,28 @@ class HKGaldenAPI {
                     let reply: String = subJson["count"].stringValue
                     let channel: String = subJson["ident"].stringValue
                     let threadNo: String = subJson["id"].stringValue
+                    let userid: String = subJson["uid"].stringValue
                     
-                    fetchedContent.append(ThreadList(iD: threadNo,iDent: channel,tit: topic,userN: user,cnt: reply,rt: rate))
+                    fetchedContent.append(ThreadList(iD: threadNo,iDent: channel,tit: topic,userN: user,cnt: reply,rt: rate,uid: userid))
                 }
                 
-                completion(fetchedContent,nil)
+                var blockedUsers = [String]()
+                
+                for (_,subJson):(String, JSON) in json["blockedusers"] {
+                    let blockedid = subJson.stringValue
+                    blockedUsers.append(blockedid)
+                }
+                
+                completion(fetchedContent,blockedUsers,nil)
                 
             case .failure(let error):
                 print(error)
-                completion([],error)
+                completion([],[],error)
             }
         }
     }
     
-    func fetchContent(postId: String, pageNo: String, completion : @escaping (_ op: OP,_ comments: [Replies],_ rated: String, _ error: Error?)->Void) {
+    func fetchContent(postId: String, pageNo: String, completion : @escaping (_ op: OP,_ comments: [Replies],_ rated: String,_ blockedUsers: [String], _ error: Error?)->Void) {
         let keychain = KeychainSwift()
         let par: Parameters = ["id": postId, "ofs": pageNo]
         var head: HTTPHeaders
@@ -81,9 +89,10 @@ class HKGaldenAPI {
                 let gender = json["topic"]["gender"].stringValue
                 let channel = json["topic"]["f_ident"].stringValue
                 let quoteid = json["topic"]["id"].stringValue
+                let userid = json["topic"]["uid"].stringValue
                 
                 
-                let op = OP(t: title,n: name,l: level,c: content,cA: NSAttributedString(),a: avatar,d: date,gd: good,b: bad,ge: gender,ch: channel,qid: quoteid)
+                let op = OP(t: title,n: name,l: level,c: content,cA: NSAttributedString(),a: avatar,d: date,gd: good,b: bad,ge: gender,ch: channel,qid: quoteid,uid: userid)
                 
                 //fetch reply data
                 for (_,subJson):(String, JSON) in json["replys"] {
@@ -97,19 +106,27 @@ class HKGaldenAPI {
                     let date = subJson["r_time"].stringValue
                     let gender = subJson["gender"].stringValue
                     let quoteid = subJson["r_id"].stringValue
+                    let userid = subJson["uid"].stringValue
                     
-                    comments.append(Replies(n: name,l: level,c: content,cA: NSAttributedString(),a: avatar,d: date,g: gender,qid:quoteid))
+                    comments.append(Replies(n: name,l: level,c: content,cA: NSAttributedString(),a: avatar,d: date,g: gender,qid:quoteid,uid:userid))
                     
+                }
+                
+                var blocked = [String]()
+                
+                for (_,subJson):(String, JSON) in json["blockeduser"] {
+                    let blockedid = subJson.stringValue
+                    blocked.append(blockedid)
                 }
                 
                 let rated = json["rated"].stringValue
                 
-                completion(op,comments,rated,nil)
+                completion(op,comments,rated,blocked,nil)
                 
             case .failure(let error):
                 print(error)
-                let op = OP(t: "",n: "",l: "",c: "",cA: NSAttributedString(),a: "",d: "",gd: "",b: "",ge: "",ch: "",qid:"")
-                completion(op,[],"",error)
+                let op = OP(t: "",n: "",l: "",c: "",cA: NSAttributedString(),a: "",d: "",gd: "",b: "",ge: "",ch: "",qid:"",uid:"")
+                completion(op,[],"",[],error)
             }
         }
     }

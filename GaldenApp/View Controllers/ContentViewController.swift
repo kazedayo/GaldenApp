@@ -21,11 +21,12 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var isRated: String = ""
     var pageNow: Int = 1
     var convertedText: String = ""
-    var op = OP(t: "",n: "",l: "",c: "",cA: NSAttributedString(),a: "",d: "",gd: "",b: "",ge: "",ch: "",qid:"")
+    var op = OP(t: "",n: "",l: "",c: "",cA: NSAttributedString(),a: "",d: "",gd: "",b: "",ge: "",ch: "",qid:"",uid:"")
     var comments = [Replies]()
     var replyCount = 1
     var pageCount = 0.0
     var quoteContent = ""
+    var blockedUsers = [String]()
     
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var pageButton: UIBarButtonItem!
@@ -121,14 +122,44 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if (pageNow == 1) {
             if(indexPath.row == 0) {
-                cell.configureOP(opData: op)
+                if (blockedUsers.contains(op.userID)) {
+                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                    cell.userNameLabel.text = "扑ed"
+                    cell.userNameLabel.textColor = .gray
+                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.replyCountLabel.text = ""
+                    cell.dateLabel.text = ""
+                    cell.contentTextView.attributedText = NSAttributedString()
+                } else {
+                    cell.configureOP(opData: op)
+                }
             }
             else {
-                cell.configureReplyFirstPage(comments: comments, indexPath: indexPath,pageNow: pageNow)
+                if (blockedUsers.contains(comments[indexPath.row - 1].userID)) {
+                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                    cell.userNameLabel.text = "扑ed"
+                    cell.userNameLabel.textColor = .gray
+                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.replyCountLabel.text = ""
+                    cell.dateLabel.text = ""
+                    cell.contentTextView.attributedText = NSAttributedString()
+                } else {
+                    cell.configureReplyFirstPage(comments: comments, indexPath: indexPath,pageNow: pageNow)
+                }
             }
         }
         else {
-            cell.configureReply(comments: comments, indexPath: indexPath, pageNow: pageNow)
+            if (blockedUsers.contains(comments[indexPath.row].userID)) {
+                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                cell.userNameLabel.text = "扑ed"
+                cell.userNameLabel.textColor = .gray
+                cell.userLevelLabel.text = "過街老鼠"
+                cell.replyCountLabel.text = ""
+                cell.dateLabel.text = ""
+                cell.contentTextView.attributedText = NSAttributedString()
+            } else {
+                cell.configureReply(comments: comments, indexPath: indexPath, pageNow: pageNow)
+            }
         }
         return cell
     }
@@ -395,10 +426,11 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         buttonLogic()
         self.pageButton.title = "第" + String(self.pageNow) + "頁"
         self.api.fetchContent(postId: threadIdReceived, pageNo: String(pageNow), completion: {
-            [weak self] op,comments,rated,error in
+            [weak self] op,comments,rated,blocked,error in
             if (error == nil) {
                 self?.op = op
                 self?.comments = comments
+                self?.blockedUsers = blocked
                 self?.isRated = rated
                 self?.convertBBCodeToHTML(text: (self?.op.content)!)
                 self?.op.contentAttr = (self?.convertedText)!.data.attributedString!
