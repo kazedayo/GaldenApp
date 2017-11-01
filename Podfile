@@ -16,6 +16,8 @@ target 'GaldenApp' do
   pod 'ESPullToRefresh'
   pod 'DeckTransition'
   pod 'ImagePicker'
+  pod 'Hero'
+  pod 'MarqueeLabel/Swift'
 
   target 'GaldenAppTests' do
     inherit! :search_paths

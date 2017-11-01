@@ -10,6 +10,7 @@ import UIKit
 import JavaScriptCore
 import NVActivityIndicatorView
 import KeychainSwift
+import MarqueeLabel
 
 class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate,UINavigationControllerDelegate {
     
@@ -38,8 +39,9 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var goodButton: UIBarButtonItem!
     @IBOutlet weak var badButton: UIBarButtonItem!
     @IBOutlet weak var leaveNameButton: UIBarButtonItem!
-    @IBOutlet weak var commentButton: UIBarButtonItem!
+    @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var titleLabel: MarqueeLabel!
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -66,8 +68,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             leaveNameButton.isEnabled = false
             commentButton.isEnabled = false
         }
-        
-        self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow)
         
         backgroundIndicator.startAnimating()
         self.view.addSubview(backgroundIndicator)
@@ -309,11 +309,13 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let popoverViewController = segue.destination as! ReplyViewController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
             popoverViewController.popoverPresentationController!.delegate = self
+            popoverViewController.popoverPresentationController!.sourceRect = commentButton.bounds
             popoverViewController.topicID = self.threadIdReceived
         case "quote"?:
             let popoverViewController = segue.destination as! ReplyViewController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
             popoverViewController.popoverPresentationController!.delegate = self
+            popoverViewController.popoverPresentationController!.sourceRect = commentButton.bounds
             popoverViewController.topicID = self.threadIdReceived
             popoverViewController.content = self.quoteContent + "\n"
         default:
@@ -368,6 +370,10 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         default:
             print("nothing")
         }
+    }
+    
+    @IBAction func dismiss(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func unwindToPage(segue: UIStoryboardSegue) {
@@ -440,7 +446,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 self?.contentTableView.reloadData()
                 self?.contentTableView.layoutIfNeeded()
-                self?.title = op.title
+                self?.titleLabel.text = op.title
                 self?.goodCount.title = op.good
                 self?.badCount.title = op.bad
                 

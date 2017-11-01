@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Fc-GU-3Fl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Vln-c4-g8c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="-44" width="375" height="711"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvP-LV-XH5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -37,29 +37,32 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y8X-tJ-JvF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThreadListTableViewCell" rowHeight="75" id="mtD-a8-ECl" customClass="ThreadListTableViewCell" customModule="GaldenApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ThreadListTableViewCell" rowHeight="75" id="mtD-a8-ECl" customClass="ThreadListTableViewCell" customModule="GaldenApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mtD-a8-ECl" id="bFO-oa-gdR">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="74.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ep-3J-AMT">
-                                                    <rect key="frame" x="15" y="16" width="327" height="43"/>
+                                                    <rect key="frame" x="15" y="16" width="360" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="327" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-nC-GAb">
-                                                            <rect key="frame" x="0.0" y="30" width="327" height="13"/>
+                                                            <rect key="frame" x="0.0" y="30" width="360" height="13"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="SOO-1f-kn7"/>
                                                             </constraints>
@@ -79,17 +82,57 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="detailLabel" destination="jBq-nC-GAb" id="DVx-1j-CY2"/>
                                             <outlet property="threadTitleLabel" destination="3yu-oY-6z5" id="tiy-6u-efe"/>
-                                            <segue destination="wRo-r1-a2n" kind="show" identifier="GoToPost" id="fgN-oA-LU3"/>
+                                            <segue destination="wRo-r1-a2n" kind="presentation" identifier="GoToPost" id="fgN-oA-LU3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yyD-gI-7xC" appends="YES" id="rVh-j1-rCn"/>
                                 </connections>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NVi-oY-RW6">
+                                <rect key="frame" x="10" y="60" width="355" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吹水臺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBA-P8-ibq">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="36"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="pfC-5G-PVV" appends="YES" id="pJ2-Dy-Fj7"/>
+                                        </connections>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ne3-gh-tVi">
+                                        <rect key="frame" x="96" y="0.0" width="45" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="IUS-p0-Gtx"/>
+                                        </constraints>
+                                        <state key="normal" image="Add"/>
+                                        <connections>
+                                            <segue destination="7Na-LR-Vny" kind="custom" identifier="StartNewPost" customClass="DeckSegue" customModule="DeckTransition" id="5Kh-UB-9vl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9Y-Ol-7QZ">
+                                        <rect key="frame" x="146" y="0.0" width="209" height="36"/>
+                                        <state key="normal" title=" 會然" image="User"/>
+                                        <connections>
+                                            <segue destination="bpd-Vc-fnK" kind="custom" identifier="UserDetail" customClass="DeckSegue" customModule="DeckTransition" id="uMq-sn-guz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
@@ -97,11 +140,14 @@
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="trailing" secondItem="fzD-og-Bxs" secondAttribute="trailing" id="8or-l2-nhe"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="bottom" secondItem="gkJ-KY-cg8" secondAttribute="bottom" id="975-Mn-xVA"/>
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="top" secondItem="fzD-og-Bxs" secondAttribute="top" id="D8i-Ku-tW1"/>
+                            <constraint firstItem="NVi-oY-RW6" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" constant="10" id="HMj-nY-qX8"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="top" secondItem="gkJ-KY-cg8" secondAttribute="top" constant="-64" id="Huw-XU-x5a"/>
-                            <constraint firstItem="Y8X-tJ-JvF" firstAttribute="top" secondItem="gkJ-KY-cg8" secondAttribute="top" id="Ptm-RK-ZqI"/>
                             <constraint firstItem="gkJ-KY-cg8" firstAttribute="trailing" secondItem="Y8X-tJ-JvF" secondAttribute="trailing" id="VTw-2G-Lsz"/>
+                            <constraint firstItem="Y8X-tJ-JvF" firstAttribute="top" secondItem="NVi-oY-RW6" secondAttribute="bottom" constant="20" id="bTr-dc-uO6"/>
                             <constraint firstItem="gkJ-KY-cg8" firstAttribute="bottom" secondItem="Y8X-tJ-JvF" secondAttribute="bottom" id="eG2-sS-iIS"/>
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="leading" secondItem="fzD-og-Bxs" secondAttribute="leading" id="ftT-s8-Buc"/>
+                            <constraint firstItem="NVi-oY-RW6" firstAttribute="top" secondItem="gkJ-KY-cg8" secondAttribute="top" constant="40" id="fud-e1-TSp"/>
+                            <constraint firstItem="gkJ-KY-cg8" firstAttribute="trailing" secondItem="NVi-oY-RW6" secondAttribute="trailing" constant="10" id="hms-3s-xWB"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" id="k5X-27-dVi"/>
                             <constraint firstItem="Y8X-tJ-JvF" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" id="kpf-eb-29V"/>
                             <constraint firstAttribute="bottom" secondItem="zvP-LV-XH5" secondAttribute="bottom" id="nNS-JJ-Jgo"/>
@@ -109,23 +155,14 @@
                         <viewLayoutGuide key="safeArea" id="gkJ-KY-cg8"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="qL2-nh-zZb">
-                        <barButtonItem key="leftBarButtonItem" image="User" id="dEk-Yb-Mve">
-                            <connections>
-                                <segue destination="bpd-Vc-fnK" kind="custom" identifier="UserDetail" customClass="DeckSegue" customModule="DeckTransition" id="42O-yk-bUJ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="mge-tu-nKI">
-                            <connections>
-                                <segue destination="7Na-LR-Vny" kind="custom" identifier="StartNewPost" customClass="DeckSegue" customModule="DeckTransition" id="MdM-5g-Bdq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="NewThreadButton" destination="mge-tu-nKI" id="WF5-Zy-agU"/>
+                        <outlet property="NewThreadButton" destination="ne3-gh-tVi" id="oSl-Vm-pee"/>
                         <outlet property="backgroundImage" destination="Vln-c4-g8c" id="D3C-xY-Bj5"/>
-                        <outlet property="loggedIn" destination="dEk-Yb-Mve" id="pJV-zK-Ob8"/>
+                        <outlet property="channelLabel" destination="TBA-P8-ibq" id="MSy-EV-dw6"/>
                         <outlet property="threadListTableView" destination="Y8X-tJ-JvF" id="ScC-BD-5Z0"/>
                         <segue destination="BMQ-UW-Pnf" kind="custom" identifier="SwitchChannel" customClass="DeckSegue" customModule="DeckTransition" id="JrP-K2-R88"/>
                     </connections>
@@ -136,6 +173,11 @@
                         <action selector="showDetailWithSender:" destination="FPX-jd-DfM" id="A64-pN-49g"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="pfC-5G-PVV">
+                    <connections>
+                        <action selector="tapOnChannelTitle:" destination="FPX-jd-DfM" id="WlN-z3-rSk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3821.5999999999999" y="-171.36431784107947"/>
         </scene>
@@ -1028,7 +1070,7 @@
             </objects>
             <point key="canvasLocation" x="3822" y="-1092"/>
         </scene>
-        <!--撈緊...-->
+        <!--Content View Controller-->
         <scene sceneID="ybk-Qe-dpf">
             <objects>
                 <viewController id="wRo-r1-a2n" customClass="ContentViewController" customModule="GaldenApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -1048,7 +1090,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="2" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ont-uz-NZy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="507"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1172,6 +1214,54 @@
                                     <outletCollection property="gestureRecognizers" destination="O9x-5Q-oTz" appends="YES" id="a7J-Aq-5xd"/>
                                 </connections>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-bp-01A">
+                                <rect key="frame" x="0.0" y="60" width="355" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                        <rect key="frame" x="0.0" y="0.0" width="210" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
+                                        <rect key="frame" x="210" y="5.5" width="75" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="oo0-Ho-5yX"/>
+                                        </constraints>
+                                        <state key="normal" title=" 回覆" image="Reply"/>
+                                        <connections>
+                                            <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="WriteReply" popoverAnchorView="m6Z-PW-rl1" id="HbF-op-rGJ">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
+                                        <rect key="frame" x="210" y="5.5" width="50" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
+                                        </constraints>
+                                        <state key="normal" image="Cancel"/>
+                                        <connections>
+                                            <action selector="dismiss:" destination="wRo-r1-a2n" eventType="touchUpInside" id="Cu2-Kz-IJW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Title"/>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ZoW-67-nOp">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
@@ -1222,10 +1312,13 @@
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="C4I-re-a4k"/>
                             <constraint firstItem="Ont-uz-NZy" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="FHS-5J-zQa"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="Gyx-ym-h3a"/>
-                            <constraint firstItem="Ont-uz-NZy" firstAttribute="top" secondItem="1Ix-e5-7SW" secondAttribute="top" id="LuW-My-bc4"/>
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="MNK-aP-dz9"/>
                             <constraint firstItem="1Ix-e5-7SW" firstAttribute="bottom" secondItem="ZoW-67-nOp" secondAttribute="bottom" id="SUV-ZP-iEg"/>
+                            <constraint firstItem="eeQ-bp-01A" firstAttribute="top" secondItem="1Ix-e5-7SW" secondAttribute="top" constant="40" id="Vbu-mK-PNA"/>
                             <constraint firstItem="ZoW-67-nOp" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="Wu4-gj-Ei4"/>
+                            <constraint firstItem="1Ix-e5-7SW" firstAttribute="trailing" secondItem="eeQ-bp-01A" secondAttribute="trailing" constant="10" id="ZIr-nn-pI6"/>
+                            <constraint firstItem="eeQ-bp-01A" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" constant="10" id="cW3-ow-5Ft"/>
+                            <constraint firstItem="Ont-uz-NZy" firstAttribute="top" secondItem="eeQ-bp-01A" secondAttribute="bottom" constant="20" id="ecQ-nm-H2f"/>
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="top" secondItem="o7u-Vh-hNN" secondAttribute="top" id="iG7-PO-wQt"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="bottom" secondItem="1Ix-e5-7SW" secondAttribute="bottom" id="nAZ-T8-RoC"/>
                             <constraint firstItem="ZoW-67-nOp" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="pWe-6Q-HxR"/>
@@ -1234,21 +1327,15 @@
                         <viewLayoutGuide key="safeArea" id="1Ix-e5-7SW"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="撈緊..." largeTitleDisplayMode="never" id="fgm-dT-7Lp">
-                        <barButtonItem key="rightBarButtonItem" image="Reply" id="aix-UI-Hhq">
-                            <connections>
-                                <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="WriteReply" popoverAnchorBarButtonItem="aix-UI-Hhq" id="Mee-Ra-WPy">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="backgroundImage" destination="kBh-pb-qCM" id="f7b-Wi-MBv"/>
                         <outlet property="badButton" destination="EQf-v8-kK4" id="Ha9-sA-wpz"/>
                         <outlet property="badCount" destination="9cN-9g-WdL" id="KPW-3c-Z8X"/>
-                        <outlet property="commentButton" destination="aix-UI-Hhq" id="qGt-wK-ZXl"/>
+                        <outlet property="commentButton" destination="m6Z-PW-rl1" id="OUB-wL-0na"/>
                         <outlet property="contentTableView" destination="Ont-uz-NZy" id="gHB-e0-PTC"/>
                         <outlet property="f5View" destination="9bH-hL-ZDt" id="Zgo-SR-L7j"/>
                         <outlet property="goodButton" destination="GCW-Mh-i9Q" id="oOH-Go-2Ku"/>
@@ -1257,7 +1344,8 @@
                         <outlet property="nextButton" destination="iaX-Bw-hc2" id="CcR-KU-JQd"/>
                         <outlet property="pageButton" destination="5dS-3K-35z" id="8wW-AW-E4l"/>
                         <outlet property="prevButton" destination="vg8-lz-lZe" id="ysN-lb-GCu"/>
-                        <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="quote" popoverAnchorBarButtonItem="aix-UI-Hhq" id="OwG-tQ-c8I">
+                        <outlet property="titleLabel" destination="Gyx-8X-VPI" id="YfK-c6-Dhl"/>
+                        <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="quote" popoverAnchorView="m6Z-PW-rl1" id="OwG-tQ-c8I">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
@@ -1345,7 +1433,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-jQ-gL6">
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-jQ-gL6">
                                             <rect key="frame" x="10" y="96" width="365" height="551"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1373,6 +1461,9 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="53" id="Iuj-am-XzN"/>
+                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <constraints>
@@ -2554,29 +2645,9 @@
             </objects>
             <point key="canvasLocation" x="6391" y="-53"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ftL-Lv-LC9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Fc-GU-3Fl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="fRk-bF-XfJ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Ii-zA-ylQ">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="FPX-jd-DfM" kind="relationship" relationship="rootViewController" id="BtG-E6-Lfb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Er2-d2-5hD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2937" y="-172"/>
-        </scene>
     </scenes>
     <resources>
+        <image name="Add" width="25" height="25"/>
         <image name="Background" width="621" height="1104"/>
         <image name="Bad" width="25" height="25"/>
         <image name="Cancel" width="25" height="25"/>

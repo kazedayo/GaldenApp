@@ -13,9 +13,9 @@ import ESPullToRefresh
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var threadListTableView: UITableView!
-    @IBOutlet weak var loggedIn: UIBarButtonItem!
     @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var NewThreadButton: UIBarButtonItem!
+    @IBOutlet weak var channelLabel: UILabel!
+    @IBOutlet weak var NewThreadButton: UIButton!
     
     //HKGaldenAPI.swift required (NOT included in GitHub repo)
     let api: HKGaldenAPI = HKGaldenAPI()
@@ -28,8 +28,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var blockedUsers = [String]()
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
-    
-    let button = UIButton(type: .custom)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +77,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             })
         }
-    
-        button.frame = CGRect(x:0,y:0,width:100,height:40)
-        button.backgroundColor = .clear
-        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
-        button.addTarget(self, action: #selector(self.clickOnButton), for: .touchUpInside)
-        self.navigationItem.titleView = button
         
         backgroundIndicator.startAnimating()
         self.view.addSubview(backgroundIndicator)
@@ -92,8 +84,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadListTableView.isHidden = true
         channelNow = "bw"
         pageNow = "1"
-        button.setTitle(api.channelNameFunc(ch: channelNow!), for: .normal)
-        self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
+        channelLabel.text = api.channelNameFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {
@@ -126,19 +117,31 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadListTableViewCell", for: indexPath) as! ThreadListTableViewCell
-
+        
         // Configure the cell...
         if (blockedUsers.contains(threads[indexPath.row].userID)) {
             cell.threadTitleLabel.text = "扑ed"
             cell.threadTitleLabel.textColor = .gray
-            cell.detailLabel.text = "扑ed"
-            cell.detailLabel.textColor = .gray
+            cell.detailLabel.text = "你已扑柒此人"
         } else {
             cell.threadTitleLabel.text = threads[indexPath.row].title
+            cell.threadTitleLabel.textColor = .white
             cell.detailLabel.text = threads[indexPath.row].userName + "  " + "回覆:" + threads[indexPath.row].count + "  " + "評分:" + threads[indexPath.row].rate
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.heroID = "Title"
+        cell?.heroModifiers = [.fade, .scale(0.5)]
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.heroID = ""
+        cell?.heroModifiers = []
     }
     
     @IBAction func showDetail(sender: UILongPressGestureRecognizer) {
@@ -245,7 +248,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         return UIModalPresentationStyle.none
     }
     
-    @objc func clickOnButton(sender: UIButton) {
+    @IBAction func tapOnChannelTitle(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "SwitchChannel", sender: self)
     }
     
@@ -256,8 +259,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.pageNow = "1"
         threadListTableView.isHidden = true
         backgroundIndicator.isHidden = false
-        button.setTitle(api.channelNameFunc(ch: channelNow!), for: .normal)
-        self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
+        channelLabel.text = api.channelNameFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {
@@ -271,15 +273,13 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
-        self.title = api.channelNameFunc(ch: channelNow!)
-        self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
+        channelLabel.text = api.channelNameFunc(ch: channelNow!)
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {
         threadListTableView.isHidden = true
         backgroundIndicator.isHidden = false
-        self.title = api.channelNameFunc(ch: channelNow!)
-        self.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: channelNow!)
+        channelLabel.text = api.channelNameFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {
