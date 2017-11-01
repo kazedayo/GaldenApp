@@ -8,8 +8,9 @@
 
 import UIKit
 import KeychainSwift
+import ImagePicker
 
-class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
+class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var loginButton: UIButton!
@@ -85,30 +86,39 @@ class UserDetailViewController: UIViewController,UIImagePickerControllerDelegate
     }
     
     @IBAction func backgroundImagePicker(_ sender: UIButton) {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .photoLibrary
+        var configuration = Configuration()
+        configuration.doneButtonTitle = "揀完"
+        configuration.cancelButtonTitle = "不了"
+        configuration.noImagesTitle = "冇圖"
+        configuration.allowVideoSelection = false
+        
+        let imagePickerController = ImagePickerController(configuration: configuration)
         imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.resetAssets()
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        let keychain = KeychainSwift()
+        keychain.set(UIImagePNGRepresentation(images[0])!, forKey: "BackgroundImage")
+        dismiss(animated: true, completion: {
+            let alert = UIAlertController(title: "注意", message: "重新載入app以套用",preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK", style: .cancel, handler: nil))
+            self.present(alert,animated: true,completion: nil)
+        })
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backToDefaultBackground(_ sender: UIButton) {
         let keychain = KeychainSwift()
         keychain.delete("BackgroundImage")
-        let alert = UIAlertController(title: "注意", message: "重新載入app以套用",preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title:"OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedImage = info[UIImagePickerControllerOriginalImage]
-        let imageData = UIImagePNGRepresentation(selectedImage as! UIImage)
-        let keychain = KeychainSwift()
-        keychain.set(imageData!, forKey: "BackgroundImage")
-        dismiss(animated: true, completion: nil)
         let alert = UIAlertController(title: "注意", message: "重新載入app以套用",preferredStyle: .alert)
         alert.addAction(UIAlertAction(title:"OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)

@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>揀背景用</string>
+	<string>揀圖用</string>
+	<key>NSCameraUsageDescription</key>
+	<string>影相用</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
