@@ -17,7 +17,7 @@ target 'GaldenApp' do
   pod 'DeckTransition'
   pod 'ImagePicker'
   pod 'Hero'
-  pod 'MarqueeLabel/Swift'
+  pod 'MarqueeLabel'
 
   target 'GaldenAppTests' do
     inherit! :search_paths
