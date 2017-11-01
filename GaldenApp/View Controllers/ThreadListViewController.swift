@@ -26,6 +26,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var pageNow: String?
     var selectedThread: String!
     var blockedUsers = [String]()
+    var ipath = IndexPath()
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
 
@@ -152,6 +153,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             
             actionSheet.addAction(UIAlertAction(title:"去最後一頁",style: .default, handler: {
                 action in
+                let cell = self.threadListTableView.cellForRow(at: indexPath!)
+                cell?.heroID = "Title"
+                cell?.heroModifiers = [.fade, .scale(0.5)]
+                self.ipath = indexPath!
                 self.performSegue(withIdentifier: "GoToPost", sender: indexPath!)
             }))
             
@@ -273,7 +278,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
-        channelLabel.text = api.channelNameFunc(ch: channelNow!)
+        dismiss(animated: true, completion: {
+            self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
+            let cell = self.threadListTableView.cellForRow(at: self.ipath)
+            cell?.heroID = ""
+            cell?.heroModifiers = []
+        })
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {

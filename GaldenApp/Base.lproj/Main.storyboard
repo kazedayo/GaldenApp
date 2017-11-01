@@ -1352,9 +1352,11 @@
                         <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="quote" popoverAnchorView="m6Z-PW-rl1" id="OwG-tQ-c8I">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="SiJ-ir-6HP" kind="unwind" identifier="unwindToThreadListFromContent" unwindAction="unwindToThreadListFromContentWithSegue:" id="pm1-Fh-aZc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkB-NC-fGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SiJ-ir-6HP" userLabel="Exit" sceneMemberID="exit"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="O9x-5Q-oTz">
                     <connections>
                         <action selector="showDetailWithSender:" destination="wRo-r1-a2n" id="FU7-H8-3AP"/>

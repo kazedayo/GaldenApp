@@ -373,7 +373,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     @IBAction func dismiss(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "unwindToThreadListFromContent", sender: self)
     }
     
     @IBAction func unwindToPage(segue: UIStoryboardSegue) {
