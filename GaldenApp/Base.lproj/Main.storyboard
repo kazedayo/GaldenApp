@@ -50,10 +50,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ep-3J-AMT">
-                                                    <rect key="frame" x="15" y="16" width="360" height="43"/>
+                                                    <rect key="frame" x="15" y="16" width="345" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-nC-GAb">
-                                                            <rect key="frame" x="0.0" y="30" width="360" height="13"/>
+                                                            <rect key="frame" x="0.0" y="30" width="345" height="13"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="SOO-1f-kn7"/>
                                                             </constraints>
@@ -76,7 +76,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="2Ep-3J-AMT" firstAttribute="top" secondItem="bFO-oa-gdR" secondAttribute="topMargin" constant="5" id="JZN-qI-rtU"/>
-                                                <constraint firstAttribute="trailing" secondItem="2Ep-3J-AMT" secondAttribute="trailing" id="Sqi-VY-8FH"/>
+                                                <constraint firstAttribute="trailing" secondItem="2Ep-3J-AMT" secondAttribute="trailing" constant="15" id="Sqi-VY-8FH"/>
                                                 <constraint firstItem="2Ep-3J-AMT" firstAttribute="leading" secondItem="bFO-oa-gdR" secondAttribute="leadingMargin" id="llE-W7-nd7"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2Ep-3J-AMT" secondAttribute="bottom" constant="5" id="vGd-SV-AUc"/>
                                             </constraints>
@@ -96,13 +96,14 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="cascade()"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yyD-gI-7xC" appends="YES" id="rVh-j1-rCn"/>
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NVi-oY-RW6">
-                                <rect key="frame" x="10" y="60" width="355" height="36"/>
+                                <rect key="frame" x="15" y="60" width="345" height="36"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吹水臺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBA-P8-ibq">
                                         <rect key="frame" x="0.0" y="0.0" width="91" height="36"/>
@@ -125,7 +126,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9Y-Ol-7QZ">
-                                        <rect key="frame" x="146" y="0.0" width="209" height="36"/>
+                                        <rect key="frame" x="146" y="0.0" width="199" height="36"/>
                                         <state key="normal" title=" 會然" image="User"/>
                                         <connections>
                                             <segue destination="bpd-Vc-fnK" kind="custom" identifier="UserDetail" customClass="DeckSegue" customModule="DeckTransition" id="uMq-sn-guz"/>
@@ -140,14 +141,14 @@
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="trailing" secondItem="fzD-og-Bxs" secondAttribute="trailing" id="8or-l2-nhe"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="bottom" secondItem="gkJ-KY-cg8" secondAttribute="bottom" id="975-Mn-xVA"/>
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="top" secondItem="fzD-og-Bxs" secondAttribute="top" id="D8i-Ku-tW1"/>
-                            <constraint firstItem="NVi-oY-RW6" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" constant="10" id="HMj-nY-qX8"/>
+                            <constraint firstItem="NVi-oY-RW6" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" constant="15" id="HMj-nY-qX8"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="top" secondItem="gkJ-KY-cg8" secondAttribute="top" constant="-64" id="Huw-XU-x5a"/>
                             <constraint firstItem="gkJ-KY-cg8" firstAttribute="trailing" secondItem="Y8X-tJ-JvF" secondAttribute="trailing" id="VTw-2G-Lsz"/>
                             <constraint firstItem="Y8X-tJ-JvF" firstAttribute="top" secondItem="NVi-oY-RW6" secondAttribute="bottom" constant="20" id="bTr-dc-uO6"/>
                             <constraint firstItem="gkJ-KY-cg8" firstAttribute="bottom" secondItem="Y8X-tJ-JvF" secondAttribute="bottom" id="eG2-sS-iIS"/>
                             <constraint firstItem="zvP-LV-XH5" firstAttribute="leading" secondItem="fzD-og-Bxs" secondAttribute="leading" id="ftT-s8-Buc"/>
                             <constraint firstItem="NVi-oY-RW6" firstAttribute="top" secondItem="gkJ-KY-cg8" secondAttribute="top" constant="40" id="fud-e1-TSp"/>
-                            <constraint firstItem="gkJ-KY-cg8" firstAttribute="trailing" secondItem="NVi-oY-RW6" secondAttribute="trailing" constant="10" id="hms-3s-xWB"/>
+                            <constraint firstItem="gkJ-KY-cg8" firstAttribute="trailing" secondItem="NVi-oY-RW6" secondAttribute="trailing" constant="15" id="hms-3s-xWB"/>
                             <constraint firstItem="Vln-c4-g8c" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" id="k5X-27-dVi"/>
                             <constraint firstItem="Y8X-tJ-JvF" firstAttribute="leading" secondItem="gkJ-KY-cg8" secondAttribute="leading" id="kpf-eb-29V"/>
                             <constraint firstAttribute="bottom" secondItem="zvP-LV-XH5" secondAttribute="bottom" id="nNS-JJ-Jgo"/>
@@ -1078,7 +1079,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="kBh-pb-qCM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="kBh-pb-qCM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJr-KS-GNY">
