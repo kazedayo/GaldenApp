@@ -57,7 +57,12 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.dataSource = self
         navigationController?.delegate = self
         
+        backgroundIndicator.startAnimating()
+        self.view.addSubview(backgroundIndicator)
+        
         toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
+        backgroundIndicator.isHeroEnabled = true
+        backgroundIndicator.heroModifiers = [.fade,.position(CGPoint(x:self.view.frame.midX,y:200))]
         
         let keychain = KeychainSwift()
         
@@ -71,9 +76,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             leaveNameButton.isEnabled = false
             commentButton.isEnabled = false
         }
-        
-        backgroundIndicator.startAnimating()
-        self.view.addSubview(backgroundIndicator)
         
         self.prevButton.isEnabled = false
         self.nextButton.isEnabled = false
