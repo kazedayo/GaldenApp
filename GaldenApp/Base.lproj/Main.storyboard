@@ -1205,7 +1205,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-bp-01A">
-                                <rect key="frame" x="10" y="60" width="355" height="36"/>
+                                <rect key="frame" x="0.0" y="60" width="355" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="36"/>
@@ -1235,7 +1235,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
-                                        <rect key="frame" x="220" y="5.5" width="75" height="25"/>
+                                        <rect key="frame" x="210" y="5.5" width="75" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="oo0-Ho-5yX"/>
                                         </constraints>
@@ -1247,7 +1247,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="305" y="5.5" width="50" height="25"/>
+                                        <rect key="frame" x="210" y="5.5" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>
@@ -1561,7 +1561,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aby-Pz-S3E">
-                                <rect key="frame" x="10" y="212" width="355" height="28"/>
+                                <rect key="frame" x="20" y="202" width="335" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smT-Cx-SFr">
                                         <rect key="frame" x="0.0" y="0.0" width="85" height="28"/>
@@ -1577,11 +1577,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="eRY-HE-NNb" kind="presentation" identifier="Icon" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="FyP-iM-Hhk"/>
+                                            <segue destination="eRY-HE-NNb" kind="presentation" identifier="BBCode" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="CR1-W7-enG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzY-7k-4y7">
-                                        <rect key="frame" x="90" y="0.0" width="87" height="28"/>
+                                        <rect key="frame" x="90" y="0.0" width="82" height="28"/>
                                         <color key="backgroundColor" red="0.24705882352941178" green="0.2196078431372549" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                         <state key="normal" title="Icon"/>
@@ -1591,11 +1591,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="z04-Dc-CYP" kind="presentation" identifier="BBCode" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="nBY-Ui-Ja5"/>
+                                            <segue destination="z04-Dc-CYP" kind="presentation" identifier="Icon" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="Vic-Js-kn4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPL-9b-wiq">
-                                        <rect key="frame" x="182" y="0.0" width="173" height="28"/>
+                                        <rect key="frame" x="177" y="0.0" width="158" height="28"/>
                                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                         <state key="normal" title="回覆"/>
@@ -1614,10 +1614,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="w4m-0i-wpA" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="5" id="B20-eV-wjZ"/>
-                            <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="aby-Pz-S3E" secondAttribute="bottom" constant="10" id="Dze-rK-adT"/>
-                            <constraint firstItem="aby-Pz-S3E" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="10" id="age-L9-8Qm"/>
+                            <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="aby-Pz-S3E" secondAttribute="bottom" constant="20" id="Dze-rK-adT"/>
+                            <constraint firstItem="aby-Pz-S3E" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="20" id="age-L9-8Qm"/>
                             <constraint firstItem="w4m-0i-wpA" firstAttribute="top" secondItem="iMO-vt-Z29" secondAttribute="top" constant="5" id="ciO-1r-MMS"/>
-                            <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="aby-Pz-S3E" secondAttribute="trailing" constant="10" id="kDc-hc-z8e"/>
+                            <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="aby-Pz-S3E" secondAttribute="trailing" constant="20" id="kDc-hc-z8e"/>
                             <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="w4m-0i-wpA" secondAttribute="trailing" constant="5" id="osZ-ec-Re3"/>
                             <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="w4m-0i-wpA" secondAttribute="bottom" constant="5" id="zyi-Br-3WH"/>
                         </constraints>
@@ -2672,8 +2672,8 @@
         <image name="User" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nBY-Ui-Ja5"/>
-        <segue reference="FyP-iM-Hhk"/>
+        <segue reference="Vic-Js-kn4"/>
+        <segue reference="CR1-W7-enG"/>
         <segue reference="OwG-tQ-c8I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
