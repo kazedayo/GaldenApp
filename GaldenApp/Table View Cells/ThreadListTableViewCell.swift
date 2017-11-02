@@ -8,13 +8,14 @@
 
 import UIKit
 import Hero
+import MarqueeLabel
 
 class ThreadListTableViewCell: UITableViewCell {
     
     //MARK: Properties
     
     
-    @IBOutlet weak var threadTitleLabel: UILabel!
+    @IBOutlet weak var threadTitleLabel: MarqueeLabel!
     @IBOutlet weak var detailLabel: UILabel!
     
     override func awakeFromNib() {

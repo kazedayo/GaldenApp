@@ -52,13 +52,31 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ep-3J-AMT">
                                                     <rect key="frame" x="15" y="16" width="345" height="43"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5">
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5" customClass="MarqueeLabel">
                                                             <rect key="frame" x="0.0" y="0.0" width="345" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="marqueeType">
+                                                                    <integer key="value" value="0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-nC-GAb">
@@ -89,7 +107,6 @@
                                         <connections>
                                             <outlet property="detailLabel" destination="jBq-nC-GAb" id="DVx-1j-CY2"/>
                                             <outlet property="threadTitleLabel" destination="3yu-oY-6z5" id="tiy-6u-efe"/>
-                                            <segue destination="wRo-r1-a2n" kind="presentation" identifier="GoToPost" id="fgN-oA-LU3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -171,6 +188,7 @@
                         <outlet property="channelLabel" destination="TBA-P8-ibq" id="MSy-EV-dw6"/>
                         <outlet property="threadListTableView" destination="Y8X-tJ-JvF" id="ScC-BD-5Z0"/>
                         <segue destination="BMQ-UW-Pnf" kind="custom" identifier="SwitchChannel" customClass="DeckSegue" customModule="DeckTransition" id="JrP-K2-R88"/>
+                        <segue destination="wRo-r1-a2n" kind="presentation" identifier="GoToPost" id="sHd-6S-BUS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utv-pD-qzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1198,7 +1216,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(1.5)"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="O9x-5Q-oTz" appends="YES" id="a7J-Aq-5xd"/>
@@ -1561,7 +1579,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aby-Pz-S3E">
-                                <rect key="frame" x="20" y="202" width="335" height="28"/>
+                                <rect key="frame" x="15" y="207" width="345" height="28"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smT-Cx-SFr">
                                         <rect key="frame" x="0.0" y="0.0" width="85" height="28"/>
@@ -1581,7 +1599,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzY-7k-4y7">
-                                        <rect key="frame" x="90" y="0.0" width="82" height="28"/>
+                                        <rect key="frame" x="90" y="0.0" width="84.5" height="28"/>
                                         <color key="backgroundColor" red="0.24705882352941178" green="0.2196078431372549" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                         <state key="normal" title="Icon"/>
@@ -1595,7 +1613,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPL-9b-wiq">
-                                        <rect key="frame" x="177" y="0.0" width="158" height="28"/>
+                                        <rect key="frame" x="179.5" y="0.0" width="165.5" height="28"/>
                                         <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                         <state key="normal" title="回覆"/>
@@ -1614,10 +1632,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="w4m-0i-wpA" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="5" id="B20-eV-wjZ"/>
-                            <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="aby-Pz-S3E" secondAttribute="bottom" constant="20" id="Dze-rK-adT"/>
-                            <constraint firstItem="aby-Pz-S3E" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="20" id="age-L9-8Qm"/>
+                            <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="aby-Pz-S3E" secondAttribute="bottom" constant="15" id="Dze-rK-adT"/>
+                            <constraint firstItem="aby-Pz-S3E" firstAttribute="leading" secondItem="iMO-vt-Z29" secondAttribute="leading" constant="15" id="age-L9-8Qm"/>
                             <constraint firstItem="w4m-0i-wpA" firstAttribute="top" secondItem="iMO-vt-Z29" secondAttribute="top" constant="5" id="ciO-1r-MMS"/>
-                            <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="aby-Pz-S3E" secondAttribute="trailing" constant="20" id="kDc-hc-z8e"/>
+                            <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="aby-Pz-S3E" secondAttribute="trailing" constant="15" id="kDc-hc-z8e"/>
                             <constraint firstItem="iMO-vt-Z29" firstAttribute="trailing" secondItem="w4m-0i-wpA" secondAttribute="trailing" constant="5" id="osZ-ec-Re3"/>
                             <constraint firstItem="iMO-vt-Z29" firstAttribute="bottom" secondItem="w4m-0i-wpA" secondAttribute="bottom" constant="5" id="zyi-Br-3WH"/>
                         </constraints>

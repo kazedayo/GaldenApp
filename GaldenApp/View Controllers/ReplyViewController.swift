@@ -21,7 +21,7 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
         replyTextField.delegate = self
         replyTextField.text = content
         replyTextField.becomeFirstResponder()
-        replyTextField.textContainerInset = UIEdgeInsetsMake(10, 10, 40, 10)
+        replyTextField.textContainerInset = UIEdgeInsetsMake(20, 5, 40, 5)
         // Do any additional setup after loading the view.
     }
 

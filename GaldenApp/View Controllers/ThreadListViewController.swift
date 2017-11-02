@@ -29,7 +29,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var ipath = IndexPath()
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -134,17 +134,26 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.heroID = "Title"
-        cell?.heroModifiers = [.fade, .scale(0.5)]
-        self.ipath = indexPath
+        if (blockedUsers.contains(threads[indexPath.row].userID)) {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title:"喂喂喂",message:"扑咗就唔好心郁郁",preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title:"好囉",style:.cancel,handler:nil))
+                self.present(alert,animated: true,completion: nil)
+            }
+        } else {
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.heroID = "Title"
+            cell?.heroModifiers = [.fade, .scale(0.5)]
+            self.ipath = indexPath
+            self.performSegue(withIdentifier: "GoToPost", sender: cell)
+        }
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    /*func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.heroID = ""
         cell?.heroModifiers = []
-    }
+    }*/
     
     @IBAction func showDetail(sender: UILongPressGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.began {
