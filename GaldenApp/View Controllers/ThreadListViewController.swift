@@ -237,6 +237,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let indexPath = threadListTableView.indexPath(for: selectedThreadCell!)
                 let selectedThread = threads[(indexPath?.row)!].id
                 contentViewController.threadIdReceived = selectedThread
+                contentViewController.title = threads[(indexPath?.row)!].title
                 contentViewController.goToLastPage = false
                 contentViewController.channelNow = threads[(indexPath?.row)!].ident
             }
@@ -245,6 +246,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 let indexPath = selectedThreadCell?.row
                 let selectedThread = threads[indexPath!].id
                 contentViewController.threadIdReceived = selectedThread
+                contentViewController.title = threads[indexPath!].title
                 contentViewController.goToLastPage = true
                 contentViewController.channelNow = threads[(indexPath)!].ident
             }

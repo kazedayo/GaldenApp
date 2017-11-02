@@ -43,6 +43,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleLabel: MarqueeLabel!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var replyStack: UIStackView!
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -57,12 +58,15 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.dataSource = self
         navigationController?.delegate = self
         
+        titleLabel.text = title
+        
         backgroundIndicator.startAnimating()
         self.view.addSubview(backgroundIndicator)
         
         toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
         backgroundIndicator.isHeroEnabled = true
         backgroundIndicator.heroModifiers = [.fade,.position(CGPoint(x:self.view.frame.midX,y:200))]
+        replyStack.heroModifiers = [.position(CGPoint(x:500,y:replyStack.frame.midY))]
         
         let keychain = KeychainSwift()
         
@@ -451,7 +455,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 self?.contentTableView.reloadData()
                 self?.contentTableView.layoutIfNeeded()
-                self?.titleLabel.text = op.title
                 self?.goodCount.title = op.good
                 self?.badCount.title = op.bad
                 

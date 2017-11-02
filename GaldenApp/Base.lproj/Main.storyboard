@@ -52,31 +52,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ep-3J-AMT">
                                                     <rect key="frame" x="15" y="16" width="345" height="43"/>
                                                     <subviews>
-                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5" customClass="MarqueeLabel">
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yu-oY-6z5">
                                                             <rect key="frame" x="0.0" y="0.0" width="345" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="marqueeType">
-                                                                    <integer key="value" value="0"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
-                                                                    <real key="value" value="2"/>
-                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBq-nC-GAb">
@@ -1093,7 +1075,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="2" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ont-uz-NZy">
-                                <rect key="frame" x="0.0" y="116" width="375" height="507"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="514"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1222,38 +1204,41 @@
                                     <outletCollection property="gestureRecognizers" destination="O9x-5Q-oTz" appends="YES" id="a7J-Aq-5xd"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-bp-01A">
-                                <rect key="frame" x="0.0" y="60" width="355" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
+                                <rect key="frame" x="10" y="40" width="355" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="marqueeType">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Title"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mCv-Ax-ydK">
+                                <rect key="frame" x="240" y="74" width="125" height="25"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="210" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="marqueeType">
-                                                <integer key="value" value="0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
-                                        <rect key="frame" x="210" y="5.5" width="75" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="oo0-Ho-5yX"/>
                                         </constraints>
@@ -1265,7 +1250,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="210" y="5.5" width="50" height="25"/>
+                                        <rect key="frame" x="75" y="0.0" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>
@@ -1277,7 +1262,7 @@
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Title"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="ZoW-67-nOp">
@@ -1330,21 +1315,23 @@
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="bottom" secondItem="1Ix-e5-7SW" secondAttribute="bottom" id="0NT-TJ-s6a"/>
                             <constraint firstItem="Ont-uz-NZy" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="0tX-Lp-vvO"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="top" secondItem="o7u-Vh-hNN" secondAttribute="top" id="66F-mM-PLV"/>
+                            <constraint firstItem="mCv-Ax-ydK" firstAttribute="top" secondItem="Gyx-8X-VPI" secondAttribute="bottom" constant="10" id="66W-Ef-80a"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="74S-Sy-njE"/>
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="C4I-re-a4k"/>
                             <constraint firstItem="Ont-uz-NZy" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="FHS-5J-zQa"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="Gyx-ym-h3a"/>
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="MNK-aP-dz9"/>
+                            <constraint firstItem="Gyx-8X-VPI" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" constant="10" id="RyK-po-ZPL"/>
                             <constraint firstItem="1Ix-e5-7SW" firstAttribute="bottom" secondItem="ZoW-67-nOp" secondAttribute="bottom" id="SUV-ZP-iEg"/>
-                            <constraint firstItem="eeQ-bp-01A" firstAttribute="top" secondItem="1Ix-e5-7SW" secondAttribute="top" constant="40" id="Vbu-mK-PNA"/>
                             <constraint firstItem="ZoW-67-nOp" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" id="Wu4-gj-Ei4"/>
-                            <constraint firstItem="1Ix-e5-7SW" firstAttribute="trailing" secondItem="eeQ-bp-01A" secondAttribute="trailing" constant="10" id="ZIr-nn-pI6"/>
-                            <constraint firstItem="eeQ-bp-01A" firstAttribute="leading" secondItem="1Ix-e5-7SW" secondAttribute="leading" constant="10" id="cW3-ow-5Ft"/>
-                            <constraint firstItem="Ont-uz-NZy" firstAttribute="top" secondItem="eeQ-bp-01A" secondAttribute="bottom" constant="20" id="ecQ-nm-H2f"/>
+                            <constraint firstItem="1Ix-e5-7SW" firstAttribute="trailing" secondItem="Gyx-8X-VPI" secondAttribute="trailing" constant="10" id="biG-1F-rgp"/>
                             <constraint firstItem="OJr-KS-GNY" firstAttribute="top" secondItem="o7u-Vh-hNN" secondAttribute="top" id="iG7-PO-wQt"/>
+                            <constraint firstItem="1Ix-e5-7SW" firstAttribute="trailing" secondItem="mCv-Ax-ydK" secondAttribute="trailing" constant="10" id="jxo-T5-dHd"/>
                             <constraint firstItem="kBh-pb-qCM" firstAttribute="bottom" secondItem="1Ix-e5-7SW" secondAttribute="bottom" id="nAZ-T8-RoC"/>
                             <constraint firstItem="ZoW-67-nOp" firstAttribute="trailing" secondItem="1Ix-e5-7SW" secondAttribute="trailing" id="pWe-6Q-HxR"/>
                             <constraint firstItem="Ont-uz-NZy" firstAttribute="bottom" secondItem="ZoW-67-nOp" secondAttribute="top" id="s0n-TH-xKk"/>
+                            <constraint firstItem="Ont-uz-NZy" firstAttribute="top" secondItem="mCv-Ax-ydK" secondAttribute="bottom" constant="10" id="wrL-Hc-XQd"/>
+                            <constraint firstItem="Gyx-8X-VPI" firstAttribute="top" secondItem="1Ix-e5-7SW" secondAttribute="top" constant="20" id="zDB-VZ-FFz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Ix-e5-7SW"/>
                     </view>
@@ -1366,6 +1353,7 @@
                         <outlet property="nextButton" destination="iaX-Bw-hc2" id="CcR-KU-JQd"/>
                         <outlet property="pageButton" destination="5dS-3K-35z" id="8wW-AW-E4l"/>
                         <outlet property="prevButton" destination="vg8-lz-lZe" id="ysN-lb-GCu"/>
+                        <outlet property="replyStack" destination="mCv-Ax-ydK" id="KhQ-f2-YEg"/>
                         <outlet property="titleLabel" destination="Gyx-8X-VPI" id="YfK-c6-Dhl"/>
                         <outlet property="toolbar" destination="ZoW-67-nOp" id="Anu-mp-LBn"/>
                         <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="quote" popoverAnchorView="m6Z-PW-rl1" id="OwG-tQ-c8I">
