@@ -1221,7 +1221,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-bp-01A">
-                                <rect key="frame" x="0.0" y="60" width="355" height="36"/>
+                                <rect key="frame" x="10" y="60" width="355" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="36"/>
@@ -1245,7 +1245,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
-                                        <rect key="frame" x="210" y="5.5" width="75" height="25"/>
+                                        <rect key="frame" x="220" y="5.5" width="75" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="oo0-Ho-5yX"/>
                                         </constraints>
@@ -1257,7 +1257,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="210" y="5.5" width="50" height="25"/>
+                                        <rect key="frame" x="305" y="5.5" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>
@@ -1311,6 +1311,10 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1355,6 +1359,7 @@
                         <outlet property="pageButton" destination="5dS-3K-35z" id="8wW-AW-E4l"/>
                         <outlet property="prevButton" destination="vg8-lz-lZe" id="ysN-lb-GCu"/>
                         <outlet property="titleLabel" destination="Gyx-8X-VPI" id="YfK-c6-Dhl"/>
+                        <outlet property="toolbar" destination="ZoW-67-nOp" id="Anu-mp-LBn"/>
                         <segue destination="QBV-bu-6P2" kind="popoverPresentation" identifier="quote" popoverAnchorView="m6Z-PW-rl1" id="OwG-tQ-c8I">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>

@@ -42,6 +42,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleLabel: MarqueeLabel!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -55,6 +56,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.delegate = self
         contentTableView.dataSource = self
         navigationController?.delegate = self
+        
+        toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
         
         let keychain = KeychainSwift()
         
