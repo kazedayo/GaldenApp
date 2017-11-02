@@ -1200,7 +1200,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-bp-01A">
-                                <rect key="frame" x="0.0" y="60" width="355" height="36"/>
+                                <rect key="frame" x="10" y="60" width="355" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="210" height="36"/>
@@ -1213,18 +1213,24 @@
                                                 <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                                                <real key="value" value="2"/>
+                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
-                                                <real key="value" value="2"/>
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
-                                        <rect key="frame" x="210" y="5.5" width="75" height="25"/>
+                                        <rect key="frame" x="220" y="5.5" width="75" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="oo0-Ho-5yX"/>
                                         </constraints>
@@ -1236,7 +1242,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="210" y="5.5" width="50" height="25"/>
+                                        <rect key="frame" x="305" y="5.5" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>
@@ -2649,7 +2655,7 @@
     </scenes>
     <resources>
         <image name="Add" width="25" height="25"/>
-        <image name="Background" width="621" height="1104"/>
+        <image name="Background" width="540" height="960"/>
         <image name="Bad" width="25" height="25"/>
         <image name="Cancel" width="25" height="25"/>
         <image name="F5" width="50" height="47"/>
