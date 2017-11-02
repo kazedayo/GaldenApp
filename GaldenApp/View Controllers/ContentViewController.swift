@@ -474,6 +474,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self?.contentTableView.isHidden = false
                 self?.contentTableView.tableFooterView = self?.f5View
                 self?.f5View.isHidden = false
+                self?.titleLabel.triggerScrollStart()
                 if (action == "f5") {
                     if (self?.pageNow == 1) {
                         let indexPath = IndexPath(row:comments.count,section:0)
