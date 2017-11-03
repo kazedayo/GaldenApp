@@ -111,6 +111,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.contentTableView.reloadData()
+        self.titleLabel.triggerScrollStart()
     }
     
     override func didReceiveMemoryWarning() {
