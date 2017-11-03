@@ -28,7 +28,10 @@ class HKGaldenAPI {
                 var fetchedContent = [ThreadList]()
                 
                 for (_,subJson):(String, JSON) in json["topics"] {
-                    let topic: String = subJson["tle"].stringValue
+                    var topic: String = subJson["tle"].stringValue
+                    
+                    topic = topic.replacingOccurrences(of: "\n", with: "")
+                    
                     let user: String = subJson["uname"].stringValue
                     let rate: String = subJson["rate"].stringValue
                     let reply: String = subJson["count"].stringValue

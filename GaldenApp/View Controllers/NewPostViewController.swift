@@ -73,11 +73,17 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func submitNewPost(_ sender: UIButton) {
         titleTextField.endEditing(true)
         contentTextView.endEditing(true)
-        title = titleTextField.text
-        content = contentTextView.text
-        api.submitPost(channel: channel, title: newPostTitle, content: content, completion: {
-            self.performSegue(withIdentifier: "unwindToThreadListAfterNewPost", sender: self)
-        })
+        if (titleTextField.text == "" || contentTextView.text == "") {
+            let alert = UIAlertController(title:"喂喂喂",message:"唔好開bug post #ng#",preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK",style:.cancel,handler:nil))
+            present(alert,animated: true,completion: nil)
+        } else {
+            title = titleTextField.text
+            content = contentTextView.text
+            api.submitPost(channel: channel, title: newPostTitle, content: content, completion: {
+                self.performSegue(withIdentifier: "unwindToThreadListAfterNewPost", sender: self)
+            })
+        }
     }
     
     //MARK: UITextFieldDelegate

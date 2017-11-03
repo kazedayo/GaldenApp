@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class ReplyViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var replyTextField: UITextView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var backgroundView: UIImageView!
     
     var content = ""
     let api = HKGaldenAPI()
@@ -18,10 +21,15 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let keychain = KeychainSwift()
+        if keychain.getData("BackgroundImage") != nil {
+            backgroundView.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
+        }
         replyTextField.delegate = self
         replyTextField.text = content
         replyTextField.becomeFirstResponder()
-        replyTextField.textContainerInset = UIEdgeInsetsMake(20, 5, 40, 5)
+        replyTextField.textContainerInset = UIEdgeInsetsMake(10, 5, 10, 5)
+        cancelButton.heroModifiers = [.fade, .position(CGPoint.init(x: 250, y: cancelButton.frame.midY))]
         // Do any additional setup after loading the view.
     }
 
@@ -56,11 +64,21 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
 
     @IBAction func submitReply(_ sender: UIButton) {
         replyTextField.endEditing(true)
-        content = replyTextField.text
-        //print(content)
-        api.reply(topicID: topicID, content: content, completion: {
-            self.performSegue(withIdentifier: "unwindAfterReply", sender: self)
-        })
+        if replyTextField.text == "" {
+            let alert = UIAlertController(title:"喂喂喂",message:"你未打字喎:o)",preferredStyle:.alert)
+            alert.addAction(UIAlertAction(title:"OK",style:.cancel,handler:nil))
+            present(alert,animated: true,completion: nil)
+        } else {
+            content = replyTextField.text
+            api.reply(topicID: topicID, content: content, completion: {
+                self.performSegue(withIdentifier: "unwindAfterReply", sender: self)
+            })
+        }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        replyTextField.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func unwindToReply(segue: UIStoryboardSegue) {

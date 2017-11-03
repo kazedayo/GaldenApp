@@ -108,6 +108,11 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.contentTableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -315,18 +320,12 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             popoverViewController.popoverPresentationController!.delegate = self
             popoverViewController.pageCount = self.pageCount
         case "WriteReply"?:
-            let popoverViewController = segue.destination as! ReplyViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            popoverViewController.popoverPresentationController!.sourceRect = commentButton.bounds
-            popoverViewController.topicID = self.threadIdReceived
+            let destination = segue.destination as! ReplyViewController
+            destination.topicID = self.threadIdReceived
         case "quote"?:
-            let popoverViewController = segue.destination as! ReplyViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            popoverViewController.popoverPresentationController!.sourceRect = commentButton.bounds
-            popoverViewController.topicID = self.threadIdReceived
-            popoverViewController.content = self.quoteContent + "\n"
+            let destination = segue.destination as! ReplyViewController
+            destination.topicID = self.threadIdReceived
+            destination.content = self.quoteContent + "\n"
         default:
             break
         }
