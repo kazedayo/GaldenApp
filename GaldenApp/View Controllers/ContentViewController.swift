@@ -53,15 +53,14 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeJS()
-        self.navigationController?.navigationBar.isTranslucent = true
         contentTableView.delegate = self
         contentTableView.dataSource = self
         navigationController?.delegate = self
         
-        titleLabel.text = title
-        
-        backgroundIndicator.startAnimating()
+        self.backgroundIndicator.startAnimating()
         self.view.addSubview(backgroundIndicator)
+        
+        titleLabel.text = title
         
         toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
         backgroundIndicator.isHeroEnabled = true

@@ -14,7 +14,6 @@ target 'GaldenApp' do
   pod 'NVActivityIndicatorView'
   pod 'KeychainSwift'
   pod 'ESPullToRefresh'
-  pod 'DeckTransition'
   pod 'ImagePicker'
   pod 'Hero'
   pod 'MarqueeLabel'

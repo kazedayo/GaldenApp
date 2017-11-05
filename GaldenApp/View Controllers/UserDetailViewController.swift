@@ -20,6 +20,7 @@ class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigatio
     @IBOutlet weak var leaveNameTextField: UITextField!
     @IBOutlet weak var blocklistButton: UIButton!
     @IBOutlet weak var leaveNameStack: UIStackView!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var email = ""
     var password = ""
@@ -28,6 +29,7 @@ class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigatio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
         emailTextField.delegate = self
         passwordTextField.delegate = self
         let keychain = KeychainSwift()
@@ -83,6 +85,10 @@ class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigatio
         api.logout {
             self.loggedOut()
         }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backgroundImagePicker(_ sender: UIButton) {

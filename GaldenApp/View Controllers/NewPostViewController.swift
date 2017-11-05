@@ -17,9 +17,12 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     let api = HKGaldenAPI()
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var channelLabel: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var newPostStack: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,10 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         titleTextField.delegate = self
         contentTextView.delegate = self
         modalPresentationCapturesStatusBarAppearance = true
+        titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
+        channelLabel.heroModifiers = [.position(CGPoint.init(x: channelLabel.frame.midX, y: -100))]
+        cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
+        newPostStack.heroModifiers = [.fade,.position(CGPoint.init(x: newPostStack.frame.midX, y: 500))]
         channelLabel.setTitle(api.channelNameFunc(ch: channel), for: .normal)
         channelLabel.backgroundColor = api.channelColorFunc(ch: channel)
     }
@@ -35,10 +42,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func dismissNewPost(_ sender: UIButton) {
-        
     }
     
     // MARK: - Navigation
@@ -84,6 +87,10 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 self.performSegue(withIdentifier: "unwindToThreadListAfterNewPost", sender: self)
             })
         }
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: UITextFieldDelegate

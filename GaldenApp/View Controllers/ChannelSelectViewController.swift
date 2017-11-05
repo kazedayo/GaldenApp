@@ -8,16 +8,31 @@
 
 import UIKit
 
-class ChannelSelectViewController: UIViewController {
+class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     
     var channelSelected = ""
-
+    let cellIdentifiers: [String] = ["bw","et","ca","fn","gm","ap","it","mp","sp","lv","sy","ed","tm","tr","an","to","mu","vi","dc","st","ts","mb","ia","ac","ep"]
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.heroModifiers = [.cascade]
+        self.titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
         // Do any additional setup after loading the view.
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cellIdentifiers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifiers[indexPath.item], for: indexPath)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

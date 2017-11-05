@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -121,14 +121,18 @@
                                         </constraints>
                                         <state key="normal" image="Add"/>
                                         <connections>
-                                            <segue destination="7Na-LR-Vny" kind="custom" identifier="StartNewPost" customClass="DeckSegue" customModule="DeckTransition" id="5Kh-UB-9vl"/>
+                                            <segue destination="7Na-LR-Vny" kind="presentation" identifier="StartNewPost" id="5Kh-UB-9vl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9Y-Ol-7QZ">
                                         <rect key="frame" x="146" y="0.0" width="199" height="36"/>
                                         <state key="normal" title=" 會然" image="User"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="bpd-Vc-fnK" kind="custom" identifier="UserDetail" customClass="DeckSegue" customModule="DeckTransition" id="uMq-sn-guz"/>
+                                            <segue destination="bpd-Vc-fnK" kind="presentation" identifier="UserDetail" id="uMq-sn-guz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -169,7 +173,7 @@
                         <outlet property="backgroundImage" destination="Vln-c4-g8c" id="D3C-xY-Bj5"/>
                         <outlet property="channelLabel" destination="TBA-P8-ibq" id="MSy-EV-dw6"/>
                         <outlet property="threadListTableView" destination="Y8X-tJ-JvF" id="ScC-BD-5Z0"/>
-                        <segue destination="BMQ-UW-Pnf" kind="custom" identifier="SwitchChannel" customClass="DeckSegue" customModule="DeckTransition" id="JrP-K2-R88"/>
+                        <segue destination="BMQ-UW-Pnf" kind="presentation" identifier="SwitchChannel" id="JrP-K2-R88"/>
                         <segue destination="wRo-r1-a2n" kind="presentation" identifier="GoToPost" id="sHd-6S-BUS"/>
                     </connections>
                 </viewController>
@@ -195,10 +199,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Fn5-gg-zVy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zei-Zv-d5b">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="l8v-gJ-Us3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -311,6 +318,10 @@
                                     <constraint firstAttribute="trailing" secondItem="ucJ-Eh-naW" secondAttribute="trailing" id="rAe-ha-s6q"/>
                                     <constraint firstAttribute="trailing" secondItem="8cg-j3-eeK" secondAttribute="trailing" id="vhG-yR-3WW"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CLx-R6-3zr">
                                 <rect key="frame" x="20" y="60" width="335" height="40"/>
@@ -323,16 +334,33 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gd-jD-DaN">
-                                        <rect key="frame" x="107.5" y="5" width="227.5" height="30"/>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gd-jD-DaN">
+                                        <rect key="frame" x="107.5" y="5" width="182.5" height="30"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="分臺"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-ub-iUe">
+                                        <rect key="frame" x="310" y="7.5" width="25" height="25"/>
+                                        <state key="normal" image="Cancel"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="7Na-LR-Vny" eventType="touchUpInside" id="fRT-un-44n"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -343,12 +371,16 @@
                             <constraint firstItem="zei-Zv-d5b" firstAttribute="leading" secondItem="HcA-SE-WLB" secondAttribute="leading" id="0eL-3N-See"/>
                             <constraint firstItem="8cM-eO-BY4" firstAttribute="leading" secondItem="HcA-SE-WLB" secondAttribute="leading" constant="20" id="8Qq-hU-UcR"/>
                             <constraint firstItem="HcA-SE-WLB" firstAttribute="bottom" secondItem="zei-Zv-d5b" secondAttribute="bottom" id="8xP-cA-h1M"/>
+                            <constraint firstItem="HcA-SE-WLB" firstAttribute="trailing" secondItem="Fn5-gg-zVy" secondAttribute="trailing" id="ABl-Bc-56b"/>
+                            <constraint firstItem="Fn5-gg-zVy" firstAttribute="leading" secondItem="HcA-SE-WLB" secondAttribute="leading" id="DfD-Ul-tj9"/>
                             <constraint firstItem="CLx-R6-3zr" firstAttribute="top" secondItem="HcA-SE-WLB" secondAttribute="top" constant="40" id="JMO-cM-6gl"/>
-                            <constraint firstItem="zei-Zv-d5b" firstAttribute="top" secondItem="HcA-SE-WLB" secondAttribute="top" id="KDo-JM-3Ku"/>
+                            <constraint firstItem="zei-Zv-d5b" firstAttribute="top" secondItem="HcA-SE-WLB" secondAttribute="top" constant="-20" id="KDo-JM-3Ku"/>
                             <constraint firstItem="CLx-R6-3zr" firstAttribute="leading" secondItem="HcA-SE-WLB" secondAttribute="leading" constant="20" id="LNC-19-56g"/>
                             <constraint firstItem="8cM-eO-BY4" firstAttribute="top" secondItem="CLx-R6-3zr" secondAttribute="bottom" constant="20" id="doQ-FB-IFu"/>
                             <constraint firstItem="HcA-SE-WLB" firstAttribute="trailing" secondItem="zei-Zv-d5b" secondAttribute="trailing" id="flU-6M-fPs"/>
+                            <constraint firstItem="Fn5-gg-zVy" firstAttribute="top" secondItem="HcA-SE-WLB" secondAttribute="top" constant="-20" id="g2o-37-eEM"/>
                             <constraint firstItem="HcA-SE-WLB" firstAttribute="trailing" secondItem="8cM-eO-BY4" secondAttribute="trailing" constant="20" id="jYo-Q8-rpX"/>
+                            <constraint firstItem="HcA-SE-WLB" firstAttribute="bottom" secondItem="Fn5-gg-zVy" secondAttribute="bottom" id="k5C-Cn-hGj"/>
                             <constraint firstItem="HcA-SE-WLB" firstAttribute="trailing" secondItem="CLx-R6-3zr" secondAttribute="trailing" constant="20" id="lZA-Ro-Mcf"/>
                             <constraint firstItem="HcA-SE-WLB" firstAttribute="bottom" secondItem="8cM-eO-BY4" secondAttribute="bottom" constant="40" id="tPy-WW-bM1"/>
                         </constraints>
@@ -357,9 +389,15 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="cancelButton" destination="fQK-ub-iUe" id="ZGy-6w-ts7"/>
                         <outlet property="channelLabel" destination="7Gd-jD-DaN" id="lDX-nA-C4a"/>
                         <outlet property="contentTextView" destination="8cg-j3-eeK" id="0Ur-d2-6fg"/>
+                        <outlet property="newPostStack" destination="8cM-eO-BY4" id="tCL-lG-18n"/>
+                        <outlet property="titleLabel" destination="ZQy-Su-ubv" id="Ivt-ay-6wO"/>
                         <outlet property="titleTextField" destination="ucJ-Eh-naW" id="jWi-Uz-44e"/>
                         <segue destination="kDn-sm-C3l" kind="unwind" identifier="unwindToThreadListAfterNewPost" unwindAction="unwindToThreadListAfterNewPostWithSegue:" id="Ffr-qE-B9y"/>
                     </connections>
@@ -377,10 +415,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eOo-Sq-HF5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySr-8p-CgH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5Pc-UF-bc0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -391,12 +432,34 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TuF-Nw-FVN">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="305"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="會然" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87u-k7-jsu">
-                                                <rect key="frame" x="0.0" y="0.0" width="61" height="35"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oev-eN-GgF">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="會然" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87u-k7-jsu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="35"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afc-Qt-FPa">
+                                                        <rect key="frame" x="300" y="0.0" width="35" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="35" id="dPE-2B-vqq"/>
+                                                        </constraints>
+                                                        <state key="normal" image="Cancel"/>
+                                                        <connections>
+                                                            <action selector="cancelButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="guG-6T-Twb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="撈緊......" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZG-HY-xGc">
                                                 <rect key="frame" x="0.0" y="45" width="63" height="35"/>
                                                 <constraints>
@@ -405,6 +468,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSb-Yg-ywU">
                                                 <rect key="frame" x="0.0" y="90" width="335" height="35"/>
@@ -412,6 +478,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" textContentType="email"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lH-ol-WUF">
                                                 <rect key="frame" x="0.0" y="135" width="335" height="35"/>
@@ -419,6 +488,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWK-kx-wn3">
                                                 <rect key="frame" x="0.0" y="180" width="335" height="35"/>
@@ -429,6 +501,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="loginButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="A2M-ZW-AIW"/>
@@ -442,6 +515,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="logoutButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="rcc-bt-9SX"/>
@@ -455,6 +529,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <segue destination="3QK-kg-y5Q" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="3Vg-Qt-Jak"/>
@@ -462,6 +537,7 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="Oev-eN-GgF" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="FhQ-7U-P7p"/>
                                             <constraint firstAttribute="trailing" secondItem="8f2-0Q-vk0" secondAttribute="trailing" id="JhT-GN-f7j"/>
                                             <constraint firstAttribute="trailing" secondItem="lSb-Yg-ywU" secondAttribute="trailing" id="Qf2-ed-uOL"/>
                                             <constraint firstItem="lSb-Yg-ywU" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="WDK-Py-rSb"/>
@@ -471,6 +547,7 @@
                                             <constraint firstItem="8f2-0Q-vk0" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="h1v-eL-FOl"/>
                                             <constraint firstItem="9lH-ol-WUF" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="pBG-ak-5gb"/>
                                             <constraint firstAttribute="trailing" secondItem="9lH-ol-WUF" secondAttribute="trailing" id="pLa-RD-uou"/>
+                                            <constraint firstAttribute="trailing" secondItem="Oev-eN-GgF" secondAttribute="trailing" id="y1Z-3Q-dnF"/>
                                             <constraint firstItem="RWK-kx-wn3" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="yM6-Ft-hrU"/>
                                         </constraints>
                                     </stackView>
@@ -485,6 +562,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RhM-lF-BPC">
                                                 <rect key="frame" x="0.0" y="45" width="335" height="60"/>
@@ -532,6 +612,9 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="8yL-RO-EEz">
                                                 <rect key="frame" x="0.0" y="125" width="335" height="95.5"/>
@@ -574,26 +657,42 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                </userDefinedRuntimeAttributes>
                                             </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="cascade()"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eOo-Sq-HF5" firstAttribute="leading" secondItem="7YF-EC-Ubn" secondAttribute="leading" id="6MO-oc-TOR"/>
                             <constraint firstItem="ySr-8p-CgH" firstAttribute="leading" secondItem="7YF-EC-Ubn" secondAttribute="leading" id="8IC-UP-ANA"/>
-                            <constraint firstItem="ySr-8p-CgH" firstAttribute="top" secondItem="7YF-EC-Ubn" secondAttribute="top" id="FG1-s0-Uce"/>
+                            <constraint firstItem="ySr-8p-CgH" firstAttribute="top" secondItem="7YF-EC-Ubn" secondAttribute="top" constant="-20" id="FG1-s0-Uce"/>
+                            <constraint firstItem="7YF-EC-Ubn" firstAttribute="bottom" secondItem="eOo-Sq-HF5" secondAttribute="bottom" id="M4p-w3-9Pg"/>
                             <constraint firstItem="qd6-04-tvo" firstAttribute="top" secondItem="7YF-EC-Ubn" secondAttribute="top" constant="40" id="NAL-xz-Cam"/>
+                            <constraint firstItem="7YF-EC-Ubn" firstAttribute="trailing" secondItem="eOo-Sq-HF5" secondAttribute="trailing" id="QLf-an-UW1"/>
                             <constraint firstItem="7YF-EC-Ubn" firstAttribute="bottom" secondItem="ySr-8p-CgH" secondAttribute="bottom" id="d8x-Jc-nLq"/>
                             <constraint firstItem="7YF-EC-Ubn" firstAttribute="trailing" secondItem="qd6-04-tvo" secondAttribute="trailing" constant="20" id="jP8-r9-2Cu"/>
                             <constraint firstItem="7YF-EC-Ubn" firstAttribute="trailing" secondItem="ySr-8p-CgH" secondAttribute="trailing" id="lyv-T9-phJ"/>
                             <constraint firstItem="qd6-04-tvo" firstAttribute="leading" secondItem="7YF-EC-Ubn" secondAttribute="leading" constant="20" id="nlL-uP-pQn"/>
+                            <constraint firstItem="eOo-Sq-HF5" firstAttribute="top" secondItem="7YF-EC-Ubn" secondAttribute="top" constant="-20" id="wKI-aH-325"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7YF-EC-Ubn"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="blocklistButton" destination="8f2-0Q-vk0" id="Clx-wa-Hcj"/>
+                        <outlet property="cancelButton" destination="afc-Qt-FPa" id="k9d-3V-M6S"/>
                         <outlet property="emailTextField" destination="lSb-Yg-ywU" id="1TL-ej-Ib1"/>
                         <outlet property="leaveNameStack" destination="RhM-lF-BPC" id="hhl-he-Peq"/>
                         <outlet property="leaveNameTextField" destination="TAU-vS-5y7" id="wKD-DY-mAf"/>
@@ -615,438 +714,974 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szi-Bt-8tk">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NcN-KE-l1G">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="gXd-oQ-NRf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEh-Rr-AOQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kzh-jR-9bi">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P85-03-S3E">
-                                <rect key="frame" x="20" y="116" width="335" height="511"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O50-QK-hZS">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="511"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKa-6q-X2h">
-                                                <rect key="frame" x="0.0" y="0.0" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.28235294119999998" green="0.49019607840000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="吹水臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="t4P-Wa-Me7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-iR-pIG">
-                                                <rect key="frame" x="0.0" y="65" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.33725490200000002" green="0.4941176471" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="財經臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="4Ot-uJ-hgW"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzk-6b-fYS">
-                                                <rect key="frame" x="0.0" y="130.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.36862745099999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="科技臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Cpd-hn-mw7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dsl-cJ-rQi">
-                                                <rect key="frame" x="0.0" y="195.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.76862745099999996" green="0.20784313730000001" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="感情臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Ad3-bR-KFr"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPX-9Z-Ase">
-                                                <rect key="frame" x="0.0" y="255.5" width="105" height="0.0"/>
-                                                <color key="backgroundColor" red="0.74509803919999995" green="0.2784313725" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="番茄臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="evO-hS-XJA"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G03-6t-6QU">
-                                                <rect key="frame" x="0.0" y="260.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.58039215690000001" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="玩具臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="SFu-Ki-A51"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fh-wB-6KU">
-                                                <rect key="frame" x="0.0" y="325.5" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.21960784310000001" green="0.40000000000000002" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="攝影臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="JfI-D3-Ku5"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eb-wG-y9a">
-                                                <rect key="frame" x="0.0" y="391" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.48627450979999998" green="0.34901960780000002" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="站務臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="RVe-nL-U94"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2M-O8-alG">
-                                                <rect key="frame" x="0.0" y="456" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.59999999999999998" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="創意臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="h8f-0L-tGS"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cSx-52-ZeB">
-                                        <rect key="frame" x="115" y="0.0" width="105" height="511"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fX1-UJ-qy8">
-                                                <rect key="frame" x="0.0" y="0.0" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.59607843140000005" green="0.33333333329999998" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="娛樂臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Ht0-Mq-Uz8"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzy-lj-qKd">
-                                                <rect key="frame" x="0.0" y="65" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.1450980392" green="0.48627450979999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="遊戲臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Sqp-nc-t15"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQS-Z8-jG9">
-                                                <rect key="frame" x="0.0" y="130.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.34509803919999998" green="0.3921568627" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="電話臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="bgG-qk-yfi"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlU-u6-mI8">
-                                                <rect key="frame" x="0.0" y="195.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.49803921569999998" green="0.43921568630000002" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="講故臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="ZOw-rP-G8D"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDA-Cd-FBk">
-                                                <rect key="frame" x="0.0" y="260.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.3803921569" green="0.46274509800000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="旅遊臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="12k-yN-Ouq"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCc-WY-uOE">
-                                                <rect key="frame" x="0.0" y="325.5" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.3294117647" green="0.35294117650000001" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="音樂臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="7jo-B5-2ak"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgp-Er-Avc">
-                                                <rect key="frame" x="0.0" y="391" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.50196078430000002" green="0.4431372549" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="學術臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="SI8-PZ-onR"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5J-J1-hiA">
-                                                <rect key="frame" x="0.0" y="456" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.51764705879999995" green="0.66274509800000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="內務臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="xe5-zm-9xn"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TYe-XX-kkJ">
-                                        <rect key="frame" x="230" y="0.0" width="105" height="511"/>
-                                        <subviews>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-ge-Q8P">
-                                                <rect key="frame" x="0.0" y="0.0" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.12941176469999999" green="0.53333333329999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="時事臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="tDy-wQ-Got"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqg-8y-Whv">
-                                                <rect key="frame" x="0.0" y="65" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.16078431369999999" green="0.56862745100000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="App臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="wCK-dq-IgH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UT4-6S-fNJ">
-                                                <rect key="frame" x="0.0" y="130.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.59607843140000005" green="0.25098039220000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="體育臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="dXZ-dG-Hhi"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFv-ZA-ybW">
-                                                <rect key="frame" x="0.0" y="195.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.25490196079999999" green="0.56078431370000004" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="飲食臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="2Vw-rL-qFg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbb-vl-bEG">
-                                                <rect key="frame" x="0.0" y="260.5" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.6705882353" green="0.31372549020000001" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="動漫臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Zcg-UD-edO"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-Ts-2wP">
-                                                <rect key="frame" x="0.0" y="325.5" width="105" height="55.5"/>
-                                                <color key="backgroundColor" red="0.47450980390000003" green="0.30588235289999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="影視臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="thE-pA-kXM"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzX-38-S9r">
-                                                <rect key="frame" x="0.0" y="391" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.67450980390000004" green="0.18823529410000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="汽車臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="ZQP-cI-sCk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-Pa-9u6">
-                                                <rect key="frame" x="0.0" y="456" width="105" height="55"/>
-                                                <color key="backgroundColor" red="0.58823529409999997" green="0.29411764709999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="活動臺">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="wYW-Ds-FYz"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="TYe-XX-kkJ" secondAttribute="trailing" id="WVw-Lh-vii"/>
-                                    <constraint firstItem="O50-QK-hZS" firstAttribute="leading" secondItem="P85-03-S3E" secondAttribute="leading" id="dA5-eg-AsY"/>
-                                </constraints>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轉臺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17F-ex-EZL">
                                 <rect key="frame" x="20" y="60" width="61" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="R8w-sI-v9I">
+                                <rect key="frame" x="20" y="116" width="335" height="531"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rxs-L4-dQS">
+                                    <size key="itemSize" width="75" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="bw" id="GT4-bf-f2n">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4V-bs-1co">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                                    <color key="backgroundColor" red="0.28235294119999998" green="0.49019607840000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="吹水臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="27G-Kd-KWK"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="S4V-bs-1co" firstAttribute="top" secondItem="GT4-bf-f2n" secondAttribute="top" id="F60-vf-1Fe"/>
+                                            <constraint firstItem="S4V-bs-1co" firstAttribute="leading" secondItem="GT4-bf-f2n" secondAttribute="leading" id="L0B-GH-7YG"/>
+                                            <constraint firstAttribute="bottom" secondItem="S4V-bs-1co" secondAttribute="bottom" id="ONA-FZ-z3P"/>
+                                            <constraint firstAttribute="trailing" secondItem="S4V-bs-1co" secondAttribute="trailing" id="cTt-3J-EXz"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="et" id="mam-QF-3yu">
+                                        <rect key="frame" x="86.5" y="0.0" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOD-9v-VPV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.59607843140000005" green="0.33333333329999998" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="娛樂臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="gNm-hU-VQV"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="LOD-9v-VPV" secondAttribute="bottom" id="2uV-J3-CP8"/>
+                                            <constraint firstItem="LOD-9v-VPV" firstAttribute="top" secondItem="mam-QF-3yu" secondAttribute="top" id="JLj-Xt-z6S"/>
+                                            <constraint firstAttribute="trailing" secondItem="LOD-9v-VPV" secondAttribute="trailing" id="YHA-Qo-AMT"/>
+                                            <constraint firstItem="LOD-9v-VPV" firstAttribute="leading" secondItem="mam-QF-3yu" secondAttribute="leading" id="jEl-8S-NlL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ca" id="la5-sQ-LJ6">
+                                        <rect key="frame" x="173.5" y="0.0" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaS-om-n3v">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.12941176469999999" green="0.53333333329999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="時事臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="2kv-j5-tWI"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="SaS-om-n3v" firstAttribute="leading" secondItem="la5-sQ-LJ6" secondAttribute="leading" id="28x-BC-L9J"/>
+                                            <constraint firstAttribute="trailing" secondItem="SaS-om-n3v" secondAttribute="trailing" id="NDs-Rw-R9r"/>
+                                            <constraint firstAttribute="bottom" secondItem="SaS-om-n3v" secondAttribute="bottom" id="bcr-0P-t5e"/>
+                                            <constraint firstItem="SaS-om-n3v" firstAttribute="top" secondItem="la5-sQ-LJ6" secondAttribute="top" id="pUu-u5-B77"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="fn" id="fef-OV-oCQ">
+                                        <rect key="frame" x="260" y="0.0" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHi-RM-7MH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.33725490200000002" green="0.4941176471" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="財經臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="gCO-HE-AWq"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="YHi-RM-7MH" secondAttribute="bottom" id="D5h-eX-EVK"/>
+                                            <constraint firstItem="YHi-RM-7MH" firstAttribute="top" secondItem="fef-OV-oCQ" secondAttribute="top" id="H6W-Cy-eGF"/>
+                                            <constraint firstItem="YHi-RM-7MH" firstAttribute="leading" secondItem="fef-OV-oCQ" secondAttribute="leading" id="IEG-13-lJM"/>
+                                            <constraint firstAttribute="trailing" secondItem="YHi-RM-7MH" secondAttribute="trailing" id="pii-bQ-e0k"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gm" id="hfm-Y8-U6n">
+                                        <rect key="frame" x="0.0" y="60" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amv-Ms-Eig">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.48627450979999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="遊戲臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="Man-pV-1xR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="amv-Ms-Eig" firstAttribute="top" secondItem="hfm-Y8-U6n" secondAttribute="top" id="NBy-zP-L8V"/>
+                                            <constraint firstItem="amv-Ms-Eig" firstAttribute="leading" secondItem="hfm-Y8-U6n" secondAttribute="leading" id="UAv-Ue-UCr"/>
+                                            <constraint firstAttribute="trailing" secondItem="amv-Ms-Eig" secondAttribute="trailing" id="Xlh-gn-KIu"/>
+                                            <constraint firstAttribute="bottom" secondItem="amv-Ms-Eig" secondAttribute="bottom" id="x7O-oe-uyl"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ap" id="ell-mx-vUw">
+                                        <rect key="frame" x="86.5" y="60" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEe-yG-6A2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.16078431369999999" green="0.56862745100000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="App臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="xdI-Ht-v53"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="oEe-yG-6A2" firstAttribute="top" secondItem="ell-mx-vUw" secondAttribute="top" id="Oje-ef-Ngo"/>
+                                            <constraint firstItem="oEe-yG-6A2" firstAttribute="leading" secondItem="ell-mx-vUw" secondAttribute="leading" id="hVt-3W-G3m"/>
+                                            <constraint firstAttribute="bottom" secondItem="oEe-yG-6A2" secondAttribute="bottom" id="tue-4b-bDN"/>
+                                            <constraint firstAttribute="trailing" secondItem="oEe-yG-6A2" secondAttribute="trailing" id="wRB-YQ-ULe"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="it" id="YVf-Bl-LzH">
+                                        <rect key="frame" x="173.5" y="60" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-EF-mID">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.36862745099999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="科技臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="e7y-GZ-hA9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Goi-EF-mID" firstAttribute="leading" secondItem="YVf-Bl-LzH" secondAttribute="leading" id="IsJ-GZ-QKp"/>
+                                            <constraint firstAttribute="bottom" secondItem="Goi-EF-mID" secondAttribute="bottom" id="anl-DE-qhr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Goi-EF-mID" secondAttribute="trailing" id="lfy-Jn-exw"/>
+                                            <constraint firstItem="Goi-EF-mID" firstAttribute="top" secondItem="YVf-Bl-LzH" secondAttribute="top" id="mRs-zn-9ZT"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mp" id="vnW-Vi-LcE">
+                                        <rect key="frame" x="260" y="60" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67i-Qe-cc0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.34509803919999998" green="0.3921568627" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="電話臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="QUC-hi-02e"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="67i-Qe-cc0" firstAttribute="leading" secondItem="vnW-Vi-LcE" secondAttribute="leading" id="TcZ-V6-G7M"/>
+                                            <constraint firstAttribute="bottom" secondItem="67i-Qe-cc0" secondAttribute="bottom" id="Yin-xK-3At"/>
+                                            <constraint firstAttribute="trailing" secondItem="67i-Qe-cc0" secondAttribute="trailing" id="k6L-Xt-VSj"/>
+                                            <constraint firstItem="67i-Qe-cc0" firstAttribute="top" secondItem="vnW-Vi-LcE" secondAttribute="top" id="pjN-az-vVM"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sp" id="tFS-LF-Yag">
+                                        <rect key="frame" x="0.0" y="120" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQx-HX-Uz9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.59607843140000005" green="0.25098039220000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="體育臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="YMT-Wy-xd4"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="hQx-HX-Uz9" firstAttribute="top" secondItem="tFS-LF-Yag" secondAttribute="top" id="UTM-If-NN6"/>
+                                            <constraint firstAttribute="trailing" secondItem="hQx-HX-Uz9" secondAttribute="trailing" id="aEj-9I-dxi"/>
+                                            <constraint firstItem="hQx-HX-Uz9" firstAttribute="leading" secondItem="tFS-LF-Yag" secondAttribute="leading" id="t6x-XW-s1u"/>
+                                            <constraint firstAttribute="bottom" secondItem="hQx-HX-Uz9" secondAttribute="bottom" id="uaT-Xx-exa"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="lv" id="bDB-uv-kCR">
+                                        <rect key="frame" x="86.5" y="120" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-Ey-cNf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.76862745099999996" green="0.20784313730000001" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="感情臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="wKd-Ro-GEc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="KzR-Ey-cNf" firstAttribute="top" secondItem="bDB-uv-kCR" secondAttribute="top" id="WJy-h7-bn4"/>
+                                            <constraint firstAttribute="bottom" secondItem="KzR-Ey-cNf" secondAttribute="bottom" id="Wad-Mg-HmO"/>
+                                            <constraint firstItem="KzR-Ey-cNf" firstAttribute="leading" secondItem="bDB-uv-kCR" secondAttribute="leading" id="bbS-wc-5g3"/>
+                                            <constraint firstAttribute="trailing" secondItem="KzR-Ey-cNf" secondAttribute="trailing" id="oSe-SY-cwW"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sy" id="cgS-Ba-tfW">
+                                        <rect key="frame" x="173.5" y="120" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quB-6A-ww1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.49803921569999998" green="0.43921568630000002" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="講故臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="spr-Ph-DQS"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="quB-6A-ww1" firstAttribute="top" secondItem="cgS-Ba-tfW" secondAttribute="top" id="0ys-SR-we0"/>
+                                            <constraint firstItem="quB-6A-ww1" firstAttribute="leading" secondItem="cgS-Ba-tfW" secondAttribute="leading" id="BO7-Ml-QF8"/>
+                                            <constraint firstAttribute="trailing" secondItem="quB-6A-ww1" secondAttribute="trailing" id="e9o-f4-PEH"/>
+                                            <constraint firstAttribute="bottom" secondItem="quB-6A-ww1" secondAttribute="bottom" id="m7m-Mg-Mhv"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ed" id="Am5-gr-wff">
+                                        <rect key="frame" x="260" y="120" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyn-CV-zCj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.25490196079999999" green="0.56078431370000004" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="飲食臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="W8g-Ph-kMa"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Gyn-CV-zCj" secondAttribute="bottom" id="P4e-4J-fFk"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gyn-CV-zCj" secondAttribute="trailing" id="dyL-0S-bzo"/>
+                                            <constraint firstItem="Gyn-CV-zCj" firstAttribute="top" secondItem="Am5-gr-wff" secondAttribute="top" id="fMF-aJ-lW6"/>
+                                            <constraint firstItem="Gyn-CV-zCj" firstAttribute="leading" secondItem="Am5-gr-wff" secondAttribute="leading" id="pih-xO-8um"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tm" id="f8U-gE-p2f">
+                                        <rect key="frame" x="0.0" y="180" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eF-TM-kat">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.74509803919999995" green="0.2784313725" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="番茄臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="gKC-1j-pDs"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="2eF-TM-kat" firstAttribute="top" secondItem="f8U-gE-p2f" secondAttribute="top" id="9n7-IZ-p8B"/>
+                                            <constraint firstItem="2eF-TM-kat" firstAttribute="leading" secondItem="f8U-gE-p2f" secondAttribute="leading" id="AI5-l0-sph"/>
+                                            <constraint firstAttribute="bottom" secondItem="2eF-TM-kat" secondAttribute="bottom" id="kWe-sv-F64"/>
+                                            <constraint firstAttribute="trailing" secondItem="2eF-TM-kat" secondAttribute="trailing" id="sys-kk-xgQ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tr" id="2yv-BU-tBc">
+                                        <rect key="frame" x="86.5" y="180" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swv-rg-mdP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.3803921569" green="0.46274509800000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="旅遊臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="fZl-Qz-HGi"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Swv-rg-mdP" firstAttribute="leading" secondItem="2yv-BU-tBc" secondAttribute="leading" id="9jD-xE-yTw"/>
+                                            <constraint firstAttribute="trailing" secondItem="Swv-rg-mdP" secondAttribute="trailing" id="EUz-My-KRw"/>
+                                            <constraint firstItem="Swv-rg-mdP" firstAttribute="top" secondItem="2yv-BU-tBc" secondAttribute="top" id="dTm-Aw-L5F"/>
+                                            <constraint firstAttribute="bottom" secondItem="Swv-rg-mdP" secondAttribute="bottom" id="gm8-9d-8xT"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="an" id="4gx-IA-KLx">
+                                        <rect key="frame" x="173.5" y="180" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ga-UW-F1p">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.6705882353" green="0.31372549020000001" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="動漫臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="IvW-Xr-mrf"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="5ga-UW-F1p" firstAttribute="leading" secondItem="4gx-IA-KLx" secondAttribute="leading" id="7Q9-LO-EfT"/>
+                                            <constraint firstAttribute="trailing" secondItem="5ga-UW-F1p" secondAttribute="trailing" id="CH2-NS-eSx"/>
+                                            <constraint firstAttribute="bottom" secondItem="5ga-UW-F1p" secondAttribute="bottom" id="EXn-je-OvH"/>
+                                            <constraint firstItem="5ga-UW-F1p" firstAttribute="top" secondItem="4gx-IA-KLx" secondAttribute="top" id="GgF-Bf-E3m"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="to" id="a0B-Cd-ouZ">
+                                        <rect key="frame" x="260" y="180" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQ0-Ge-pZH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.58039215690000001" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="玩具臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="6mS-C2-JAj"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="IQ0-Ge-pZH" firstAttribute="top" secondItem="a0B-Cd-ouZ" secondAttribute="top" id="3Lj-X1-wrH"/>
+                                            <constraint firstItem="IQ0-Ge-pZH" firstAttribute="leading" secondItem="a0B-Cd-ouZ" secondAttribute="leading" id="6IG-Um-u74"/>
+                                            <constraint firstAttribute="trailing" secondItem="IQ0-Ge-pZH" secondAttribute="trailing" id="7qT-2e-xMx"/>
+                                            <constraint firstAttribute="bottom" secondItem="IQ0-Ge-pZH" secondAttribute="bottom" id="EIk-xF-fiq"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mu" id="h2Y-QQ-cJP">
+                                        <rect key="frame" x="0.0" y="240" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-k7-97z">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.3294117647" green="0.35294117650000001" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="音樂臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="T0P-zl-FWd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="UEr-k7-97z" secondAttribute="trailing" id="Nj8-HY-KOj"/>
+                                            <constraint firstAttribute="bottom" secondItem="UEr-k7-97z" secondAttribute="bottom" id="Vcc-uM-rMS"/>
+                                            <constraint firstItem="UEr-k7-97z" firstAttribute="top" secondItem="h2Y-QQ-cJP" secondAttribute="top" id="otT-DM-5n4"/>
+                                            <constraint firstItem="UEr-k7-97z" firstAttribute="leading" secondItem="h2Y-QQ-cJP" secondAttribute="leading" id="pP1-cI-8re"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="vi" id="2rE-jN-Kbe">
+                                        <rect key="frame" x="86.5" y="240" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GQ-Nt-PGS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.47450980390000003" green="0.30588235289999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="影視臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="q3h-wf-9Br"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="0GQ-Nt-PGS" firstAttribute="top" secondItem="2rE-jN-Kbe" secondAttribute="top" id="9K6-65-sbX"/>
+                                            <constraint firstItem="0GQ-Nt-PGS" firstAttribute="leading" secondItem="2rE-jN-Kbe" secondAttribute="leading" id="cqD-5d-vWg"/>
+                                            <constraint firstAttribute="trailing" secondItem="0GQ-Nt-PGS" secondAttribute="trailing" id="fif-Kk-az7"/>
+                                            <constraint firstAttribute="bottom" secondItem="0GQ-Nt-PGS" secondAttribute="bottom" id="xyx-p4-wlC"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dc" id="Krh-Hk-Ry5">
+                                        <rect key="frame" x="173.5" y="240" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfA-Mk-sNM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.21960784310000001" green="0.40000000000000002" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="攝影臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="GPa-3u-VyH"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="UfA-Mk-sNM" secondAttribute="trailing" id="BcH-43-3ce"/>
+                                            <constraint firstAttribute="bottom" secondItem="UfA-Mk-sNM" secondAttribute="bottom" id="JYx-t2-x9L"/>
+                                            <constraint firstItem="UfA-Mk-sNM" firstAttribute="leading" secondItem="Krh-Hk-Ry5" secondAttribute="leading" id="hxG-cq-uLO"/>
+                                            <constraint firstItem="UfA-Mk-sNM" firstAttribute="top" secondItem="Krh-Hk-Ry5" secondAttribute="top" id="zas-vm-n8b"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="st" id="awJ-PG-BTa">
+                                        <rect key="frame" x="260" y="240" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJR-Da-0Rj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.4431372549" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="學術臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="dqH-tU-wJ9"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="XJR-Da-0Rj" secondAttribute="bottom" id="9YM-Oc-GVG"/>
+                                            <constraint firstItem="XJR-Da-0Rj" firstAttribute="top" secondItem="awJ-PG-BTa" secondAttribute="top" id="gSg-QU-46Y"/>
+                                            <constraint firstItem="XJR-Da-0Rj" firstAttribute="leading" secondItem="awJ-PG-BTa" secondAttribute="leading" id="ict-Sw-ZWB"/>
+                                            <constraint firstAttribute="trailing" secondItem="XJR-Da-0Rj" secondAttribute="trailing" id="pr1-nB-rH9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ts" id="7Hp-mK-7J3">
+                                        <rect key="frame" x="0.0" y="300" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15w-jL-bDn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.67450980390000004" green="0.18823529410000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="汽車臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="nrR-jm-D7T"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="15w-jL-bDn" secondAttribute="bottom" id="0z4-vt-Dmc"/>
+                                            <constraint firstItem="15w-jL-bDn" firstAttribute="top" secondItem="7Hp-mK-7J3" secondAttribute="top" id="S6A-5h-Qjz"/>
+                                            <constraint firstItem="15w-jL-bDn" firstAttribute="leading" secondItem="7Hp-mK-7J3" secondAttribute="leading" id="THI-iK-AmB"/>
+                                            <constraint firstAttribute="trailing" secondItem="15w-jL-bDn" secondAttribute="trailing" id="l7p-cc-4hk"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mb" id="xaf-Dt-yVz">
+                                        <rect key="frame" x="86.5" y="300" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ro1-ba-fdD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.48627450979999998" green="0.34901960780000002" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="站務臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="DH3-KA-tT7"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Ro1-ba-fdD" firstAttribute="leading" secondItem="xaf-Dt-yVz" secondAttribute="leading" id="1u4-Ff-cyu"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ro1-ba-fdD" secondAttribute="bottom" id="D4I-re-PiB"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ro1-ba-fdD" secondAttribute="trailing" id="KOJ-q8-2zg"/>
+                                            <constraint firstItem="Ro1-ba-fdD" firstAttribute="top" secondItem="xaf-Dt-yVz" secondAttribute="top" id="VSy-pH-3Wb"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ia" id="uZg-2h-Agl">
+                                        <rect key="frame" x="173.5" y="300" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td7-CS-6uF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.51764705879999995" green="0.66274509800000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="內務臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="1Hi-0B-DuR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="td7-CS-6uF" firstAttribute="leading" secondItem="uZg-2h-Agl" secondAttribute="leading" id="5bY-YG-gsW"/>
+                                            <constraint firstAttribute="trailing" secondItem="td7-CS-6uF" secondAttribute="trailing" id="Eej-Ot-z8S"/>
+                                            <constraint firstAttribute="bottom" secondItem="td7-CS-6uF" secondAttribute="bottom" id="Qr6-qj-37q"/>
+                                            <constraint firstItem="td7-CS-6uF" firstAttribute="top" secondItem="uZg-2h-Agl" secondAttribute="top" id="sIL-B4-2D3"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ac" id="Qtu-9l-LgR">
+                                        <rect key="frame" x="260" y="300" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw1-Lc-PdR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.58823529409999997" green="0.29411764709999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="活動臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="0h6-IT-vjA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Hw1-Lc-PdR" firstAttribute="top" secondItem="Qtu-9l-LgR" secondAttribute="top" id="BVH-4I-ITx"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hw1-Lc-PdR" secondAttribute="bottom" id="Hy6-5B-rPB"/>
+                                            <constraint firstItem="Hw1-Lc-PdR" firstAttribute="leading" secondItem="Qtu-9l-LgR" secondAttribute="leading" id="LTF-0d-P4q"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hw1-Lc-PdR" secondAttribute="trailing" id="efd-wk-iIQ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ep" id="Com-QL-hn2">
+                                        <rect key="frame" x="0.0" y="360" width="75" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-Qe-Wba">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <color key="backgroundColor" red="0.59999999999999998" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="創意臺">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="selectChannel:" destination="BMQ-UW-Pnf" eventType="touchUpInside" id="cUU-UW-FuR"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="3Tm-Qe-Wba" firstAttribute="leading" secondItem="Com-QL-hn2" secondAttribute="leading" id="CFH-G5-iHF"/>
+                                            <constraint firstAttribute="bottom" secondItem="3Tm-Qe-Wba" secondAttribute="bottom" id="UDe-ij-5xa"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Tm-Qe-Wba" secondAttribute="trailing" id="eGZ-yQ-TQF"/>
+                                            <constraint firstItem="3Tm-Qe-Wba" firstAttribute="top" secondItem="Com-QL-hn2" secondAttribute="top" id="hbB-cs-zAs"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </collectionViewCell>
+                                </cells>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="bottom" secondItem="P85-03-S3E" secondAttribute="bottom" constant="40" id="68n-qQ-XhX"/>
-                            <constraint firstItem="P85-03-S3E" firstAttribute="top" secondItem="17F-ex-EZL" secondAttribute="bottom" constant="20" id="ADN-BY-Voi"/>
-                            <constraint firstItem="szi-Bt-8tk" firstAttribute="trailing" secondItem="WlC-u9-y3Q" secondAttribute="trailing" id="CrB-Jy-knu"/>
-                            <constraint firstItem="szi-Bt-8tk" firstAttribute="bottom" secondItem="WlC-u9-y3Q" secondAttribute="bottom" id="H08-17-F4S"/>
-                            <constraint firstItem="szi-Bt-8tk" firstAttribute="top" secondItem="WlC-u9-y3Q" secondAttribute="top" id="J4Q-nT-I03"/>
-                            <constraint firstItem="szi-Bt-8tk" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" id="KRa-Ft-wmR"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="trailing" secondItem="R8w-sI-v9I" secondAttribute="trailing" constant="20" id="1AB-uA-7bz"/>
+                            <constraint firstItem="gXd-oQ-NRf" firstAttribute="top" secondItem="WlC-u9-y3Q" secondAttribute="top" constant="-20" id="66j-P8-my9"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="bottom" secondItem="VEh-Rr-AOQ" secondAttribute="bottom" id="8lH-Mb-sdS"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="trailing" secondItem="gXd-oQ-NRf" secondAttribute="trailing" id="A7A-P9-QBr"/>
+                            <constraint firstItem="VEh-Rr-AOQ" firstAttribute="top" secondItem="WlC-u9-y3Q" secondAttribute="top" constant="-20" id="Cmc-7h-AJP"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="bottom" secondItem="gXd-oQ-NRf" secondAttribute="bottom" id="Dn2-C8-QKl"/>
+                            <constraint firstItem="VEh-Rr-AOQ" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" id="Flq-WE-Pp7"/>
+                            <constraint firstItem="gXd-oQ-NRf" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" id="G24-3u-k9e"/>
                             <constraint firstItem="17F-ex-EZL" firstAttribute="top" secondItem="WlC-u9-y3Q" secondAttribute="top" constant="40" id="MDZ-TD-MOt"/>
                             <constraint firstItem="17F-ex-EZL" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" constant="20" id="Pvx-wO-2zF"/>
-                            <constraint firstItem="P85-03-S3E" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" constant="20" id="VHl-Vf-0ys"/>
-                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="trailing" secondItem="P85-03-S3E" secondAttribute="trailing" constant="20" id="zRT-ZL-A8I"/>
+                            <constraint firstItem="R8w-sI-v9I" firstAttribute="leading" secondItem="WlC-u9-y3Q" secondAttribute="leading" constant="20" id="Qud-Gs-Gc8"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="trailing" secondItem="VEh-Rr-AOQ" secondAttribute="trailing" id="S2y-Qz-xjR"/>
+                            <constraint firstItem="WlC-u9-y3Q" firstAttribute="bottom" secondItem="R8w-sI-v9I" secondAttribute="bottom" constant="20" id="fA2-sg-ISk"/>
+                            <constraint firstItem="R8w-sI-v9I" firstAttribute="top" secondItem="17F-ex-EZL" secondAttribute="bottom" constant="20" id="wE5-ia-Sox"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WlC-u9-y3Q"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="collectionView" destination="R8w-sI-v9I" id="OOr-Vf-zry"/>
+                        <outlet property="titleLabel" destination="17F-ex-EZL" id="GcT-Ad-lgQ"/>
                         <segue destination="4gT-Oh-kP3" kind="unwind" identifier="unwindToThreadList" unwindAction="unwindToThreadListWithSegue:" id="0Co-wN-F9o"/>
                     </connections>
                 </viewController>
@@ -2723,8 +3358,8 @@
         <image name="User" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vic-Js-kn4"/>
-        <segue reference="CR1-W7-enG"/>
+        <segue reference="pEF-Kr-FMS"/>
+        <segue reference="2hS-RS-rs6"/>
         <segue reference="HbF-op-rGJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
