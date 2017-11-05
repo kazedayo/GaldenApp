@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -792,7 +792,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOD-9v-VPV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.59607843140000005" green="0.33333333329999998" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="娛樂臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -828,7 +828,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaS-om-n3v">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.12941176469999999" green="0.53333333329999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="時事臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -864,7 +864,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHi-RM-7MH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.33725490200000002" green="0.4941176471" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="財經臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -900,7 +900,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amv-Ms-Eig">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.1450980392" green="0.48627450979999998" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="遊戲臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -936,7 +936,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEe-yG-6A2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.16078431369999999" green="0.56862745100000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="App臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -972,7 +972,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-EF-mID">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.36862745099999999" green="0.41568627450000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="科技臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1008,7 +1008,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67i-Qe-cc0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.34509803919999998" green="0.3921568627" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="電話臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1044,7 +1044,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQx-HX-Uz9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.59607843140000005" green="0.25098039220000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="體育臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1080,7 +1080,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-Ey-cNf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.76862745099999996" green="0.20784313730000001" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="感情臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1116,7 +1116,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quB-6A-ww1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.49803921569999998" green="0.43921568630000002" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="講故臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1152,7 +1152,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyn-CV-zCj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.25490196079999999" green="0.56078431370000004" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="飲食臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1188,7 +1188,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eF-TM-kat">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.74509803919999995" green="0.2784313725" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="番茄臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1224,7 +1224,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swv-rg-mdP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.3803921569" green="0.46274509800000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="旅遊臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1260,7 +1260,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ga-UW-F1p">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.6705882353" green="0.31372549020000001" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="動漫臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1296,7 +1296,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQ0-Ge-pZH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.58039215690000001" green="0.37254901959999998" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="玩具臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1332,7 +1332,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-k7-97z">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.35294117650000001" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="音樂臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1368,7 +1368,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GQ-Nt-PGS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.47450980390000003" green="0.30588235289999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="影視臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1404,7 +1404,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfA-Mk-sNM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.21960784310000001" green="0.40000000000000002" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="攝影臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1440,7 +1440,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJR-Da-0Rj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.50196078430000002" green="0.4431372549" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="學術臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1476,7 +1476,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15w-jL-bDn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.67450980390000004" green="0.18823529410000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="汽車臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1512,7 +1512,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ro1-ba-fdD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.48627450979999998" green="0.34901960780000002" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="站務臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1548,7 +1548,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="td7-CS-6uF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.51764705879999995" green="0.66274509800000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="內務臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1584,7 +1584,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hw1-Lc-PdR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.58823529409999997" green="0.29411764709999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="活動臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1620,7 +1620,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-Qe-Wba">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="50"/>
                                                     <color key="backgroundColor" red="0.59999999999999998" green="0.43921568630000002" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="創意臺">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1840,7 +1840,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
-                                <rect key="frame" x="10" y="40" width="355" height="24"/>
+                                <rect key="frame" x="0.0" y="40" width="355" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1869,7 +1869,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mCv-Ax-ydK">
-                                <rect key="frame" x="240" y="74" width="125" height="25"/>
+                                <rect key="frame" x="278" y="74" width="125" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="25"/>
@@ -1886,7 +1886,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="75" y="0.0" width="50" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>

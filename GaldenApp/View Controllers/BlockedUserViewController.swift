@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DeckTransition
 
 class BlockedUserViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
