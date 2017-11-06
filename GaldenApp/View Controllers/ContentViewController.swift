@@ -44,6 +44,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var titleLabel: MarqueeLabel!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var replyStack: UIStackView!
+    @IBOutlet weak var shareButton: UIButton!
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -66,6 +67,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         backgroundIndicator.isHeroEnabled = true
         backgroundIndicator.heroModifiers = [.fade,.position(CGPoint(x:self.view.frame.midX,y:200))]
         replyStack.heroModifiers = [.position(CGPoint(x:500,y:replyStack.frame.midY))]
+        shareButton.heroModifiers = [.position(CGPoint(x:-100,y:shareButton.frame.midY))]
         
         let keychain = KeychainSwift()
         
@@ -516,6 +518,13 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         api.reply(topicID: threadIdReceived, content: keychain.get("LeaveNameText")!, completion: {
             self.updateSequence(action: "init")
         })
+    }
+    
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
+        let shared = op.title + " // by: " + op.name + "\nShared via 1080-SIGNAL \nhttps://hkgalden.com/view/" + threadIdReceived
+        let share = UIActivityViewController(activityItems:[shared],applicationActivities:nil)
+        share.excludedActivityTypes = [.airDrop,.addToReadingList,.assignToContact,.openInIBooks,.saveToCameraRoll]
+        present(share,animated: true,completion: nil)
     }
     
     //MARK JavaScript BBCode Parser Related
