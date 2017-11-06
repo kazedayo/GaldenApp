@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import KeychainSwift
 
-class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIPopoverPresentationControllerDelegate {
+class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     //MARK: Properties
     var channel: String = ""
@@ -23,6 +24,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var newPostStack: UIStackView!
+    @IBOutlet weak var background: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,11 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         newPostStack.heroModifiers = [.fade,.position(CGPoint.init(x: newPostStack.frame.midX, y: 500))]
         channelLabel.setTitle(api.channelNameFunc(ch: channel), for: .normal)
         channelLabel.backgroundColor = api.channelColorFunc(ch: channel)
+        let keychain = KeychainSwift()
+        if keychain.getData("BackgroundImage") != nil {
+            background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
+        }
+        titleTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,10 +60,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.prepare(for: segue, sender: sender)
         
         switch (segue.identifier ?? "") {
-        case "ChannelSelect":
-            let popoverViewController = segue.destination as! ChannelSelectViewController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
-            popoverViewController.popoverPresentationController!.delegate = self
         case "BBCode":
             let destination = segue.destination as! BBCodeViewController
             destination.segueIdentifier = "NewPost"
@@ -66,10 +69,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         default:
             break
         }
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
     }
     
     //MARK: Actions
@@ -90,6 +89,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        titleTextField.resignFirstResponder()
+        contentTextView.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     

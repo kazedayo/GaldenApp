@@ -21,6 +21,7 @@ class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigatio
     @IBOutlet weak var blocklistButton: UIButton!
     @IBOutlet weak var leaveNameStack: UIStackView!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var background: UIImageView!
     
     var email = ""
     var password = ""
@@ -37,6 +38,9 @@ class UserDetailViewController: UIViewController,ImagePickerDelegate,UINavigatio
             loggedIn()
         } else {
             loggedOut()
+        }
+        if keychain.getData("BackgroundImage") != nil {
+            background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
         }
         // Do any additional setup after loading the view.
     }

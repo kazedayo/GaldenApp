@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     
@@ -15,6 +16,7 @@ class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlow
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var background: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,10 @@ class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlow
         self.collectionView.delegate = self
         self.collectionView.heroModifiers = [.cascade]
         self.titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
+        let keychain = KeychainSwift()
+        if keychain.getData("BackgroundImage") != nil {
+            background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
+        }
         // Do any additional setup after loading the view.
     }
     
