@@ -15,7 +15,13 @@ class HKGaldenAPI {
     
     func fetchThreadList(currentChannel: String,pageNumber: String, completion : @escaping (_ threads: [ThreadList],_ blockedUsers: [String], _ error: Error?)->Void) {
         let par: Parameters = ["ident": currentChannel, "ofs": pageNumber]
-        let head: HTTPHeaders = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed"]
+        let keychain = KeychainSwift()
+        let head:HTTPHeaders
+        if (keychain.get("userKey") != nil) {
+            head = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed", "X-GALUSER-KEY": keychain.get("userKey")!]
+        } else {
+            head = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed"]
+        }
         Alamofire.request("https://api.hkgalden.com/f/l", method: .get, parameters: par, headers: head).responseJSON {
             response in
             switch response.result {

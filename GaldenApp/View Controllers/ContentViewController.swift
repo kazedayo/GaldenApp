@@ -145,7 +145,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     cell.userLevelLabel.text = "過街老鼠"
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString()
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                 } else {
                     cell.configureOP(opData: op)
                 }
@@ -158,7 +158,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     cell.userLevelLabel.text = "過街老鼠"
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString()
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                 } else {
                     cell.configureReplyFirstPage(comments: comments, indexPath: indexPath,pageNow: pageNow)
                 }
@@ -172,7 +172,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell.userLevelLabel.text = "過街老鼠"
                 cell.replyCountLabel.text = ""
                 cell.dateLabel.text = ""
-                cell.contentTextView.attributedText = NSAttributedString()
+                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
             } else {
                 cell.configureReply(comments: comments, indexPath: indexPath, pageNow: pageNow)
             }
@@ -226,6 +226,19 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
+                    self.api.blockUser(uid: self.op.userID, completion: {
+                        status in
+                        if status == "true" {
+                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                            cell.userNameLabel.text = "扑ed"
+                            cell.userNameLabel.textColor = .gray
+                            cell.userLevelLabel.text = "過街老鼠"
+                            cell.replyCountLabel.text = ""
+                            cell.dateLabel.text = ""
+                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        }
+                    })
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
@@ -245,6 +258,19 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
+                    self.api.blockUser(uid: self.comments[indexPath!.row - 1].userID, completion: {
+                        status in
+                        if status == "true" {
+                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                            cell.userNameLabel.text = "扑ed"
+                            cell.userNameLabel.textColor = .gray
+                            cell.userLevelLabel.text = "過街老鼠"
+                            cell.replyCountLabel.text = ""
+                            cell.dateLabel.text = ""
+                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        }
+                    })
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
@@ -264,6 +290,19 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
+                    self.api.blockUser(uid: self.comments[(indexPath?.row)!].userID, completion: {
+                        status in
+                        if status == "true" {
+                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                            cell.userNameLabel.text = "扑ed"
+                            cell.userNameLabel.textColor = .gray
+                            cell.userLevelLabel.text = "過街老鼠"
+                            cell.replyCountLabel.text = ""
+                            cell.dateLabel.text = ""
+                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        }
+                    })
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
@@ -383,7 +422,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     @IBAction func dismiss(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "unwindToThreadListFromContent", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func unwindToPage(segue: UIStoryboardSegue) {

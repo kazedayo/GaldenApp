@@ -37,8 +37,8 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func cdromButtomPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "Start", sender: self)
         keychain.set(false, forKey: "isFirstTimeUsage")
+        self.performSegue(withIdentifier: "Start", sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -49,6 +49,7 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
                 username, userid in
                 self.keychain.set(username, forKey: "userName")
                 self.keychain.set(userid, forKey: "userID")
+                self.keychain.set(false, forKey: "isFirstTimeUsage")
                 self.performSegue(withIdentifier: "Start", sender: self)
             })
         })
