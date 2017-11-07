@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EB8-T4-lUb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,10 +17,415 @@
         </array>
     </customFonts>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Pkf-90-taP">
+            <objects>
+                <viewController id="EB8-T4-lUb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JYb-kI-Zmn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="QWW-gw-wWa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWQ-bp-LOe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Dqa-Jm-uuK">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="lK0-CA-6ap">
+                                            <rect key="frame" x="75" y="75" width="225" height="225"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="lK0-CA-6ap" secondAttribute="height" multiplier="1:1" id="v32-q2-CVK"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pwr-5V-Ecm">
+                                            <rect key="frame" x="50" y="330" width="275" height="65"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歡迎使用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNx-dx-iO9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="275" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="1080-SIGNAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reL-pe-hYt">
+                                                    <rect key="frame" x="0.0" y="35" width="275" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-Ak-iVt">
+                                            <rect key="frame" x="50" y="542" width="275" height="50"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            <state key="normal" title="開始"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <segue destination="NgR-b8-T0c" kind="presentation" id="yFJ-hV-jQ5"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lK0-CA-6ap" firstAttribute="top" secondItem="Dqa-Jm-uuK" secondAttribute="top" constant="75" id="0Wd-iM-N5L"/>
+                                        <constraint firstItem="pwr-5V-Ecm" firstAttribute="leading" secondItem="Dqa-Jm-uuK" secondAttribute="leading" constant="50" id="EUZ-t8-uiO"/>
+                                        <constraint firstItem="lK0-CA-6ap" firstAttribute="leading" secondItem="Dqa-Jm-uuK" secondAttribute="leading" constant="75" id="Ick-GE-1Ex"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mra-Ak-iVt" secondAttribute="trailing" constant="50" id="apm-7b-Xo1"/>
+                                        <constraint firstAttribute="bottom" secondItem="Mra-Ak-iVt" secondAttribute="bottom" constant="75" id="dUH-rD-KOz"/>
+                                        <constraint firstAttribute="trailing" secondItem="pwr-5V-Ecm" secondAttribute="trailing" constant="50" id="hIo-2g-Ha5"/>
+                                        <constraint firstAttribute="trailing" secondItem="lK0-CA-6ap" secondAttribute="trailing" constant="75" id="prl-gE-Ct9"/>
+                                        <constraint firstItem="Mra-Ak-iVt" firstAttribute="leading" secondItem="Dqa-Jm-uuK" secondAttribute="leading" constant="50" id="ySn-qW-Kyt"/>
+                                        <constraint firstItem="pwr-5V-Ecm" firstAttribute="top" secondItem="lK0-CA-6ap" secondAttribute="bottom" constant="30" id="zss-xD-DTk"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iWQ-bp-LOe" firstAttribute="leading" secondItem="JYb-kI-Zmn" secondAttribute="leading" id="686-ko-gkx"/>
+                            <constraint firstItem="qyT-Oi-5rQ" firstAttribute="trailing" secondItem="QWW-gw-wWa" secondAttribute="trailing" id="WUu-oY-o3p"/>
+                            <constraint firstItem="QWW-gw-wWa" firstAttribute="top" secondItem="qyT-Oi-5rQ" secondAttribute="top" constant="-20" id="X7h-4m-7AJ"/>
+                            <constraint firstItem="qyT-Oi-5rQ" firstAttribute="trailing" secondItem="iWQ-bp-LOe" secondAttribute="trailing" id="a53-te-mXi"/>
+                            <constraint firstItem="QWW-gw-wWa" firstAttribute="leading" secondItem="JYb-kI-Zmn" secondAttribute="leading" id="bkd-5W-gLb"/>
+                            <constraint firstAttribute="bottom" secondItem="iWQ-bp-LOe" secondAttribute="bottom" id="dGm-ca-VwU"/>
+                            <constraint firstAttribute="bottom" secondItem="QWW-gw-wWa" secondAttribute="bottom" id="gmf-Zo-iD2"/>
+                            <constraint firstItem="iWQ-bp-LOe" firstAttribute="top" secondItem="qyT-Oi-5rQ" secondAttribute="top" constant="-20" id="icL-BY-k76"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qyT-Oi-5rQ"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WHt-Dz-94J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="-171"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eDZ-Ir-89P">
+            <objects>
+                <viewController id="NgR-b8-T0c" customClass="EULAViewController" customModule="GaldenApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Ws-4q-ocj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Bmw-aE-lfG">
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTg-A4-NWn">
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="inq-ba-DE8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-Sq-0iH">
+                                            <rect key="frame" x="20" y="637" width="335" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="我同意"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <segue destination="3Cp-N6-PlO" kind="presentation" id="dkd-6R-3yU"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="jhW-Sq-0iH" secondAttribute="trailing" constant="20" id="2eR-zs-dQI"/>
+                                        <constraint firstItem="jhW-Sq-0iH" firstAttribute="leading" secondItem="inq-ba-DE8" secondAttribute="leading" constant="20" id="BEg-JC-gX0"/>
+                                        <constraint firstAttribute="bottom" secondItem="jhW-Sq-0iH" secondAttribute="bottom" constant="20" id="cp7-86-apr"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EULA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-s9-4EZ">
+                                <rect key="frame" x="20" y="40" width="74" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wl-oq-kZ4">
+                                <rect key="frame" x="20" y="96" width="335" height="474"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">最後修改日期︰2015-08-29
+
+瞭解及接受條款
+歡迎使用香港膠登 HKGalden 服務。以下是香港膠登 HKGalden 服務條款(下稱「服務條款」)，本站會按照條款，為用戶提供服務。本站可能會隨時修訂條款而無需通知用戶。修訂的服務條款將於公開張貼起即時生效，並取代舊有的條款。當用戶使用特定的香港膠登 HKGalden 服務時，本站與用戶雙方均須遵守為特定服務而公開張貼的指引及規則(會不時重新張貼)。這些指引和規則均構成本服務條款的一部分。用戶有義務了解條款所有內容之外也必須同意本服務才能使用本服務。歡迎使用香港膠登 HKGalden (下稱「本站」)服務。以下是香港膠登 HKGalden 服務條款(下稱「本服務條款」)，本站會按照條款，為用戶提供線上討論區服務(下稱「本服務」)。任何人在本站註冊成為會員後，即表示已閱讀、了解並同意接受本服務條款內的所有內容。本站有權於任何時間修改或變更本服務條款內容，惟在每次修訂後須發帖公告。修訂的服務條款將於公開張貼起即時生效，並即時取代舊有的條款。當用戶使用特定的香港膠登 HKGalden 服務時，本站與用戶雙方均須遵守為特定服務而公開張貼的指引及規則(會不時重新張貼)。這些指引和規則均構成本服務條款的一部分。若任何人不同意本服務條款內的內容，應立即停止使用本站提供的任何服務。
+
+本站與本站管理者
+本站管理團隊(下稱「管理團隊」)由管理員組成，為本站最高管理者，已得授權代表本站，亦有權管理本站會員帳戶資料及網站運作。
+
+本站及本服務名稱
+在管理團隊的管理下，若本站或本服務的名稱有任何變更，本服務條款在另一名稱的網站或服務將保持有效，所有對應於「香港膠登HKGalden」的內容將直接適用於另一名稱的網站或服務，惟管理團隊須立即修訂本服務條款，修正當中有關的名稱。
+
+服務說明
+本站為會員提供線上討論區服務及其他未來可能新增的其他服務。本站服務所涉及的網域名稱、網路位址、功能及會員權利等，均是為本站管理團隊所持有，會員有使用服務期間不得將其出租、外借或轉讓予第三者。本服務是依當時情況及狀態提供，本站有權隨時增加、修改或刪除本服務當中的任何系統或功能，亦有權隨時變更會員在使用服務時享有的權利，而無須另行通知。
+
+廣告
+本服務可能包含廣告，而這些廣告是本站為提供本服務所必須的，任何會員無權選擇不接收。
+
+使用問題免責條款
+本服務可能會出現中斷或故障，可能令會員使用本服務時遭到資料喪失。在任何情況下，對於任何會員在本站遇到的資料喪失問題及其可能衍生到的其他損失，本站均不予負責。
+
+帖文操作授權
+任何帖文內容一經上傳或提供到本站後，管理團隊有權使用、刪除或修改一切內容。
+
+會員帳戶及私隱
+本站重視資料保密原則，承諾不會將會員的註冊與登記資料外泄或提供予第三者。
+
+帳號及密碼的安全
+確保帳號和密碼的安全是會員自身的責任。利用該帳號所進行的一切行為，會員須對此完全負責。若用戶的帳號或密碼遭到未獲授權的使用或其他安全性問題，請立即通知 admins@hkgalden.com 。若未能遵守本項規定所衍生之任何損失或損害，本站將不予負責。
+
+帳戶政策
+除已取得特殊豁免外，任何用戶只可註冊或持有一個帳戶，當中包括已被封鎖的帳戶，並最多只能以一個帳戶使用本服務。本站任何帳戶均不得轉讓、外借或出售，會員亦不得向他人借用帳戶以使用本服務。若有任何用戶以多於一個帳戶使用本服務，本站有權封鎖其所有帳戶，亦有權公開其所有帳戶的會員名稱或會員編號。對於因此與對用戶造成的任何損失或損害，本站一概不負責。
+
+用戶行為
+用戶同意遵守並維護本站的內務方案及機制，包括但不限於版規、公投法和內務長制度。任何違反版規的行為均由會員組成的內務團體負責，但本站管理團隊擁有最終決定權，亦有權凌駕所有內務方案推翻內務團隊一切決定。
+
+用戶留言免責條款
+本服務是以即時上載留言的方式運作，本站對所有留言的真實性、完整性及立場等，均不會負上任何法律責任。會員的一切留言只代表留言者個人意見，並非本網站之立場。
+若用戶在使用本服務時作出任何引致法律問題的行為，本站並不會為此負上任何法律責任，並有權移除任何引致法律問題的貼文或留言。
+
+服務之修改
+本站有權於任何時間對本服務或其任何部分作出暫時或永久修改，亦有權隨時終止提供本服務。不論有否預先通知，本站對於用戶或任何第三人因本服務更變而可能招至的損害或損失均不負責。</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bmw-aE-lfG" firstAttribute="leading" secondItem="8Ws-4q-ocj" secondAttribute="leading" id="5z5-QY-D7J"/>
+                            <constraint firstItem="OTg-A4-NWn" firstAttribute="leading" secondItem="8Ws-4q-ocj" secondAttribute="leading" id="EU4-Kg-Q3x"/>
+                            <constraint firstItem="ePp-s9-4EZ" firstAttribute="top" secondItem="CTJ-zC-54G" secondAttribute="top" constant="20" id="GQR-MD-wwj"/>
+                            <constraint firstItem="6Wl-oq-kZ4" firstAttribute="leading" secondItem="CTJ-zC-54G" secondAttribute="leading" constant="20" id="Ho4-7t-NF2"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="bottom" secondItem="OTg-A4-NWn" secondAttribute="bottom" id="M8R-oQ-Jif"/>
+                            <constraint firstItem="OTg-A4-NWn" firstAttribute="top" secondItem="8Ws-4q-ocj" secondAttribute="top" constant="-20" id="NJx-mt-C55"/>
+                            <constraint firstItem="6Wl-oq-kZ4" firstAttribute="centerY" secondItem="8Ws-4q-ocj" secondAttribute="centerY" id="SG5-Pf-jnX"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="OTg-A4-NWn" secondAttribute="trailing" id="VJY-f7-XrF"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="bottom" secondItem="Bmw-aE-lfG" secondAttribute="bottom" id="aSX-q3-NcF"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="Bmw-aE-lfG" secondAttribute="trailing" id="asz-YT-Xwl"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="6Wl-oq-kZ4" secondAttribute="trailing" constant="20" id="eDd-Xw-eD9"/>
+                            <constraint firstItem="ePp-s9-4EZ" firstAttribute="leading" secondItem="CTJ-zC-54G" secondAttribute="leading" constant="20" id="jWb-AD-T6b"/>
+                            <constraint firstItem="Bmw-aE-lfG" firstAttribute="top" secondItem="8Ws-4q-ocj" secondAttribute="top" constant="-20" id="lS5-ph-YQb"/>
+                            <constraint firstItem="6Wl-oq-kZ4" firstAttribute="top" secondItem="ePp-s9-4EZ" secondAttribute="bottom" constant="20" id="rYu-yp-Wiy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CTJ-zC-54G"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="eulaContent" destination="6Wl-oq-kZ4" id="xZr-ZE-HwI"/>
+                        <outlet property="eulaLabel" destination="ePp-s9-4EZ" id="dgv-sC-0Yg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ieF-ug-BW8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1999" y="-165"/>
+        </scene>
+        <!--First Login View Controller-->
+        <scene sceneID="vBM-sl-b13">
+            <objects>
+                <viewController id="3Cp-N6-PlO" customClass="FirstLoginViewController" customModule="GaldenApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aQX-TK-cd6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="wJF-jc-wcE">
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQK-cI-CvJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JaP-WE-q2s">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ArE-iy-Nrj">
+                                            <rect key="frame" x="20" y="150" width="335" height="53"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有膠登帳戶?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXb-uq-FOf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請在此登入" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPm-wn-TgW">
+                                                    <rect key="frame" x="0.0" y="35" width="335" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-dp-VEI">
+                                            <rect key="frame" x="20" y="223" width="335" height="108"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-ux-R4m">
+                                                    <rect key="frame" x="50" y="0.0" width="235" height="30"/>
+                                                    <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" textContentType="email"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWd-UH-00G">
+                                                    <rect key="frame" x="50" y="40" width="235" height="30"/>
+                                                    <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOU-oI-KIw">
+                                                    <rect key="frame" x="75" y="80" width="185" height="28"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <state key="normal" title="登入"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="loginButtonPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="D6C-uf-75O"/>
+                                                        <action selector="loginButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="VsB-cj-9O5"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tgc-ux-R4m" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="50" id="5Kn-ct-Mjr"/>
+                                                <constraint firstItem="EOU-oI-KIw" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="75" id="9PS-ex-ICD"/>
+                                                <constraint firstAttribute="trailing" secondItem="MWd-UH-00G" secondAttribute="trailing" constant="50" id="QxL-hm-oZc"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tgc-ux-R4m" secondAttribute="trailing" constant="50" id="aiT-NQ-Ai5"/>
+                                                <constraint firstItem="MWd-UH-00G" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="50" id="dyt-JP-oly"/>
+                                                <constraint firstAttribute="trailing" secondItem="EOU-oI-KIw" secondAttribute="trailing" constant="75" id="fd4-Qs-VpI"/>
+                                            </constraints>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ald-Sg-qep">
+                                            <rect key="frame" x="20" y="447" width="335" height="70"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="沒有膠登帳戶?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ide-Zd-5di">
+                                                    <rect key="frame" x="85" y="0.0" width="165" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYf-1M-vh8">
+                                                    <rect key="frame" x="75" y="40" width="185" height="30"/>
+                                                    <color key="backgroundColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="CDROM模式"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="cdromButtomPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="72K-Un-ElX"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sYf-1M-vh8" firstAttribute="leading" secondItem="Ald-Sg-qep" secondAttribute="leading" constant="75" id="LZt-9C-H6I"/>
+                                                <constraint firstAttribute="trailing" secondItem="sYf-1M-vh8" secondAttribute="trailing" constant="75" id="Owi-g2-vRi"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zUO-dp-VEI" firstAttribute="top" secondItem="ArE-iy-Nrj" secondAttribute="bottom" constant="20" id="0M3-L5-MZI"/>
+                                        <constraint firstItem="Ald-Sg-qep" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="5Bv-MM-jme"/>
+                                        <constraint firstItem="zUO-dp-VEI" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="EVf-vX-F1f"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ald-Sg-qep" secondAttribute="bottom" constant="150" id="G6v-XY-ZpJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ald-Sg-qep" secondAttribute="trailing" constant="20" id="IDZ-H8-7cA"/>
+                                        <constraint firstAttribute="trailing" secondItem="ArE-iy-Nrj" secondAttribute="trailing" constant="20" id="UuY-7N-45W"/>
+                                        <constraint firstAttribute="trailing" secondItem="zUO-dp-VEI" secondAttribute="trailing" constant="20" id="fQr-Ju-gsr"/>
+                                        <constraint firstItem="ArE-iy-Nrj" firstAttribute="top" secondItem="JaP-WE-q2s" secondAttribute="top" constant="150" id="lAz-bh-5LE"/>
+                                        <constraint firstItem="ArE-iy-Nrj" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="zvU-h6-5RA"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gQK-cI-CvJ" firstAttribute="leading" secondItem="Z00-Pb-dSY" secondAttribute="leading" id="2EL-M5-ppJ"/>
+                            <constraint firstItem="gQK-cI-CvJ" firstAttribute="top" secondItem="Z00-Pb-dSY" secondAttribute="top" constant="-20" id="Fft-AZ-c0e"/>
+                            <constraint firstAttribute="trailing" secondItem="wJF-jc-wcE" secondAttribute="trailing" id="G2X-zd-HdU"/>
+                            <constraint firstAttribute="bottom" secondItem="gQK-cI-CvJ" secondAttribute="bottom" id="U6i-fb-7c3"/>
+                            <constraint firstAttribute="trailing" secondItem="gQK-cI-CvJ" secondAttribute="trailing" id="YEc-cE-nNJ"/>
+                            <constraint firstItem="wJF-jc-wcE" firstAttribute="leading" secondItem="Z00-Pb-dSY" secondAttribute="leading" id="dOr-Oz-EiO"/>
+                            <constraint firstAttribute="bottom" secondItem="wJF-jc-wcE" secondAttribute="bottom" id="r08-fP-004"/>
+                            <constraint firstItem="wJF-jc-wcE" firstAttribute="top" secondItem="aQX-TK-cd6" secondAttribute="top" constant="-20" id="sCg-GW-MDD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z00-Pb-dSY"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="emailField" destination="Tgc-ux-R4m" id="JXj-lu-EDT"/>
+                        <outlet property="loginText" destination="ArE-iy-Nrj" id="L4M-fz-LzU"/>
+                        <outlet property="noAccount" destination="Ald-Sg-qep" id="mN3-vs-hUU"/>
+                        <outlet property="passwordField" destination="MWd-UH-00G" id="GyN-Tl-WAv"/>
+                        <segue destination="FPX-jd-DfM" kind="presentation" identifier="Start" id="O83-If-8Cr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGt-XO-9cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2926" y="-165"/>
+        </scene>
         <!--Thread List View Controller-->
         <scene sceneID="dK2-cd-e5P">
             <objects>
-                <viewController id="FPX-jd-DfM" customClass="ThreadListViewController" customModule="GaldenApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThreadList" id="FPX-jd-DfM" customClass="ThreadListViewController" customModule="GaldenApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fzD-og-Bxs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1820,7 +2225,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
-                                <rect key="frame" x="0.0" y="40" width="355" height="24"/>
+                                <rect key="frame" x="10" y="40" width="355" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1849,7 +2254,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7k-tb-UWq">
-                                <rect key="frame" x="0.0" y="74" width="67" height="25"/>
+                                <rect key="frame" x="15" y="74" width="67" height="25"/>
                                 <state key="normal" title=" 些牙" image="Share"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -1859,7 +2264,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mCv-Ax-ydK">
-                                <rect key="frame" x="278" y="74" width="117" height="25"/>
+                                <rect key="frame" x="248" y="74" width="117" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
                                         <rect key="frame" x="0.0" y="0.0" width="67" height="25"/>
@@ -1873,7 +2278,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
+                                        <rect key="frame" x="67" y="0.0" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>
@@ -2058,9 +2463,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-Sn-s3B">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lBt-fO-KJ9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小氣簿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQO-gs-Cyf">
@@ -2074,7 +2479,7 @@
                                             <state key="normal" image="Cancel"/>
                                         </button>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wHs-jQ-gL6">
-                                            <rect key="frame" x="10" y="96" width="365" height="551"/>
+                                            <rect key="frame" x="10" y="96" width="365" height="571"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <prototypes>
@@ -2147,7 +2552,7 @@
                         <constraints>
                             <constraint firstItem="gc8-Sn-s3B" firstAttribute="leading" secondItem="aCf-Jz-8er" secondAttribute="leading" id="NIv-bI-USZ"/>
                             <constraint firstItem="aCf-Jz-8er" firstAttribute="bottom" secondItem="gc8-Sn-s3B" secondAttribute="bottom" id="Ne5-xe-LKi"/>
-                            <constraint firstItem="gc8-Sn-s3B" firstAttribute="top" secondItem="aCf-Jz-8er" secondAttribute="top" id="PKH-y5-62J"/>
+                            <constraint firstItem="gc8-Sn-s3B" firstAttribute="top" secondItem="aCf-Jz-8er" secondAttribute="top" constant="-20" id="PKH-y5-62J"/>
                             <constraint firstItem="aCf-Jz-8er" firstAttribute="trailing" secondItem="gc8-Sn-s3B" secondAttribute="trailing" id="Ujv-I9-W2D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aCf-Jz-8er"/>
@@ -3353,6 +3758,7 @@
         <image name="Reply" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
         <image name="User" width="25" height="25"/>
+        <image name="launchIcon" width="320" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pEF-Kr-FMS"/>

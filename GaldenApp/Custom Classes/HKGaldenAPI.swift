@@ -421,4 +421,22 @@ class HKGaldenAPI {
             }
         })
     }
+    
+    func blockUser(uid: String,completion: @escaping (_ status: String)->Void) {
+        let keychain = KeychainSwift()
+        let head:HTTPHeaders = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed", "X-GALUSER-KEY": keychain.get("userKey")!]
+        let par = ["bid": uid]
+        Alamofire.request("https://api.hkgalden.com/f/bi", method: .post, parameters: par, headers: head).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let status = json["status"].stringValue
+                completion(status)
+            case .failure(let error):
+                print(error)
+                completion("false")
+            }
+        }
+    }
 }

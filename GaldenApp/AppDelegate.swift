@@ -9,12 +9,13 @@
 import UIKit
 import IQKeyboardManagerSwift
 import AlamofireNetworkActivityIndicator
+import KeychainSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let keychain = KeychainSwift()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.startDelay = 0.0
         NetworkActivityIndicatorManager.shared.completionDelay = 0.2
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
+        if (keychain.getBool("isFirstTimeUsage") != nil) {
+            self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
+        }
+        
         return true
     }
 

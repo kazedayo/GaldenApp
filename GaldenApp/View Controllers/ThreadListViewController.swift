@@ -156,6 +156,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }*/
     
     @IBAction func showDetail(sender: UILongPressGestureRecognizer) {
+        let keychain = KeychainSwift()
         if sender.state == UIGestureRecognizerState.began {
             let touchpoint = sender.location(in: threadListTableView)
             let indexPath = threadListTableView.indexPathForRow(at: touchpoint)
@@ -170,10 +171,20 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.performSegue(withIdentifier: "GoToPost", sender: indexPath!)
             }))
             
-            actionSheet.addAction(UIAlertAction(title: "扑柒OP",style: .destructive, handler: {
-                action in
-            }))
-            
+            if keychain.get("userKey") != nil {
+                actionSheet.addAction(UIAlertAction(title: "扑柒OP",style: .destructive, handler: {
+                    action in
+                    self.api.blockUser(uid: self.threads[(indexPath?.row)!].userID, completion: {
+                        status in
+                        if status == "true" {
+                            let cell = self.threadListTableView.cellForRow(at: indexPath!) as! ThreadListTableViewCell
+                            cell.threadTitleLabel.text = "扑ed"
+                            cell.threadTitleLabel.textColor = .gray
+                            cell.detailLabel.text = "你已扑柒此人"
+                        }
+                    })
+                }))
+            }
             actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
             
             self.present(actionSheet, animated: true, completion: nil)
