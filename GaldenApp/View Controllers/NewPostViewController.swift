@@ -88,6 +88,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        titleTextField.resignFirstResponder()
+        contentTextView.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     

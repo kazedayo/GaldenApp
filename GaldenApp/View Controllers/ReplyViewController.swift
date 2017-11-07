@@ -77,6 +77,7 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
+        replyTextField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
