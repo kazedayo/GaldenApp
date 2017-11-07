@@ -32,7 +32,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         // Do any additional setup after loading the view.
         titleTextField.delegate = self
         contentTextView.delegate = self
-        modalPresentationCapturesStatusBarAppearance = true
         titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
         channelLabel.heroModifiers = [.position(CGPoint.init(x: channelLabel.frame.midX, y: -100))]
         cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
@@ -89,8 +88,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        titleTextField.resignFirstResponder()
-        contentTextView.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     

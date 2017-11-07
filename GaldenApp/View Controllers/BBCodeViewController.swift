@@ -8,10 +8,12 @@
 
 import UIKit
 
-class BBCodeViewController: UIViewController {
+class BBCodeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var bbcodeSent = ""
     var segueIdentifier = ""
+    
+    let api = HKGaldenAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,112 @@ class BBCodeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func imageButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"噏圖(powered by eService-HK)",message:"你想...",preferredStyle:.actionSheet)
+        actionsheet.addAction(UIAlertAction(title:"影相",style:.default,handler: {
+            _ in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker,animated: true,completion: nil)
+        }))
+        actionsheet.addAction(UIAlertAction(title:"揀相",style:.default,handler: {
+            _ in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker,animated: true,completion: nil)
+        }))
+        actionsheet.addAction(UIAlertAction(title:"冇嘢啦",style:.cancel,handler:nil))
+        present(actionsheet,animated: true,completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        api.imageUpload(image: image, completion: {
+            url in
+            self.bbcodeSent = "[img]" + url + "[/img]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        })
+    }
+    
+    @IBAction func colorButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"揀顏色", message: nil, preferredStyle: .actionSheet)
+        actionsheet.addAction(UIAlertAction(title:"紅色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#ff0000][/#ff0000]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"橙色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#ffa500][/#ffa500]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"黃色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#ffff00][/#ffff00]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"綠色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#008000][/#008000]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"藍色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#0000ff][/#0000ff]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"靛色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#4b0082][/#4b0082]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"紫色",style:.default,handler: {
+            action in
+            self.bbcodeSent = "[#800080][/#800080]"
+            if (self.segueIdentifier == "Reply") {
+                self.performSegue(withIdentifier: "unwindToReply", sender: self)
+            } else if (self.segueIdentifier == "NewPost") {
+                self.performSegue(withIdentifier: "unwindToNewPost", sender: self)
+            }
+        }))
+        actionsheet.addAction(UIAlertAction(title:"冇嘢啦",style:.cancel,handler:nil))
+        self.present(actionsheet,animated: true,completion: nil)
+    }
     
     @IBAction func sizeButtonPressed(_ sender: UIButton) {
         let actionsheet = UIAlertController(title:"揀大細", message: nil, preferredStyle: .actionSheet)

@@ -394,4 +394,31 @@ class HKGaldenAPI {
         code = code.replacingOccurrences(of: "[/size=6]", with: "[/size]")
         return code
     }
+    
+    func imageUpload(image: UIImage,completion: @escaping (_ url: String)->Void) {
+        let imageData = UIImagePNGRepresentation(image)
+        Alamofire.upload(multipartFormData: {
+            multipartFormData in
+            multipartFormData.append(imageData!, withName: "file", fileName: "upload.png",mimeType: "image/png")
+        }, to: "https://img.eservice-hk.net/api.php?version=2", encodingCompletion: {
+            encodingResult in
+            switch encodingResult {
+            case .success(let upload,_,_):
+                upload.responseJSON {
+                    response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        let url = json["url"].stringValue
+                        completion(url)
+                    case .failure(let error):
+                        print(error)
+                        completion("")
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
 }
