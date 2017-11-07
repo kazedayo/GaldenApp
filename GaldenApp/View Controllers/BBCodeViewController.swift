@@ -65,7 +65,7 @@ class BBCodeViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         api.imageUpload(image: image, completion: {
             url in
-            self.bbcodeSent = "[img]" + url + "[/img]"
+            self.bbcodeSent = "[img]" + url + "[/img]\n"
             if (self.segueIdentifier == "Reply") {
                 self.performSegue(withIdentifier: "unwindToReply", sender: self)
             } else if (self.segueIdentifier == "NewPost") {
