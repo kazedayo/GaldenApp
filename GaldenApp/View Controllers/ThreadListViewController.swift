@@ -301,12 +301,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
-        dismiss(animated: true, completion: {
-            self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
-            let cell = self.threadListTableView.cellForRow(at: self.ipath)
-            cell?.heroID = ""
-            cell?.heroModifiers = []
-        })
+        self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
+        let cell = self.threadListTableView.cellForRow(at: self.ipath)
+        cell?.heroID = ""
+        cell?.heroModifiers = []
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {
