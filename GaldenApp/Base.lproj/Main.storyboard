@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EB8-T4-lUb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FPX-jd-DfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,7 +20,7 @@
         <!--View Controller-->
         <scene sceneID="Pkf-90-taP">
             <objects>
-                <viewController id="EB8-T4-lUb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstLaunch" id="EB8-T4-lUb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JYb-kI-Zmn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,8 +329,8 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="loginButtonPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="D6C-uf-75O"/>
@@ -364,6 +364,8 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="cdromButtomPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="72K-Un-ElX"/>
@@ -2225,7 +2227,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
-                                <rect key="frame" x="0.0" y="40" width="355" height="24"/>
+                                <rect key="frame" x="10" y="40" width="355" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2254,7 +2256,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7k-tb-UWq">
-                                <rect key="frame" x="0.0" y="74" width="67" height="25"/>
+                                <rect key="frame" x="15" y="74" width="67" height="25"/>
                                 <state key="normal" title=" 些牙" image="Share"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -2264,7 +2266,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mCv-Ax-ydK">
-                                <rect key="frame" x="278" y="74" width="117" height="25"/>
+                                <rect key="frame" x="248" y="74" width="117" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-PW-rl1">
                                         <rect key="frame" x="0.0" y="0.0" width="67" height="25"/>
@@ -2278,7 +2280,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2z-wo-xVp">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="25"/>
+                                        <rect key="frame" x="67" y="0.0" width="50" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="dsG-o4-CB6"/>
                                         </constraints>

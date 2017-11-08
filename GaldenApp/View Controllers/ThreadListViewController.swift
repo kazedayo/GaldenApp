@@ -26,7 +26,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var pageNow: String?
     var selectedThread: String!
     var blockedUsers = [String]()
-    var ipath = IndexPath()
+    var ipath = IndexPath.init(row: 1, section: 1)
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -96,6 +96,12 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self?.threadListTableView.isHidden = false
             }
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let cell = self.threadListTableView.cellForRow(at: self.ipath)
+        cell?.heroID = ""
+        cell?.heroModifiers = []
     }
     
     override func didReceiveMemoryWarning() {
@@ -302,9 +308,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
         self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
-        let cell = self.threadListTableView.cellForRow(at: self.ipath)
-        cell?.heroID = ""
-        cell?.heroModifiers = []
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {

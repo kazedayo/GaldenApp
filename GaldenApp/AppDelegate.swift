@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.completionDelay = 0.2
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        if (keychain.getBool("isFirstTimeUsage") != nil) {
-            self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
+        if (keychain.getBool("isFirstTimeUsage") == nil) {
+            self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "FirstLaunch")
         }
         
         return true

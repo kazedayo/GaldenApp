@@ -18,6 +18,7 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
     
     let keychain = KeychainSwift()
     let api = HKGaldenAPI()
+    var window: UIWindow?
     
     var email = ""
     var password = ""
@@ -38,6 +39,7 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func cdromButtomPressed(_ sender: UIButton) {
         keychain.set(false, forKey: "isFirstTimeUsage")
+        self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
         self.performSegue(withIdentifier: "Start", sender: self)
     }
     
@@ -50,6 +52,7 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
                 self.keychain.set(username, forKey: "userName")
                 self.keychain.set(userid, forKey: "userID")
                 self.keychain.set(false, forKey: "isFirstTimeUsage")
+                self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
                 self.performSegue(withIdentifier: "Start", sender: self)
             })
         })
