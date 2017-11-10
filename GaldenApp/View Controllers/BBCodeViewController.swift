@@ -49,6 +49,8 @@ class BBCodeViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         actionsheet.addAction(UIAlertAction(title:"揀相",style:.default,handler: {
             _ in
             let imagePicker = UIImagePickerController()
+            imagePicker.navigationBar.barStyle = .black
+            imagePicker.navigationBar.tintColor = .white
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker,animated: true,completion: nil)

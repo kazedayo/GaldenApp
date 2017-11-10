@@ -27,6 +27,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedThread: String!
     var blockedUsers = [String]()
     var ipath = IndexPath.init(row: 1, section: 1)
+    var blockedUsersForCDRom = UserDefaults()
+    var blockedUsersCDRom = [String]()
     
     let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
@@ -49,6 +51,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if keychain.get("userKey") == nil {
             NewThreadButton.isEnabled = false
+        }
+        
+        if blockedUsersForCDRom.object(forKey: "BlockedUsers") != nil {
+            blockedUsersCDRom = blockedUsersForCDRom.object(forKey: "BlockedUsers") as! [String]
         }
         
         self.threadListTableView.es.addPullToRefresh {
@@ -99,9 +105,15 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let cell = self.threadListTableView.cellForRow(at: self.ipath)
         cell?.heroID = ""
         cell?.heroModifiers = []
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.blockedUsersForCDRom.set(blockedUsersCDRom, forKey: "BlockedUsers")
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,7 +138,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadListTableViewCell", for: indexPath) as! ThreadListTableViewCell
         
         // Configure the cell...
-        if (blockedUsers.contains(threads[indexPath.row].userID)) {
+        if (blockedUsers.contains(threads[indexPath.row].userID) || blockedUsersCDRom.contains(threads[indexPath.row].userID)) {
             cell.threadTitleLabel.text = "扑ed"
             cell.threadTitleLabel.textColor = .gray
             cell.detailLabel.text = "你已扑柒此人"
@@ -140,7 +152,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (blockedUsers.contains(threads[indexPath.row].userID)) {
+        if (blockedUsers.contains(threads[indexPath.row].userID) || blockedUsersCDRom.contains(threads[indexPath.row].userID)) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title:"喂喂喂",message:"扑咗就唔好心郁郁",preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title:"好囉",style:.cancel,handler:nil))
@@ -148,7 +160,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         } else {
             let cell = tableView.cellForRow(at: indexPath)
-            cell?.heroID = "Title"
             cell?.heroModifiers = [.fade, .scale(0.5)]
             self.ipath = indexPath
             self.performSegue(withIdentifier: "GoToPost", sender: cell)
@@ -177,9 +188,9 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.performSegue(withIdentifier: "GoToPost", sender: indexPath!)
             }))
             
-            if keychain.get("userKey") != nil {
-                actionSheet.addAction(UIAlertAction(title: "扑柒OP",style: .destructive, handler: {
-                    action in
+            actionSheet.addAction(UIAlertAction(title: "扑柒OP",style: .destructive, handler: {
+                action in
+                if keychain.get("userKey") != nil {
                     self.api.blockUser(uid: self.threads[(indexPath?.row)!].userID, completion: {
                         status in
                         if status == "true" {
@@ -189,8 +200,15 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                             cell.detailLabel.text = "你已扑柒此人"
                         }
                     })
-                }))
-            }
+                } else {
+                    let cell = self.threadListTableView.cellForRow(at: indexPath!) as! ThreadListTableViewCell
+                    cell.threadTitleLabel.text = "扑ed"
+                    cell.threadTitleLabel.textColor = .gray
+                    cell.detailLabel.text = "你已扑柒此人"
+                    self.blockedUsersCDRom.append(self.threads[(indexPath?.row)!].userID)
+                }
+            }))
+            
             actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
             
             self.present(actionSheet, animated: true, completion: nil)
@@ -308,6 +326,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
         self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
+        let source = segue.source as! ContentViewController
+        self.blockedUsers = source.blockedUsers
+        self.blockedUsersCDRom = source.blockedUsersCDRom
+        self.threadListTableView.reloadData()
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {

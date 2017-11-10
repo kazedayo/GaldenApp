@@ -28,6 +28,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var pageCount = 0.0
     var quoteContent = ""
     var blockedUsers = [String]()
+    var blockedUsersForCDRom = UserDefaults()
+    var blockedUsersCDRom = [String]()
     
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var pageButton: UIBarButtonItem!
@@ -68,6 +70,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         backgroundIndicator.heroModifiers = [.fade,.position(CGPoint(x:self.view.frame.midX,y:200))]
         replyStack.heroModifiers = [.position(CGPoint(x:500,y:replyStack.frame.midY))]
         shareButton.heroModifiers = [.position(CGPoint(x:-100,y:shareButton.frame.midY))]
+        titleLabel.heroModifiers = [.fade,.position(CGPoint(x:titleLabel.frame.midX,y:-100))]
         
         let keychain = KeychainSwift()
         
@@ -80,6 +83,10 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             badButton.isEnabled = false
             leaveNameButton.isEnabled = false
             commentButton.isEnabled = false
+        }
+        
+        if blockedUsersForCDRom.object(forKey: "BlockedUsers") != nil {
+            blockedUsersCDRom = blockedUsersForCDRom.object(forKey: "BlockedUsers") as! [String]
         }
         
         self.prevButton.isEnabled = false
@@ -115,6 +122,11 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.titleLabel.triggerScrollStart()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.blockedUsersForCDRom.set(blockedUsersCDRom, forKey: "BlockedUsers")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -138,7 +150,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if (pageNow == 1) {
             if(indexPath.row == 0) {
-                if (blockedUsers.contains(op.userID)) {
+                if (blockedUsers.contains(op.userID) || blockedUsersCDRom.contains(op.userID)) {
                     cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
                     cell.userNameLabel.text = "扑ed"
                     cell.userNameLabel.textColor = .gray
@@ -151,7 +163,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
             }
             else {
-                if (blockedUsers.contains(comments[indexPath.row - 1].userID)) {
+                if (blockedUsers.contains(comments[indexPath.row - 1].userID) || blockedUsersCDRom.contains(comments[indexPath.row - 1].userID)) {
                     cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
                     cell.userNameLabel.text = "扑ed"
                     cell.userNameLabel.textColor = .gray
@@ -165,7 +177,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }
         else {
-            if (blockedUsers.contains(comments[indexPath.row].userID)) {
+            if (blockedUsers.contains(comments[indexPath.row].userID) || blockedUsersCDRom.contains(comments[indexPath.row].userID)) {
                 cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
                 cell.userNameLabel.text = "扑ed"
                 cell.userNameLabel.textColor = .gray
@@ -212,6 +224,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if sender.state == UIGestureRecognizerState.began {
             let touchpoint = sender.location(in: contentTableView)
             let indexPath = contentTableView.indexPathForRow(at: touchpoint)
+            let keychain = KeychainSwift()
             if (pageNow == 1 && indexPath?.row == 0) {
                 let actionSheet = UIAlertController(title: "你揀咗" + op.name + "嘅留言",message: "你想做啲乜?",preferredStyle: .actionSheet)
                 
@@ -226,19 +239,34 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
-                    self.api.blockUser(uid: self.op.userID, completion: {
-                        status in
-                        if status == "true" {
-                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                            cell.userNameLabel.text = "扑ed"
-                            cell.userNameLabel.textColor = .gray
-                            cell.userLevelLabel.text = "過街老鼠"
-                            cell.replyCountLabel.text = ""
-                            cell.dateLabel.text = ""
-                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        }
-                    })
+                    if keychain.get("userKey") != nil {
+                        self.api.blockUser(uid: self.op.userID, completion: {
+                            status in
+                            if status == "true" {
+                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                                cell.userNameLabel.text = "扑ed"
+                                cell.userNameLabel.textColor = .gray
+                                cell.userLevelLabel.text = "過街老鼠"
+                                cell.replyCountLabel.text = ""
+                                cell.dateLabel.text = ""
+                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                self.blockedUsers.append(self.op.userID)
+                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                            }
+                        })
+                    } else {
+                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                        cell.userNameLabel.text = "扑ed"
+                        cell.userNameLabel.textColor = .gray
+                        cell.userLevelLabel.text = "過街老鼠"
+                        cell.replyCountLabel.text = ""
+                        cell.dateLabel.text = ""
+                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        self.blockedUsersCDRom.append(self.op.userID)
+                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                    }
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
@@ -258,19 +286,34 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
-                    self.api.blockUser(uid: self.comments[indexPath!.row - 1].userID, completion: {
-                        status in
-                        if status == "true" {
-                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                            cell.userNameLabel.text = "扑ed"
-                            cell.userNameLabel.textColor = .gray
-                            cell.userLevelLabel.text = "過街老鼠"
-                            cell.replyCountLabel.text = ""
-                            cell.dateLabel.text = ""
-                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        }
-                    })
+                    if keychain.get("userKey") != nil {
+                        self.api.blockUser(uid: self.comments[indexPath!.row - 1].userID, completion: {
+                            status in
+                            if status == "true" {
+                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                                cell.userNameLabel.text = "扑ed"
+                                cell.userNameLabel.textColor = .gray
+                                cell.userLevelLabel.text = "過街老鼠"
+                                cell.replyCountLabel.text = ""
+                                cell.dateLabel.text = ""
+                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                self.blockedUsers.append(self.comments[indexPath!.row - 1].userID)
+                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                            }
+                        })
+                    } else {
+                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                        cell.userNameLabel.text = "扑ed"
+                        cell.userNameLabel.textColor = .gray
+                        cell.userLevelLabel.text = "過街老鼠"
+                        cell.replyCountLabel.text = ""
+                        cell.dateLabel.text = ""
+                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        self.blockedUsersCDRom.append(self.comments[indexPath!.row - 1].userID)
+                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                    }
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
@@ -290,19 +333,34 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
                     action in
-                    self.api.blockUser(uid: self.comments[(indexPath?.row)!].userID, completion: {
-                        status in
-                        if status == "true" {
-                            let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                            cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                            cell.userNameLabel.text = "扑ed"
-                            cell.userNameLabel.textColor = .gray
-                            cell.userLevelLabel.text = "過街老鼠"
-                            cell.replyCountLabel.text = ""
-                            cell.dateLabel.text = ""
-                            cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        }
-                    })
+                    if keychain.get("userKey") != nil {
+                        self.api.blockUser(uid: self.comments[(indexPath?.row)!].userID, completion: {
+                            status in
+                            if status == "true" {
+                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                                cell.userNameLabel.text = "扑ed"
+                                cell.userNameLabel.textColor = .gray
+                                cell.userLevelLabel.text = "過街老鼠"
+                                cell.replyCountLabel.text = ""
+                                cell.dateLabel.text = ""
+                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                                self.blockedUsers.append(self.comments[(indexPath?.row)!].userID)
+                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                            }
+                        })
+                    } else {
+                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
+                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                        cell.userNameLabel.text = "扑ed"
+                        cell.userNameLabel.textColor = .gray
+                        cell.userLevelLabel.text = "過街老鼠"
+                        cell.replyCountLabel.text = ""
+                        cell.dateLabel.text = ""
+                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                        self.blockedUsersCDRom.append(self.comments[(indexPath?.row)!].userID)
+                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+                    }
                 }))
                 
                 actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))

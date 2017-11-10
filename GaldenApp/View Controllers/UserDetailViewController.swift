@@ -96,6 +96,8 @@ class UserDetailViewController: UIViewController,UINavigationControllerDelegate,
     
     @IBAction func backgroundImagePicker(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
+        imagePicker.navigationBar.barStyle = .black
+        imagePicker.navigationBar.tintColor = .white
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         present(imagePicker,animated: true,completion: nil)
