@@ -8,9 +8,9 @@
 
 import UIKit
 import JavaScriptCore
-import NVActivityIndicatorView
 import KeychainSwift
 import MarqueeLabel
+import Toaster
 
 class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate,UINavigationControllerDelegate {
     
@@ -48,8 +48,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var replyStack: UIStackView!
     @IBOutlet weak var shareButton: UIButton!
     
-    let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
-    
     //HKGalden API (NOT included in GitHub repo)
     var api = HKGaldenAPI()
     
@@ -60,14 +58,9 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.dataSource = self
         navigationController?.delegate = self
         
-        self.backgroundIndicator.startAnimating()
-        self.view.addSubview(backgroundIndicator)
-        
         titleLabel.text = title
         
         toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
-        backgroundIndicator.isHeroEnabled = true
-        backgroundIndicator.heroModifiers = [.fade,.position(CGPoint(x:self.view.frame.midX,y:200))]
         replyStack.heroModifiers = [.position(CGPoint(x:500,y:replyStack.frame.midY))]
         shareButton.heroModifiers = [.position(CGPoint(x:-100,y:shareButton.frame.midY))]
         titleLabel.heroModifiers = [.fade,.position(CGPoint(x:titleLabel.frame.midX,y:-100))]
@@ -198,7 +191,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBAction func f5Button(_ sender: UIButton) {
         contentTableView.isHidden = true
-        backgroundIndicator.isHidden = false
         self.api.pageCount(postId: threadIdReceived, completion: {
             [weak self] count in
             self?.pageCount = count
@@ -442,7 +434,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 prevButton.isEnabled = false
             }
             contentTableView.isHidden = true
-            backgroundIndicator.isHidden = false
             self.pageNow -= 1
             self.api.pageCount(postId: threadIdReceived, completion: {
                 [weak self] count in
@@ -461,7 +452,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
             self.prevButton.isEnabled = true
             contentTableView.isHidden = true
-            backgroundIndicator.isHidden = false
             self.pageNow += 1
             self.api.pageCount(postId: threadIdReceived, completion: {
                 [weak self] count in
@@ -531,13 +521,13 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     private func updateSequence(action: String) {
         contentTableView.isHidden = true
         f5View.isHidden = true
-        backgroundIndicator.isHidden = false
         if (goToLastPage == true) {
             pageNow = Int(pageCount)
             goToLastPage = false
         }
         buttonLogic()
         self.pageButton.title = "第" + String(self.pageNow) + "頁"
+        Toast(text:"撈緊...",duration:1).show()
         self.api.fetchContent(postId: threadIdReceived, pageNo: String(pageNow), completion: {
             [weak self] op,comments,rated,blocked,error in
             if (error == nil) {
@@ -567,8 +557,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         self?.badButton.isEnabled = true
                     }
                 }
-                
-                self?.backgroundIndicator.isHidden = true
                 self?.contentTableView.isHidden = false
                 self?.contentTableView.tableFooterView = self?.f5View
                 self?.f5View.isHidden = false

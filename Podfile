@@ -11,11 +11,11 @@ target 'GaldenApp' do
   pod 'SwiftyJSON'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'Kingfisher'
-  pod 'NVActivityIndicatorView'
   pod 'KeychainSwift'
   pod 'ESPullToRefresh'
   pod 'Hero'
   pod 'MarqueeLabel'
+  pod 'Toaster'
 
   target 'GaldenAppTests' do
     inherit! :search_paths

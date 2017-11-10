@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 import KeychainSwift
 import ESPullToRefresh
+import Toaster
 
 class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -29,8 +29,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var ipath = IndexPath.init(row: 1, section: 1)
     var blockedUsersForCDRom = UserDefaults()
     var blockedUsersCDRom = [String]()
-    
-    let backgroundIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),type: .ballPulseSync,padding: 175)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,20 +83,17 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             })
         }
         
-        backgroundIndicator.startAnimating()
-        self.view.addSubview(backgroundIndicator)
-        
         threadListTableView.isHidden = true
         channelNow = "bw"
         pageNow = "1"
         channelLabel.text = api.channelNameFunc(ch: channelNow!)
+        Toast(text:"撈緊...",duration:1).show()
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {
                 self?.threads = threads
                 self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
-                self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false
             }
         })
@@ -310,15 +305,14 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.channelNow = channelSelectViewController.channelSelected
         self.pageNow = "1"
         threadListTableView.isHidden = true
-        backgroundIndicator.isHidden = false
         channelLabel.text = api.channelNameFunc(ch: channelNow!)
+        Toast(text:"撈緊...",duration:1).show()
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {
                 self?.threads = threads
                 self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
-                self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false
             }
         })
@@ -334,7 +328,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {
         threadListTableView.isHidden = true
-        backgroundIndicator.isHidden = false
         channelLabel.text = api.channelNameFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
@@ -342,7 +335,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self?.threads = threads
                 self?.blockedUsers = blocked
                 self?.threadListTableView.reloadData()
-                self?.backgroundIndicator.isHidden = true
                 self?.threadListTableView.isHidden = false
             }
         })

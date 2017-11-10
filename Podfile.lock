@@ -10,10 +10,8 @@ PODS:
   - MarqueeLabel (3.1.3):
     - MarqueeLabel/ObjC (= 3.1.3)
   - MarqueeLabel/ObjC (3.1.3)
-  - NVActivityIndicatorView (4.0.0):
-    - NVActivityIndicatorView/Presenter (= 4.0.0)
-  - NVActivityIndicatorView/Presenter (4.0.0)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON (4.0.0)
+  - Toaster (2.1.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -24,8 +22,8 @@ DEPENDENCIES:
   - KeychainSwift
   - Kingfisher
   - MarqueeLabel
-  - NVActivityIndicatorView
   - SwiftyJSON
+  - Toaster
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -36,9 +34,9 @@ SPEC CHECKSUMS:
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
   MarqueeLabel: baa5753dcbd36dca080e1f5c589a665aa5c906f1
-  NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: 679b2c4d1e2cb751853843a1527c69113ce5494e
+PODFILE CHECKSUM: 86bcebe83ba28382ac02e781ecb5978133014b46
 
 COCOAPODS: 1.3.1
