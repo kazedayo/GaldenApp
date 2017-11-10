@@ -9,7 +9,7 @@
 import UIKit
 import KeychainSwift
 
-class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate,IconKeyboardDelegate {
     
     //MARK: Properties
     var channel: String = ""
@@ -17,6 +17,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var content: String = ""
     
     let api = HKGaldenAPI()
+    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 265))
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var channelLabel: UIButton!
@@ -30,6 +31,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        iconKeyboard.delegate = self
         titleTextField.delegate = self
         contentTextView.delegate = self
         titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
@@ -61,9 +63,6 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         switch (segue.identifier ?? "") {
         case "BBCode":
             let destination = segue.destination as! BBCodeViewController
-            destination.segueIdentifier = "NewPost"
-        case "Icon":
-            let destination = segue.destination as! IconViewController
             destination.segueIdentifier = "NewPost"
         default:
             break
@@ -105,14 +104,26 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         content = textView.text!
     }
     
+    func keyWasTapped(character: String) {
+        contentTextView.insertText(character)
+    }
+    
     @IBAction func unwindToNewPost(segue: UIStoryboardSegue) {
         if (segue.source is BBCodeViewController) {
             let source = segue.source as! BBCodeViewController
             contentTextView.text = contentTextView.text.appending(source.bbcodeSent)
         }
-        else if (segue.source is IconViewController) {
-            let source = segue.source as! IconViewController
-            contentTextView.text = contentTextView.text.appending(source.iconSelected)
+    }
+    
+    @IBAction func callIconKeyboard(_ sender: UIButton) {
+        if contentTextView.inputView == nil {
+            contentTextView.resignFirstResponder()
+            contentTextView.inputView = iconKeyboard
+            contentTextView.becomeFirstResponder()
+        } else {
+            contentTextView.resignFirstResponder()
+            contentTextView.inputView = nil
+            contentTextView.becomeFirstResponder()
         }
     }
     

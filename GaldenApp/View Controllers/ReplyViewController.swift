@@ -9,7 +9,7 @@
 import UIKit
 import KeychainSwift
 
-class ReplyViewController: UIViewController,UITextViewDelegate {
+class ReplyViewController: UIViewController,UITextViewDelegate,IconKeyboardDelegate {
 
     @IBOutlet weak var replyTextField: UITextView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -19,6 +19,8 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
     let api = HKGaldenAPI()
     var topicID = ""
     
+    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 265))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let keychain = KeychainSwift()
@@ -26,6 +28,7 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
             backgroundView.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
         }
         replyTextField.delegate = self
+        iconKeyboard.delegate = self
         replyTextField.text = content
         replyTextField.becomeFirstResponder()
         replyTextField.textContainerInset = UIEdgeInsetsMake(10, 5, 10, 5)
@@ -52,9 +55,6 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
         switch (segue.identifier ?? "") {
         case "BBCode":
             let destination = segue.destination as! BBCodeViewController
-            destination.segueIdentifier = "Reply"
-        case "Icon":
-            let destination = segue.destination as! IconViewController
             destination.segueIdentifier = "Reply"
         default:
             break
@@ -86,9 +86,21 @@ class ReplyViewController: UIViewController,UITextViewDelegate {
             let source = segue.source as! BBCodeViewController
             replyTextField.text = replyTextField.text.appending(source.bbcodeSent)
         }
-        else if (segue.source is IconViewController) {
-            let source = segue.source as! IconViewController
-            replyTextField.text = replyTextField.text.appending(source.iconSelected)
+    }
+    
+    func keyWasTapped(character: String) {
+        replyTextField.insertText(character)
+    }
+    
+    @IBAction func callIconKeyboard(_ sender: UIButton) {
+        if replyTextField.inputView == nil {
+            replyTextField.resignFirstResponder()
+            replyTextField.inputView = iconKeyboard
+            replyTextField.becomeFirstResponder()
+        } else {
+            replyTextField.resignFirstResponder()
+            replyTextField.inputView = nil
+            replyTextField.becomeFirstResponder()
         }
     }
 }
