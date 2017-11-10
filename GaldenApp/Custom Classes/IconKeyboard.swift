@@ -125,9 +125,9 @@ class IconKeyboard: UIView {
         case 44:
             self.delegate?.keyWasTapped(character: "[yipes] ")
         case 45:
-            self.delegate?.keyWasTapped(character: "Z_Z")
+            self.delegate?.keyWasTapped(character: "Z_Z ")
         case 46:
-            self.delegate?.keyWasTapped(character: "#lol#")
+            self.delegate?.keyWasTapped(character: "#lol# ")
         default:
             return
         }
