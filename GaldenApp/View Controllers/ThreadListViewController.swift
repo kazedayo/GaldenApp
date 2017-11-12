@@ -26,7 +26,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var pageNow: String?
     var selectedThread: String!
     var blockedUsers = [String]()
-    var ipath = IndexPath.init(row: 1, section: 1)
     var blockedUsersForCDRom = UserDefaults()
     var blockedUsersCDRom = [String]()
     
@@ -99,13 +98,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let cell = self.threadListTableView.cellForRow(at: self.ipath)
-        cell?.heroID = ""
-        cell?.heroModifiers = []
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.blockedUsersForCDRom.set(blockedUsersCDRom, forKey: "BlockedUsers")
@@ -155,8 +147,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         } else {
             let cell = tableView.cellForRow(at: indexPath)
-            cell?.heroModifiers = [.fade, .scale(0.5)]
-            self.ipath = indexPath
             self.performSegue(withIdentifier: "GoToPost", sender: cell)
         }
     }
@@ -166,49 +156,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell?.heroID = ""
         cell?.heroModifiers = []
     }*/
-    
-    @IBAction func showDetail(sender: UILongPressGestureRecognizer) {
-        let keychain = KeychainSwift()
-        if sender.state == UIGestureRecognizerState.began {
-            let touchpoint = sender.location(in: threadListTableView)
-            let indexPath = threadListTableView.indexPathForRow(at: touchpoint)
-            let actionSheet = UIAlertController(title: threads[(indexPath?.row)!].title,message: "你想做啲乜?",preferredStyle: .actionSheet)
-            
-            actionSheet.addAction(UIAlertAction(title:"去最後一頁",style: .default, handler: {
-                action in
-                let cell = self.threadListTableView.cellForRow(at: indexPath!)
-                cell?.heroID = "Title"
-                cell?.heroModifiers = [.fade, .scale(0.5)]
-                self.ipath = indexPath!
-                self.performSegue(withIdentifier: "GoToPost", sender: indexPath!)
-            }))
-            
-            actionSheet.addAction(UIAlertAction(title: "扑柒OP",style: .destructive, handler: {
-                action in
-                if keychain.get("userKey") != nil {
-                    self.api.blockUser(uid: self.threads[(indexPath?.row)!].userID, completion: {
-                        status in
-                        if status == "true" {
-                            let cell = self.threadListTableView.cellForRow(at: indexPath!) as! ThreadListTableViewCell
-                            cell.threadTitleLabel.text = "扑ed"
-                            cell.threadTitleLabel.textColor = .gray
-                            cell.detailLabel.text = "你已扑柒此人"
-                        }
-                    })
-                } else {
-                    let cell = self.threadListTableView.cellForRow(at: indexPath!) as! ThreadListTableViewCell
-                    cell.threadTitleLabel.text = "扑ed"
-                    cell.threadTitleLabel.textColor = .gray
-                    cell.detailLabel.text = "你已扑柒此人"
-                    self.blockedUsersCDRom.append(self.threads[(indexPath?.row)!].userID)
-                }
-            }))
-            
-            actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
-            
-            self.present(actionSheet, animated: true, completion: nil)
-        }
-    }
     
     /*
     // Override to support conditional editing of the table view.

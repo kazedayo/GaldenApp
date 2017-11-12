@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -138,28 +139,6 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="inq-ba-DE8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-Sq-0iH">
-                                            <rect key="frame" x="20" y="637" width="335" height="30"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="我同意"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <segue destination="3Cp-N6-PlO" kind="presentation" id="dkd-6R-3yU"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="jhW-Sq-0iH" secondAttribute="trailing" constant="20" id="2eR-zs-dQI"/>
-                                        <constraint firstItem="jhW-Sq-0iH" firstAttribute="leading" secondItem="inq-ba-DE8" secondAttribute="leading" constant="20" id="BEg-JC-gX0"/>
-                                        <constraint firstAttribute="bottom" secondItem="jhW-Sq-0iH" secondAttribute="bottom" constant="20" id="cp7-86-apr"/>
-                                    </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
@@ -173,7 +152,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wl-oq-kZ4">
-                                <rect key="frame" x="20" y="96" width="335" height="475"/>
+                                <rect key="frame" x="20" y="86" width="335" height="495"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">最後修改日期︰2015-08-29
 
@@ -223,23 +202,41 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-Sq-0iH">
+                                <rect key="frame" x="20" y="601" width="335" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="我同意"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="3Cp-N6-PlO" kind="presentation" id="dkd-6R-3yU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Bmw-aE-lfG" firstAttribute="leading" secondItem="8Ws-4q-ocj" secondAttribute="leading" id="5z5-QY-D7J"/>
+                            <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="jhW-Sq-0iH" secondAttribute="trailing" constant="20" id="CKt-f3-rP5"/>
                             <constraint firstItem="OTg-A4-NWn" firstAttribute="leading" secondItem="8Ws-4q-ocj" secondAttribute="leading" id="EU4-Kg-Q3x"/>
                             <constraint firstItem="ePp-s9-4EZ" firstAttribute="top" secondItem="CTJ-zC-54G" secondAttribute="top" constant="20" id="GQR-MD-wwj"/>
                             <constraint firstItem="6Wl-oq-kZ4" firstAttribute="leading" secondItem="CTJ-zC-54G" secondAttribute="leading" constant="20" id="Ho4-7t-NF2"/>
                             <constraint firstItem="CTJ-zC-54G" firstAttribute="bottom" secondItem="OTg-A4-NWn" secondAttribute="bottom" id="M8R-oQ-Jif"/>
+                            <constraint firstItem="jhW-Sq-0iH" firstAttribute="leading" secondItem="CTJ-zC-54G" secondAttribute="leading" constant="20" id="MnY-01-job"/>
                             <constraint firstItem="OTg-A4-NWn" firstAttribute="top" secondItem="8Ws-4q-ocj" secondAttribute="top" constant="-20" id="NJx-mt-C55"/>
                             <constraint firstItem="6Wl-oq-kZ4" firstAttribute="centerY" secondItem="8Ws-4q-ocj" secondAttribute="centerY" id="SG5-Pf-jnX"/>
                             <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="OTg-A4-NWn" secondAttribute="trailing" id="VJY-f7-XrF"/>
+                            <constraint firstItem="jhW-Sq-0iH" firstAttribute="top" secondItem="6Wl-oq-kZ4" secondAttribute="bottom" constant="20" id="Zce-3Q-ep4"/>
                             <constraint firstItem="CTJ-zC-54G" firstAttribute="bottom" secondItem="Bmw-aE-lfG" secondAttribute="bottom" id="aSX-q3-NcF"/>
                             <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="Bmw-aE-lfG" secondAttribute="trailing" id="asz-YT-Xwl"/>
                             <constraint firstItem="CTJ-zC-54G" firstAttribute="trailing" secondItem="6Wl-oq-kZ4" secondAttribute="trailing" constant="20" id="eDd-Xw-eD9"/>
                             <constraint firstItem="ePp-s9-4EZ" firstAttribute="leading" secondItem="CTJ-zC-54G" secondAttribute="leading" constant="20" id="jWb-AD-T6b"/>
                             <constraint firstItem="Bmw-aE-lfG" firstAttribute="top" secondItem="8Ws-4q-ocj" secondAttribute="top" constant="-20" id="lS5-ph-YQb"/>
-                            <constraint firstItem="6Wl-oq-kZ4" firstAttribute="top" secondItem="ePp-s9-4EZ" secondAttribute="bottom" constant="20" id="rYu-yp-Wiy"/>
+                            <constraint firstItem="6Wl-oq-kZ4" firstAttribute="top" secondItem="ePp-s9-4EZ" secondAttribute="bottom" constant="10" id="rYu-yp-Wiy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CTJ-zC-54G"/>
                     </view>
@@ -272,31 +269,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ArE-iy-Nrj">
-                                            <rect key="frame" x="20" y="157" width="335" height="53"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有膠登帳戶?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXb-uq-FOf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請在此登入" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPm-wn-TgW">
-                                                    <rect key="frame" x="0.0" y="35" width="335" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請登入你的膠登帳戶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXb-uq-FOf">
+                                            <rect key="frame" x="20" y="248.5" width="335" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-dp-VEI">
-                                            <rect key="frame" x="20" y="219.5" width="335" height="108"/>
+                                            <rect key="frame" x="20" y="298.5" width="335" height="70"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-ux-R4m">
                                                     <rect key="frame" x="50" y="0.0" width="235" height="30"/>
@@ -320,77 +303,43 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOU-oI-KIw">
-                                                    <rect key="frame" x="75" y="80" width="185" height="28"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                    <state key="normal" title="登入"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="loginButtonPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="D6C-uf-75O"/>
-                                                        <action selector="loginButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="VsB-cj-9O5"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Tgc-ux-R4m" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="50" id="5Kn-ct-Mjr"/>
-                                                <constraint firstItem="EOU-oI-KIw" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="75" id="9PS-ex-ICD"/>
                                                 <constraint firstAttribute="trailing" secondItem="MWd-UH-00G" secondAttribute="trailing" constant="50" id="QxL-hm-oZc"/>
                                                 <constraint firstAttribute="trailing" secondItem="Tgc-ux-R4m" secondAttribute="trailing" constant="50" id="aiT-NQ-Ai5"/>
                                                 <constraint firstItem="MWd-UH-00G" firstAttribute="leading" secondItem="zUO-dp-VEI" secondAttribute="leading" constant="50" id="dyt-JP-oly"/>
-                                                <constraint firstAttribute="trailing" secondItem="EOU-oI-KIw" secondAttribute="trailing" constant="75" id="fd4-Qs-VpI"/>
                                             </constraints>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ald-Sg-qep">
-                                            <rect key="frame" x="20" y="398.5" width="335" height="70"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="沒有膠登帳戶?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ide-Zd-5di">
-                                                    <rect key="frame" x="85" y="0.0" width="165" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYf-1M-vh8">
-                                                    <rect key="frame" x="75" y="40" width="185" height="30"/>
-                                                    <color key="backgroundColor" red="0.32369780539999998" green="0.1063579395" blue="0.574860394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="CDROM模式"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="cdromButtomPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="72K-Un-ElX"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="sYf-1M-vh8" firstAttribute="leading" secondItem="Ald-Sg-qep" secondAttribute="leading" constant="75" id="LZt-9C-H6I"/>
-                                                <constraint firstAttribute="trailing" secondItem="sYf-1M-vh8" secondAttribute="trailing" constant="75" id="Owi-g2-vRi"/>
-                                            </constraints>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOU-oI-KIw">
+                                            <rect key="frame" x="100" y="389.5" width="175" height="28"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <state key="normal" title="登入"/>
                                             <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="button"/>
                                             </userDefinedRuntimeAttributes>
-                                        </stackView>
+                                            <connections>
+                                                <action selector="loginButtonPressed:" destination="3Cp-N6-PlO" eventType="touchUpInside" id="D6C-uf-75O"/>
+                                                <action selector="loginButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="VsB-cj-9O5"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ald-Sg-qep" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" constant="100" id="1jH-4w-yPK"/>
-                                        <constraint firstItem="Ald-Sg-qep" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="5Bv-MM-jme"/>
+                                        <constraint firstItem="EOU-oI-KIw" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="100" id="8fF-71-wwI"/>
+                                        <constraint firstAttribute="trailing" secondItem="EOU-oI-KIw" secondAttribute="trailing" constant="100" id="AXh-PF-DAW"/>
+                                        <constraint firstAttribute="trailing" secondItem="iXb-uq-FOf" secondAttribute="trailing" constant="20" id="DhO-9x-2cd"/>
                                         <constraint firstItem="zUO-dp-VEI" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="EVf-vX-F1f"/>
-                                        <constraint firstItem="zUO-dp-VEI" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" constant="-60" id="Eot-Ij-g4u"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ald-Sg-qep" secondAttribute="trailing" constant="20" id="IDZ-H8-7cA"/>
-                                        <constraint firstAttribute="trailing" secondItem="ArE-iy-Nrj" secondAttribute="trailing" constant="20" id="UuY-7N-45W"/>
-                                        <constraint firstItem="ArE-iy-Nrj" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" constant="-150" id="dti-wT-gUX"/>
+                                        <constraint firstItem="zUO-dp-VEI" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" id="Eot-Ij-g4u"/>
+                                        <constraint firstItem="EOU-oI-KIw" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" constant="70" id="HsV-LN-Sew"/>
                                         <constraint firstAttribute="trailing" secondItem="zUO-dp-VEI" secondAttribute="trailing" constant="20" id="fQr-Ju-gsr"/>
-                                        <constraint firstItem="ArE-iy-Nrj" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="zvU-h6-5RA"/>
+                                        <constraint firstItem="iXb-uq-FOf" firstAttribute="centerY" secondItem="JaP-WE-q2s" secondAttribute="centerY" constant="-70" id="gwC-EZ-eBR"/>
+                                        <constraint firstItem="iXb-uq-FOf" firstAttribute="leading" secondItem="JaP-WE-q2s" secondAttribute="leading" constant="20" id="knq-qE-eRL"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -414,8 +363,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="emailField" destination="Tgc-ux-R4m" id="JXj-lu-EDT"/>
-                        <outlet property="loginText" destination="ArE-iy-Nrj" id="L4M-fz-LzU"/>
-                        <outlet property="noAccount" destination="Ald-Sg-qep" id="mN3-vs-hUU"/>
+                        <outlet property="loginText" destination="iXb-uq-FOf" id="wT0-iq-lSJ"/>
                         <outlet property="passwordField" destination="MWd-UH-00G" id="GyN-Tl-WAv"/>
                         <segue destination="FPX-jd-DfM" kind="presentation" identifier="Start" id="O83-If-8Cr"/>
                     </connections>
@@ -504,9 +452,6 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="yyD-gI-7xC" appends="YES" id="rVh-j1-rCn"/>
-                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NVi-oY-RW6">
                                 <rect key="frame" x="15" y="40" width="345" height="36"/>
@@ -585,11 +530,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utv-pD-qzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="yyD-gI-7xC">
-                    <connections>
-                        <action selector="showDetailWithSender:" destination="FPX-jd-DfM" id="A64-pN-49g"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <tapGestureRecognizer id="pfC-5G-PVV">
                     <connections>
                         <action selector="tapOnChannelTitle:" destination="FPX-jd-DfM" id="WlN-z3-rSk"/>
@@ -624,6 +564,9 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-j3-eeK">
                                 <rect key="frame" x="20" y="146" width="335" height="150"/>
@@ -639,6 +582,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WfV-g2-NuU">
@@ -687,6 +631,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CLx-R6-3zr">
                                 <rect key="frame" x="20" y="40" width="335" height="36"/>
@@ -761,6 +709,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="background" destination="Fn5-gg-zVy" id="Su6-13-Lh3"/>
+                        <outlet property="buttonStack" destination="WfV-g2-NuU" id="W8A-p6-o47"/>
                         <outlet property="cancelButton" destination="fQK-ub-iUe" id="ZGy-6w-ts7"/>
                         <outlet property="channelLabel" destination="7Gd-jD-DaN" id="lDX-nA-C4a"/>
                         <outlet property="contentTextView" destination="8cg-j3-eeK" id="0Ur-d2-6fg"/>
@@ -794,10 +743,10 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qd6-04-tvo">
-                                <rect key="frame" x="20" y="40" width="335" height="555.5"/>
+                                <rect key="frame" x="20" y="40" width="335" height="420.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TuF-Nw-FVN">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="305"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="170"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oev-eN-GgF">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
@@ -839,43 +788,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSb-Yg-ywU">
-                                                <rect key="frame" x="0.0" y="90" width="335" height="35"/>
-                                                <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" textContentType="email"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lH-ol-WUF">
-                                                <rect key="frame" x="0.0" y="135" width="335" height="35"/>
-                                                <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" secureTextEntry="YES" textContentType="password"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWK-kx-wn3">
-                                                <rect key="frame" x="0.0" y="180" width="335" height="35"/>
-                                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                                <state key="normal" title="登入"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(0.5)"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="loginButtonPressed:" destination="bpd-Vc-fnK" eventType="touchUpInside" id="A2M-ZW-AIW"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSq-LN-hce">
-                                                <rect key="frame" x="0.0" y="225" width="335" height="35"/>
+                                                <rect key="frame" x="0.0" y="90" width="335" height="35"/>
                                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="登出"/>
                                                 <userDefinedRuntimeAttributes>
@@ -889,7 +803,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8f2-0Q-vk0">
-                                                <rect key="frame" x="0.0" y="270" width="335" height="35"/>
+                                                <rect key="frame" x="0.0" y="135" width="335" height="35"/>
                                                 <color key="backgroundColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="小氣簿"/>
                                                 <userDefinedRuntimeAttributes>
@@ -906,20 +820,14 @@
                                         <constraints>
                                             <constraint firstItem="Oev-eN-GgF" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="FhQ-7U-P7p"/>
                                             <constraint firstAttribute="trailing" secondItem="8f2-0Q-vk0" secondAttribute="trailing" id="JhT-GN-f7j"/>
-                                            <constraint firstAttribute="trailing" secondItem="lSb-Yg-ywU" secondAttribute="trailing" id="Qf2-ed-uOL"/>
-                                            <constraint firstItem="lSb-Yg-ywU" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="WDK-Py-rSb"/>
-                                            <constraint firstAttribute="trailing" secondItem="RWK-kx-wn3" secondAttribute="trailing" id="WMq-dk-ouY"/>
                                             <constraint firstItem="JSq-LN-hce" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="Wnz-26-Ty1"/>
                                             <constraint firstAttribute="trailing" secondItem="JSq-LN-hce" secondAttribute="trailing" id="gmq-j2-pWZ"/>
                                             <constraint firstItem="8f2-0Q-vk0" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="h1v-eL-FOl"/>
-                                            <constraint firstItem="9lH-ol-WUF" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="pBG-ak-5gb"/>
-                                            <constraint firstAttribute="trailing" secondItem="9lH-ol-WUF" secondAttribute="trailing" id="pLa-RD-uou"/>
                                             <constraint firstAttribute="trailing" secondItem="Oev-eN-GgF" secondAttribute="trailing" id="y1Z-3Q-dnF"/>
-                                            <constraint firstItem="RWK-kx-wn3" firstAttribute="leading" secondItem="TuF-Nw-FVN" secondAttribute="leading" id="yM6-Ft-hrU"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a00-ui-hzG">
-                                        <rect key="frame" x="0.0" y="335" width="335" height="220.5"/>
+                                        <rect key="frame" x="0.0" y="200" width="335" height="220.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-xY-9Pb">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="25"/>
@@ -1058,13 +966,11 @@
                         <outlet property="background" destination="eOo-Sq-HF5" id="GlO-34-zAL"/>
                         <outlet property="blocklistButton" destination="8f2-0Q-vk0" id="Clx-wa-Hcj"/>
                         <outlet property="cancelButton" destination="afc-Qt-FPa" id="k9d-3V-M6S"/>
-                        <outlet property="emailTextField" destination="lSb-Yg-ywU" id="1TL-ej-Ib1"/>
                         <outlet property="leaveNameStack" destination="RhM-lF-BPC" id="hhl-he-Peq"/>
                         <outlet property="leaveNameTextField" destination="TAU-vS-5y7" id="wKD-DY-mAf"/>
-                        <outlet property="loginButton" destination="RWK-kx-wn3" id="PDB-Qs-zFw"/>
                         <outlet property="logoutButton" destination="JSq-LN-hce" id="nyt-Cb-1Yk"/>
-                        <outlet property="passwordTextField" destination="9lH-ol-WUF" id="m9i-JQ-Tuw"/>
                         <outlet property="userName" destination="zZG-HY-xGc" id="DWe-CQ-w3y"/>
+                        <segue destination="3Cp-N6-PlO" kind="presentation" identifier="logout" id="0yc-Jh-m78"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DnL-zy-jcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2165,13 +2071,37 @@
                                                     </constraints>
                                                 </stackView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvv-KJ-EB8">
-                                                    <rect key="frame" x="15" y="60" width="345" height="129"/>
+                                                    <rect key="frame" x="15" y="60" width="345" height="109"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <attributedString key="attributedText"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JBl-FJ-O4S">
+                                                    <rect key="frame" x="249" y="159" width="111" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DM3-y1-XDk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title=" 引用" image="quote"/>
+                                                            <connections>
+                                                                <action selector="quoteButtonPressed:" destination="wRo-r1-a2n" eventType="touchUpInside" id="PJB-3v-niS"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5i-E9-vCW">
+                                                            <rect key="frame" x="63" y="0.0" width="48" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <state key="normal" title=" 封鎖" image="block"/>
+                                                            <connections>
+                                                                <action selector="blockButtonPressed:" destination="wRo-r1-a2n" eventType="touchUpInside" id="akv-Kd-Km7"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="JmS-6x-jOL"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="s7b-ab-5Jb" firstAttribute="top" secondItem="Dhg-hF-atc" secondAttribute="top" constant="10" id="36p-8J-krO"/>
@@ -2179,14 +2109,18 @@
                                                 <constraint firstItem="Zvv-KJ-EB8" firstAttribute="leading" secondItem="Dhg-hF-atc" secondAttribute="leadingMargin" id="LkY-KS-fi4"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Zvv-KJ-EB8" secondAttribute="trailing" id="Lkv-9H-d1O"/>
                                                 <constraint firstItem="s7b-ab-5Jb" firstAttribute="leading" secondItem="Dhg-hF-atc" secondAttribute="leading" constant="10" id="d5u-57-Yzs"/>
-                                                <constraint firstItem="Zvv-KJ-EB8" firstAttribute="bottom" secondItem="Dhg-hF-atc" secondAttribute="bottomMargin" id="pae-9n-T1A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JBl-FJ-O4S" secondAttribute="bottom" id="ddJ-F6-OHc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JBl-FJ-O4S" secondAttribute="trailing" id="lph-li-ZyI"/>
+                                                <constraint firstItem="Zvv-KJ-EB8" firstAttribute="bottom" secondItem="JBl-FJ-O4S" secondAttribute="topMargin" constant="10" id="pae-9n-T1A"/>
                                                 <constraint firstItem="Zvv-KJ-EB8" firstAttribute="top" secondItem="s7b-ab-5Jb" secondAttribute="bottom" constant="10" id="wt4-vA-2BN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="blockButton" destination="M5i-E9-vCW" id="q90-yz-zvx"/>
                                             <outlet property="contentTextView" destination="Zvv-KJ-EB8" id="aCU-p0-0vc"/>
                                             <outlet property="dateLabel" destination="fTV-St-Ag0" id="nNJ-B7-7vc"/>
+                                            <outlet property="quoteButton" destination="DM3-y1-XDk" id="ome-d9-7OX"/>
                                             <outlet property="replyCountLabel" destination="W40-Bc-uws" id="hqL-Jh-wzy"/>
                                             <outlet property="tableView" destination="Ont-uz-NZy" id="ST6-qL-PuB"/>
                                             <outlet property="userAvatarImageView" destination="KAf-rl-1NK" id="JvQ-j1-RTg"/>
@@ -2198,11 +2132,8 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(1.5) useNormalSnapshot"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="fade() scale(1.5)"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="O9x-5Q-oTz" appends="YES" id="a7J-Aq-5xd"/>
-                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撈緊..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyx-8X-VPI" customClass="MarqueeLabel">
                                 <rect key="frame" x="0.0" y="40" width="355" height="24"/>
@@ -2374,11 +2305,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkB-NC-fGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SiJ-ir-6HP" userLabel="Exit" sceneMemberID="exit"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="O9x-5Q-oTz">
-                    <connections>
-                        <action selector="showDetailWithSender:" destination="wRo-r1-a2n" id="FU7-H8-3AP"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3822" y="770"/>
         </scene>
@@ -2587,6 +2513,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aby-Pz-S3E">
@@ -2635,6 +2562,10 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2666,6 +2597,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="backgroundView" destination="tU4-dz-gJu" id="8yA-0n-q2D"/>
+                        <outlet property="buttonStack" destination="aby-Pz-S3E" id="LOC-s2-NoJ"/>
                         <outlet property="cancelButton" destination="irg-Zy-dcx" id="HCQ-oC-uIO"/>
                         <outlet property="replyTextField" destination="1Uf-7l-Cx0" id="Eqi-rG-cnz"/>
                         <segue destination="WPe-IP-7Ec" kind="unwind" identifier="unwindAfterReply" unwindAction="unwindAfterReplyWithSegue:" id="8T9-JC-KhK"/>
@@ -3002,11 +2934,14 @@
         <image name="Reply" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
         <image name="User" width="25" height="25"/>
+        <image name="block" width="20" height="20"/>
         <image name="launchIcon" width="320" height="320"/>
+        <image name="quote" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CR1-W7-enG"/>
         <segue reference="HbF-op-rGJ"/>
+        <segue reference="dkd-6R-3yU"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

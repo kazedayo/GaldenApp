@@ -11,8 +11,7 @@ import KeychainSwift
 
 class FirstLoginViewController: UIViewController,UITextFieldDelegate {
     
-    @IBOutlet weak var loginText: UIStackView!
-    @IBOutlet weak var noAccount: UIStackView!
+    @IBOutlet weak var loginText: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
@@ -28,7 +27,6 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
         emailField.delegate = self
         passwordField.delegate = self
         loginText.heroModifiers = [.fade,.position(CGPoint(x:loginText.frame.midX,y:100))]
-        noAccount.heroModifiers = [.fade,.position(CGPoint(x:noAccount.frame.midX,y:650))]
         // Do any additional setup after loading the view.
     }
 
@@ -37,25 +35,31 @@ class FirstLoginViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cdromButtomPressed(_ sender: UIButton) {
-        keychain.set(false, forKey: "isFirstTimeUsage")
-        self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
-        self.performSegue(withIdentifier: "Start", sender: self)
-    }
-    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         emailField.endEditing(true)
         passwordField.endEditing(true)
-        api.login(email: email, password: password, completion: {
-            self.api.getUserDetail(completion: {
-                username, userid in
-                self.keychain.set(username, forKey: "userName")
-                self.keychain.set(userid, forKey: "userID")
-                self.keychain.set(false, forKey: "isFirstTimeUsage")
-                self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
-                self.performSegue(withIdentifier: "Start", sender: self)
+        if (emailField.text == "" || passwordField.text == "") {
+            let alert = UIAlertController(title:"注意",message:"帳戶/密碼不能留空",preferredStyle:.alert)
+            alert.addAction(UIAlertAction(title:"OK",style:.cancel,handler:nil))
+            present(alert,animated: true,completion: nil)
+        } else {
+            api.login(email: email, password: password, completion: {
+                self.api.getUserDetail(completion: {
+                    username, userid in
+                    if (username == "") {
+                        let alert = UIAlertController(title:"登入失敗",message:"請確認帳戶/密碼無誤",preferredStyle:.alert)
+                        alert.addAction(UIAlertAction(title:"OK",style:.cancel,handler:nil))
+                        self.present(alert,animated: true,completion: nil)
+                    } else {
+                        self.keychain.set(username, forKey: "userName")
+                        self.keychain.set(userid, forKey: "userID")
+                        self.keychain.set(true, forKey: "isLoggedIn")
+                        self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ThreadList")
+                        self.performSegue(withIdentifier: "Start", sender: self)
+                    }
+                })
             })
-        })
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

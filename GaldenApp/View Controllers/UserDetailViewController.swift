@@ -12,10 +12,7 @@ import KeychainSwift
 class UserDetailViewController: UIViewController,UINavigationControllerDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate {
 
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var leaveNameTextField: UITextField!
     @IBOutlet weak var blocklistButton: UIButton!
     @IBOutlet weak var leaveNameStack: UIStackView!
@@ -30,13 +27,9 @@ class UserDetailViewController: UIViewController,UINavigationControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         //cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         let keychain = KeychainSwift()
         if (keychain.get("userKey") != nil) {
             loggedIn()
-        } else {
-            loggedOut()
         }
         if keychain.getData("BackgroundImage") != nil {
             background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
@@ -49,17 +42,6 @@ class UserDetailViewController: UIViewController,UINavigationControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField {
-        case emailTextField:
-            email = emailTextField.text!
-        case passwordTextField:
-            password = passwordTextField.text!
-        default:
-            break
-        }
-    }
-    
     /*
     // MARK: - Navigation
 
@@ -70,23 +52,11 @@ class UserDetailViewController: UIViewController,UINavigationControllerDelegate,
     }
     */
     
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        let keychain = KeychainSwift()
-        emailTextField.endEditing(true)
-        passwordTextField.endEditing(true)
-        api.login(email: email, password: password, completion: {
-            self.api.getUserDetail(completion: {
-                username, userid in
-                keychain.set(username, forKey: "userName")
-                keychain.set(userid, forKey: "userID")
-                self.loggedIn()
-            })
-        })
-    }
-    
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         api.logout {
-            self.loggedOut()
+            let keychain = KeychainSwift()
+            keychain.delete("isLoggedIn")
+            self.performSegue(withIdentifier: "logout", sender: self)
         }
     }
     
@@ -134,26 +104,12 @@ class UserDetailViewController: UIViewController,UINavigationControllerDelegate,
     
     func loggedIn() {
         let keychain = KeychainSwift()
-        loginButton.isHidden = true
         logoutButton.isHidden = false
-        emailTextField.isHidden = true
-        passwordTextField.isHidden = true
         blocklistButton.isHidden = false
         leaveNameStack.isHidden = false
         self.userName.text = "已登入為: " + keychain.get("userName")! + " (UID: " + keychain.get("userID")! + ")"
         leaveNameTextField.text = keychain.get("LeaveNameText")
         self.userName.textColor = UIColor.white
 
-    }
-    
-    func loggedOut() {
-        loginButton.isHidden = false
-        logoutButton.isHidden = true
-        emailTextField.isHidden = false
-        passwordTextField.isHidden = false
-        blocklistButton.isHidden = true
-        leaveNameStack.isHidden = true
-        userName.text = "未登入 (UID: Unknown)"
-        userName.textColor = UIColor.lightGray
     }
 }

@@ -25,6 +25,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var buttonStack: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,9 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
         channelLabel.heroModifiers = [.position(CGPoint.init(x: channelLabel.frame.midX, y: -100))]
         cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
+        titleTextField.heroModifiers = [.fade, .position(CGPoint.init(x: titleTextField.frame.midX, y: 300))]
+        contentTextView.heroModifiers = [.fade, .position(CGPoint.init(x: contentTextView.frame.midX, y: 350))]
+        buttonStack.heroModifiers = [.fade, .position(CGPoint.init(x:buttonStack.frame.midX,y:510))]
         channelLabel.setTitle(api.channelNameFunc(ch: channel), for: .normal)
         channelLabel.backgroundColor = api.channelColorFunc(ch: channel)
         let keychain = KeychainSwift()

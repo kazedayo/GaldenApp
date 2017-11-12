@@ -14,6 +14,7 @@ class ReplyViewController: UIViewController,UITextViewDelegate,IconKeyboardDeleg
     @IBOutlet weak var replyTextField: UITextView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var backgroundView: UIImageView!
+    @IBOutlet weak var buttonStack: UIStackView!
     
     var content = ""
     let api = HKGaldenAPI()
@@ -33,6 +34,8 @@ class ReplyViewController: UIViewController,UITextViewDelegate,IconKeyboardDeleg
         replyTextField.becomeFirstResponder()
         replyTextField.textContainerInset = UIEdgeInsetsMake(10, 5, 10, 5)
         cancelButton.heroModifiers = [.fade, .position(CGPoint.init(x: 250, y: cancelButton.frame.midY))]
+        replyTextField.heroModifiers = [.fade, .position(CGPoint.init(x:replyTextField.frame.midX,y:300))]
+        buttonStack.heroModifiers = [.fade, .position(CGPoint.init(x: buttonStack.frame.midX, y: 460))]
         // Do any additional setup after loading the view.
     }
 

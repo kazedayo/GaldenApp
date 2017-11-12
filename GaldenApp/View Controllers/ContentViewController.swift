@@ -151,6 +151,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
                     cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    cell.quoteButton.isEnabled = false
+                    cell.blockButton.isEnabled = false
                 } else {
                     cell.configureOP(opData: op)
                 }
@@ -164,6 +166,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
                     cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    cell.quoteButton.isEnabled = false
+                    cell.blockButton.isEnabled = false
                 } else {
                     cell.configureReplyFirstPage(comments: comments, indexPath: indexPath,pageNow: pageNow)
                 }
@@ -178,6 +182,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 cell.replyCountLabel.text = ""
                 cell.dateLabel.text = ""
                 cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                cell.quoteButton.isEnabled = false
+                cell.blockButton.isEnabled = false
             } else {
                 cell.configureReply(comments: comments, indexPath: indexPath, pageNow: pageNow)
             }
@@ -204,161 +210,79 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         })
     }
     
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is ThreadListViewController {
-            let destination = viewController as! ThreadListViewController
-            destination.title = api.channelNameFunc(ch: destination.channelNow!)
-            destination.navigationController?.navigationBar.barTintColor = api.channelColorFunc(ch: destination.channelNow!)
+    @IBAction func quoteButtonPressed(_ sender: UIButton) {
+        let indexPath = IndexPath.init(row: sender.tag, section: 0)
+            if (pageNow == 1 && indexPath.row == 0) {
+            self.api.quote(quoteType: "t", quoteID: self.op.quoteID, completion: {
+                content in
+                self.quoteContent = content
+                self.performSegue(withIdentifier: "quote", sender: self)
+            })
+            } else if pageNow == 1 {
+                self.api.quote(quoteType: "r", quoteID: self.comments[(indexPath.row) - 1].quoteID, completion: {
+                    content in
+                    self.quoteContent = content
+                    self.performSegue(withIdentifier: "quote", sender: self)
+                })
+            } else {
+                self.api.quote(quoteType: "r", quoteID: self.comments[(indexPath.row)].quoteID, completion: {
+                    content in
+                    self.quoteContent = content
+                    self.performSegue(withIdentifier: "quote", sender: self)
+                })
         }
     }
     
-    @IBAction func showDetail(sender: UILongPressGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.began {
-            let touchpoint = sender.location(in: contentTableView)
-            let indexPath = contentTableView.indexPathForRow(at: touchpoint)
-            let keychain = KeychainSwift()
-            if (pageNow == 1 && indexPath?.row == 0) {
-                let actionSheet = UIAlertController(title: "你揀咗" + op.name + "嘅留言",message: "你想做啲乜?",preferredStyle: .actionSheet)
-                
-                actionSheet.addAction(UIAlertAction(title:"引用",style: .default, handler: {
-                    action in
-                    self.api.quote(quoteType: "t", quoteID: self.op.quoteID, completion: {
-                        content in
-                        self.quoteContent = content
-                        self.performSegue(withIdentifier: "quote", sender: self)
-                    })
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
-                    action in
-                    if keychain.get("userKey") != nil {
-                        self.api.blockUser(uid: self.op.userID, completion: {
-                            status in
-                            if status == "true" {
-                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                                cell.userNameLabel.text = "扑ed"
-                                cell.userNameLabel.textColor = .gray
-                                cell.userLevelLabel.text = "過街老鼠"
-                                cell.replyCountLabel.text = ""
-                                cell.dateLabel.text = ""
-                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                                self.blockedUsers.append(self.op.userID)
-                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                            }
-                        })
-                    } else {
-                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                        cell.userNameLabel.text = "扑ed"
-                        cell.userNameLabel.textColor = .gray
-                        cell.userLevelLabel.text = "過街老鼠"
-                        cell.replyCountLabel.text = ""
-                        cell.dateLabel.text = ""
-                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        self.blockedUsersCDRom.append(self.op.userID)
-                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                    }
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
-                
-                self.present(actionSheet, animated: true, completion: nil)
-            } else if pageNow == 1 {
-                let actionSheet = UIAlertController(title: "你揀咗" + comments[(indexPath?.row)! - 1].name + "嘅留言",message: "你想做啲乜?",preferredStyle: .actionSheet)
-                
-                actionSheet.addAction(UIAlertAction(title:"引用",style: .default, handler: {
-                    action in
-                    self.api.quote(quoteType: "r", quoteID: self.comments[(indexPath?.row)! - 1].quoteID, completion: {
-                        content in
-                        self.quoteContent = content
-                        self.performSegue(withIdentifier: "quote", sender: self)
-                    })
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
-                    action in
-                    if keychain.get("userKey") != nil {
-                        self.api.blockUser(uid: self.comments[indexPath!.row - 1].userID, completion: {
-                            status in
-                            if status == "true" {
-                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                                cell.userNameLabel.text = "扑ed"
-                                cell.userNameLabel.textColor = .gray
-                                cell.userLevelLabel.text = "過街老鼠"
-                                cell.replyCountLabel.text = ""
-                                cell.dateLabel.text = ""
-                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                                self.blockedUsers.append(self.comments[indexPath!.row - 1].userID)
-                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                            }
-                        })
-                    } else {
-                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                        cell.userNameLabel.text = "扑ed"
-                        cell.userNameLabel.textColor = .gray
-                        cell.userLevelLabel.text = "過街老鼠"
-                        cell.replyCountLabel.text = ""
-                        cell.dateLabel.text = ""
-                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        self.blockedUsersCDRom.append(self.comments[indexPath!.row - 1].userID)
-                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                    }
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
-                
-                self.present(actionSheet, animated: true, completion: nil)
-            } else {
-                let actionSheet = UIAlertController(title: "你揀咗" + comments[(indexPath?.row)!].name + "嘅留言",message: "你想做啲乜?",preferredStyle: .actionSheet)
-                
-                actionSheet.addAction(UIAlertAction(title:"引用",style: .default, handler: {
-                    action in
-                    self.api.quote(quoteType: "r", quoteID: self.comments[(indexPath?.row)!].quoteID, completion: {
-                        content in
-                        self.quoteContent = content
-                        self.performSegue(withIdentifier: "quote", sender: self)
-                    })
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "扑柒",style: .destructive, handler: {
-                    action in
-                    if keychain.get("userKey") != nil {
-                        self.api.blockUser(uid: self.comments[(indexPath?.row)!].userID, completion: {
-                            status in
-                            if status == "true" {
-                                let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                                cell.userNameLabel.text = "扑ed"
-                                cell.userNameLabel.textColor = .gray
-                                cell.userLevelLabel.text = "過街老鼠"
-                                cell.replyCountLabel.text = ""
-                                cell.dateLabel.text = ""
-                                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                                self.blockedUsers.append(self.comments[(indexPath?.row)!].userID)
-                                self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                            }
-                        })
-                    } else {
-                        let cell = self.contentTableView.cellForRow(at: indexPath!) as! ContentTableViewCell
-                        cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                        cell.userNameLabel.text = "扑ed"
-                        cell.userNameLabel.textColor = .gray
-                        cell.userLevelLabel.text = "過街老鼠"
-                        cell.replyCountLabel.text = ""
-                        cell.dateLabel.text = ""
-                        cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
-                        self.blockedUsersCDRom.append(self.comments[(indexPath?.row)!].userID)
-                        self.contentTableView.reloadRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
-                    }
-                }))
-                
-                actionSheet.addAction(UIAlertAction(title: "冇嘢喇", style: .cancel, handler: nil))
-                
-                self.present(actionSheet, animated: true, completion: nil)
-            }
+    @IBAction func blockButtonPressed(_ sender: UIButton) {
+        let indexPath = IndexPath.init(row: sender.tag, section: 0)
+        if (pageNow == 1 && indexPath.row == 0) {
+            self.api.blockUser(uid: self.op.userID, completion: {
+                status in
+                if status == "true" {
+                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
+                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                    cell.userNameLabel.text = "扑ed"
+                    cell.userNameLabel.textColor = .gray
+                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.replyCountLabel.text = ""
+                    cell.dateLabel.text = ""
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    self.blockedUsers.append(self.op.userID)
+                    self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                }
+            })
+        } else if pageNow == 1 {
+            self.api.blockUser(uid: self.comments[indexPath.row - 1].userID, completion: {
+                status in
+                if status == "true" {
+                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
+                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                    cell.userNameLabel.text = "扑ed"
+                    cell.userNameLabel.textColor = .gray
+                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.replyCountLabel.text = ""
+                    cell.dateLabel.text = ""
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    self.blockedUsers.append(self.comments[indexPath.row - 1].userID)
+                    self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                }
+            })
+        } else {
+            self.api.blockUser(uid: self.comments[(indexPath.row)].userID, completion: {
+                status in
+                if status == "true" {
+                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
+                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
+                    cell.userNameLabel.text = "扑ed"
+                    cell.userNameLabel.textColor = .gray
+                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.replyCountLabel.text = ""
+                    cell.dateLabel.text = ""
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    self.blockedUsers.append(self.comments[(indexPath.row)].userID)
+                    self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                }
+            })
         }
     }
     
