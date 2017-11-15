@@ -10,12 +10,10 @@ import KeychainSwift
 import ESPullToRefresh
 import Toaster
 
-class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ThreadListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var threadListTableView: UITableView!
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var channelLabel: UILabel!
-    @IBOutlet weak var NewThreadButton: UIButton!
+    @IBOutlet weak var NewThreadButton: UIBarButtonItem!
     
     //HKGaldenAPI.swift required (NOT included in GitHub repo)
     let api: HKGaldenAPI = HKGaldenAPI()
@@ -26,8 +24,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     var pageNow: String?
     var selectedThread: String!
     var blockedUsers = [String]()
-    var blockedUsersForCDRom = UserDefaults()
-    var blockedUsersCDRom = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +33,10 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.navigationController?.navigationBar.isHeroEnabled = true
+        self.navigationController?.navigationBar.heroModifiers = [.position(CGPoint.init(x: (self.navigationController?.navigationBar.frame.midX)!, y: -100))]
         threadListTableView.delegate = self
         threadListTableView.dataSource = self
-        
-        let keychain = KeychainSwift()
-        
-        if keychain.getData("BackgroundImage") != nil {
-            backgroundImage.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
-        }
-        
-        if keychain.get("userKey") == nil {
-            NewThreadButton.isEnabled = false
-        }
-        
-        if blockedUsersForCDRom.object(forKey: "BlockedUsers") != nil {
-            blockedUsersCDRom = blockedUsersForCDRom.object(forKey: "BlockedUsers") as! [String]
-        }
         
         self.threadListTableView.es.addPullToRefresh {
             [unowned self] in
@@ -85,7 +69,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         threadListTableView.isHidden = true
         channelNow = "bw"
         pageNow = "1"
-        channelLabel.text = api.channelNameFunc(ch: channelNow!)
+        self.navigationItem.title = api.channelNameFunc(ch: channelNow!)
         Toast(text:"撈緊...",duration:1).show()
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
@@ -96,11 +80,6 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
                 self?.threadListTableView.isHidden = false
             }
         })
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.blockedUsersForCDRom.set(blockedUsersCDRom, forKey: "BlockedUsers")
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,13 +104,13 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThreadListTableViewCell", for: indexPath) as! ThreadListTableViewCell
         
         // Configure the cell...
-        if (blockedUsers.contains(threads[indexPath.row].userID) || blockedUsersCDRom.contains(threads[indexPath.row].userID)) {
-            cell.threadTitleLabel.text = "扑ed"
+        if (blockedUsers.contains(threads[indexPath.row].userID)) {
+            cell.threadTitleLabel.text = "[已封鎖]"
             cell.threadTitleLabel.textColor = .gray
-            cell.detailLabel.text = "你已扑柒此人"
+            cell.detailLabel.text = "//unknown identity//"
         } else {
             cell.threadTitleLabel.text = threads[indexPath.row].title
-            cell.threadTitleLabel.textColor = .white
+            cell.threadTitleLabel.textColor = .darkGray
             cell.detailLabel.text = threads[indexPath.row].userName + "  " + "回覆:" + threads[indexPath.row].count + "  " + "評分:" + threads[indexPath.row].rate
         }
         
@@ -139,7 +118,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (blockedUsers.contains(threads[indexPath.row].userID) || blockedUsersCDRom.contains(threads[indexPath.row].userID)) {
+        if (blockedUsers.contains(threads[indexPath.row].userID)) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title:"喂喂喂",message:"扑咗就唔好心郁郁",preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title:"好囉",style:.cancel,handler:nil))
@@ -231,6 +210,8 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         case "StartNewPost":
             let destination = segue.destination as! NewPostViewController
             destination.channel = channelNow!
+            destination.modalPresentationStyle = .popover
+            destination.popoverPresentationController?.delegate = self
         case "UserDetail" :
             print("Show User Detail")
         default:
@@ -252,7 +233,7 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.channelNow = channelSelectViewController.channelSelected
         self.pageNow = "1"
         threadListTableView.isHidden = true
-        channelLabel.text = api.channelNameFunc(ch: channelNow!)
+        self.navigationItem.title = api.channelNameFunc(ch: channelNow!)
         Toast(text:"撈緊...",duration:1).show()
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
@@ -266,16 +247,13 @@ class ThreadListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func unwindToThreadListFromContent(segue: UIStoryboardSegue) {
-        self.channelLabel.text = self.api.channelNameFunc(ch: self.channelNow!)
         let source = segue.source as! ContentViewController
         self.blockedUsers = source.blockedUsers
-        self.blockedUsersCDRom = source.blockedUsersCDRom
         self.threadListTableView.reloadData()
     }
     
     @IBAction func unwindToThreadListAfterNewPost(segue: UIStoryboardSegue) {
         threadListTableView.isHidden = true
-        channelLabel.text = api.channelNameFunc(ch: channelNow!)
         api.fetchThreadList(currentChannel: channelNow!, pageNumber: pageNow!, completion: {
             [weak self] threads,blocked,error in
             if (error == nil) {

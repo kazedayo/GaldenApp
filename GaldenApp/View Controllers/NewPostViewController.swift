@@ -9,7 +9,7 @@
 import UIKit
 import KeychainSwift
 
-class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate,IconKeyboardDelegate {
+class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate,IconKeyboardDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     //MARK: Properties
     var channel: String = ""
@@ -19,12 +19,9 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     let api = HKGaldenAPI()
     let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 265))
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var channelLabel: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var buttonStack: UIStackView!
     
     override func viewDidLoad() {
@@ -34,18 +31,8 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         iconKeyboard.delegate = self
         titleTextField.delegate = self
         contentTextView.delegate = self
-        titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
-        channelLabel.heroModifiers = [.position(CGPoint.init(x: channelLabel.frame.midX, y: -100))]
-        cancelButton.heroModifiers = [.position(CGPoint.init(x: 500, y: cancelButton.frame.midY))]
-        titleTextField.heroModifiers = [.fade, .position(CGPoint.init(x: titleTextField.frame.midX, y: 300))]
-        contentTextView.heroModifiers = [.fade, .position(CGPoint.init(x: contentTextView.frame.midX, y: 350))]
-        buttonStack.heroModifiers = [.fade, .position(CGPoint.init(x:buttonStack.frame.midX,y:510))]
         channelLabel.setTitle(api.channelNameFunc(ch: channel), for: .normal)
         channelLabel.backgroundColor = api.channelColorFunc(ch: channel)
-        let keychain = KeychainSwift()
-        if keychain.getData("BackgroundImage") != nil {
-            background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
-        }
         titleTextField.becomeFirstResponder()
     }
 
@@ -57,19 +44,16 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender)
         
         switch (segue.identifier ?? "") {
-        case "BBCode":
-            let destination = segue.destination as! BBCodeViewController
-            destination.segueIdentifier = "NewPost"
         default:
             break
         }
-    }
+    }*/
     
     //MARK: Actions
     @IBAction func submitNewPost(_ sender: UIButton) {
@@ -88,10 +72,125 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        titleTextField.resignFirstResponder()
-        contentTextView.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+    @IBAction func fontSizeButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"揀大細", message: nil, preferredStyle: .alert)
+        actionsheet.addAction(UIAlertAction(title:"超大",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=6][/size=6]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"特大",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=5][/size=5]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"大",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=4][/size=4]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"一般",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=3][/size=3]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"小",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=2][/size=2]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"特小",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[size=1][/size=1]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"冇嘢啦",style:.cancel,handler:nil))
+        self.present(actionsheet,animated: true,completion: nil)
+    }
+    
+    @IBAction func fontStyleButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"字體格式", message: nil, preferredStyle: .alert)
+        actionsheet.addAction(UIAlertAction(title:"粗體",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[b][/b]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"斜體",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[i][/i]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"底線",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[u][/u]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"刪除線",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[s][/s]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"置左",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[left][/left]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"置中",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[center][/center]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"置右",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[right][/right]")
+        }))
+    }
+    
+    @IBAction func fontColorButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"揀顏色", message: nil, preferredStyle: .alert)
+        actionsheet.addAction(UIAlertAction(title:"紅色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#ff0000][/#ff0000]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"橙色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#ffa500][/#ffa500]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"黃色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#ffff00][/#ffff00]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"綠色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#008000][/#008000]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"藍色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#0000ff][/#0000ff]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"靛色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#4b0082][/#4b0082]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"紫色",style:.default,handler: {
+            _ in
+            self.contentTextView.text.append("[#800080][/#800080]")
+        }))
+        actionsheet.addAction(UIAlertAction(title:"冇嘢啦",style:.cancel,handler:nil))
+        present(actionsheet,animated: true,completion: nil)
+    }
+    
+    @IBAction func imageButtonPressed(_ sender: UIButton) {
+        let actionsheet = UIAlertController(title:"噏圖(powered by eService-HK)",message:"你想...",preferredStyle:.alert)
+        actionsheet.addAction(UIAlertAction(title:"影相",style:.default,handler: {
+            _ in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker,animated: true,completion: nil)
+        }))
+        actionsheet.addAction(UIAlertAction(title:"揀相",style:.default,handler: {
+            _ in
+            let imagePicker = UIImagePickerController()
+            imagePicker.navigationBar.tintColor = .darkGray
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker,animated: true,completion: nil)
+        }))
+        actionsheet.addAction(UIAlertAction(title:"冇嘢啦",style:.cancel,handler:nil))
+        present(actionsheet,animated: true,completion: nil)
+    }
+    
+    @IBAction func urlButtonPressed(_ sender: UIButton) {
+        self.contentTextView.text.append("[url][/url]")
     }
     
     //MARK: UITextFieldDelegate
@@ -106,15 +205,21 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         content = textView.text!
     }
     
-    func keyWasTapped(character: String) {
-        contentTextView.insertText(character)
+    //MARK: ImagePickerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func unwindToNewPost(segue: UIStoryboardSegue) {
-        if (segue.source is BBCodeViewController) {
-            let source = segue.source as! BBCodeViewController
-            contentTextView.text = contentTextView.text.appending(source.bbcodeSent)
-        }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        api.imageUpload(image: image, completion: {
+            url in
+            self.contentTextView.text.append("[img]" + url + "[/img]\n")
+        })
+    }
+    
+    func keyWasTapped(character: String) {
+        contentTextView.insertText(character)
     }
     
     @IBAction func callIconKeyboard(_ sender: UIButton) {

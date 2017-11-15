@@ -21,6 +21,7 @@ class ContentTableViewCell: UITableViewCell {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var quoteButton: UIButton!
     @IBOutlet weak var blockButton: UIButton!
+    @IBOutlet weak var reportButton: UIButton!
     
     let attributedOptions = [
         NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
@@ -79,8 +80,10 @@ class ContentTableViewCell: UITableViewCell {
         dateLabel.text = opData.date
         quoteButton.tag = 0
         blockButton.tag = 0
+        reportButton.tag = 0
         quoteButton.isEnabled = true
         blockButton.isEnabled = true
+        reportButton.isEnabled = true
     }
     
     func configureReplyFirstPage(comments: [Replies],indexPath: IndexPath,pageNow: Int) {
@@ -125,8 +128,10 @@ class ContentTableViewCell: UITableViewCell {
         dateLabel.text = comments[indexPath.row - 1].date
         quoteButton.tag = indexPath.row
         blockButton.tag = indexPath.row
+        reportButton.tag = indexPath.row
         quoteButton.isEnabled = true
         blockButton.isEnabled = true
+        reportButton.isEnabled = true
     }
     
     func configureReply(comments: [Replies],indexPath: IndexPath,pageNow: Int) {
@@ -171,7 +176,9 @@ class ContentTableViewCell: UITableViewCell {
         dateLabel.text = comments[indexPath.row].date
         quoteButton.tag = indexPath.row
         blockButton.tag = indexPath.row
+        reportButton.tag = indexPath.row
         quoteButton.isEnabled = true
         blockButton.isEnabled = true
+        reportButton.isEnabled = true
     }
 }

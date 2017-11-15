@@ -28,8 +28,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var pageCount = 0.0
     var quoteContent = ""
     var blockedUsers = [String]()
-    var blockedUsersForCDRom = UserDefaults()
-    var blockedUsersCDRom = [String]()
     
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var pageButton: UIBarButtonItem!
@@ -41,12 +39,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var goodButton: UIBarButtonItem!
     @IBOutlet weak var badButton: UIBarButtonItem!
     @IBOutlet weak var leaveNameButton: UIBarButtonItem!
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var titleLabel: MarqueeLabel!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var replyStack: UIStackView!
-    @IBOutlet weak var shareButton: UIButton!
     
     //HKGalden API (NOT included in GitHub repo)
     var api = HKGaldenAPI()
@@ -57,30 +50,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.delegate = self
         contentTableView.dataSource = self
         navigationController?.delegate = self
-        
-        titleLabel.text = title
-        
-        toolbar.heroModifiers = [.position(CGPoint(x:self.view.frame.midX,y:1000))]
-        replyStack.heroModifiers = [.position(CGPoint(x:500,y:replyStack.frame.midY))]
-        shareButton.heroModifiers = [.position(CGPoint(x:-100,y:shareButton.frame.midY))]
-        titleLabel.heroModifiers = [.fade,.position(CGPoint(x:titleLabel.frame.midX,y:-100))]
-        
-        let keychain = KeychainSwift()
-        
-        if keychain.getData("BackgroundImage") != nil {
-            backgroundImage.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
-        }
-        
-        if keychain.get("userKey") == nil {
-            goodButton.isEnabled = false
-            badButton.isEnabled = false
-            leaveNameButton.isEnabled = false
-            commentButton.isEnabled = false
-        }
-        
-        if blockedUsersForCDRom.object(forKey: "BlockedUsers") != nil {
-            blockedUsersCDRom = blockedUsersForCDRom.object(forKey: "BlockedUsers") as! [String]
-        }
         
         self.prevButton.isEnabled = false
         self.nextButton.isEnabled = false
@@ -112,12 +81,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.contentTableView.reloadData()
-        self.titleLabel.triggerScrollStart()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.blockedUsersForCDRom.set(blockedUsersCDRom, forKey: "BlockedUsers")
     }
     
     override func didReceiveMemoryWarning() {
@@ -143,47 +106,50 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if (pageNow == 1) {
             if(indexPath.row == 0) {
-                if (blockedUsers.contains(op.userID) || blockedUsersCDRom.contains(op.userID)) {
-                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                    cell.userNameLabel.text = "扑ed"
+                if (blockedUsers.contains(op.userID)) {
+                    cell.userAvatarImageView.image = UIImage(named: "block")
+                    cell.userNameLabel.text = "//XXX//"
                     cell.userNameLabel.textColor = .gray
-                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.userLevelLabel.text = "???"
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "[已封鎖]", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                     cell.quoteButton.isEnabled = false
                     cell.blockButton.isEnabled = false
+                    cell.reportButton.isEnabled = false
                 } else {
                     cell.configureOP(opData: op)
                 }
             }
             else {
-                if (blockedUsers.contains(comments[indexPath.row - 1].userID) || blockedUsersCDRom.contains(comments[indexPath.row - 1].userID)) {
-                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                    cell.userNameLabel.text = "扑ed"
+                if (blockedUsers.contains(comments[indexPath.row - 1].userID)) {
+                    cell.userAvatarImageView.image = UIImage(named: "block")
+                    cell.userNameLabel.text = "//XXX//"
                     cell.userNameLabel.textColor = .gray
-                    cell.userLevelLabel.text = "過街老鼠"
+                    cell.userLevelLabel.text = "???"
                     cell.replyCountLabel.text = ""
                     cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                    cell.contentTextView.attributedText = NSAttributedString.init(string: "[已封鎖]", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                     cell.quoteButton.isEnabled = false
                     cell.blockButton.isEnabled = false
+                    cell.reportButton.isEnabled = false
                 } else {
                     cell.configureReplyFirstPage(comments: comments, indexPath: indexPath,pageNow: pageNow)
                 }
             }
         }
         else {
-            if (blockedUsers.contains(comments[indexPath.row].userID) || blockedUsersCDRom.contains(comments[indexPath.row].userID)) {
-                cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                cell.userNameLabel.text = "扑ed"
+            if (blockedUsers.contains(comments[indexPath.row].userID)) {
+                cell.userAvatarImageView.image = UIImage(named: "block")
+                cell.userNameLabel.text = "//XXX//"
                 cell.userNameLabel.textColor = .gray
-                cell.userLevelLabel.text = "過街老鼠"
+                cell.userLevelLabel.text = "???"
                 cell.replyCountLabel.text = ""
                 cell.dateLabel.text = ""
-                cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
+                cell.contentTextView.attributedText = NSAttributedString.init(string: "[已封鎖]", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                 cell.quoteButton.isEnabled = false
                 cell.blockButton.isEnabled = false
+                cell.reportButton.isEnabled = false
             } else {
                 cell.configureReply(comments: comments, indexPath: indexPath, pageNow: pageNow)
             }
@@ -239,14 +205,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.api.blockUser(uid: self.op.userID, completion: {
                 status in
                 if status == "true" {
-                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
-                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                    cell.userNameLabel.text = "扑ed"
-                    cell.userNameLabel.textColor = .gray
-                    cell.userLevelLabel.text = "過街老鼠"
-                    cell.replyCountLabel.text = ""
-                    cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                     self.blockedUsers.append(self.op.userID)
                     self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                 }
@@ -255,14 +213,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.api.blockUser(uid: self.comments[indexPath.row - 1].userID, completion: {
                 status in
                 if status == "true" {
-                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
-                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                    cell.userNameLabel.text = "扑ed"
-                    cell.userNameLabel.textColor = .gray
-                    cell.userLevelLabel.text = "過街老鼠"
-                    cell.replyCountLabel.text = ""
-                    cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                     self.blockedUsers.append(self.comments[indexPath.row - 1].userID)
                     self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                 }
@@ -271,14 +221,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.api.blockUser(uid: self.comments[(indexPath.row)].userID, completion: {
                 status in
                 if status == "true" {
-                    let cell = self.contentTableView.cellForRow(at: indexPath) as! ContentTableViewCell
-                    cell.userAvatarImageView.image = UIImage(named: "DefaultAvatar")
-                    cell.userNameLabel.text = "扑ed"
-                    cell.userNameLabel.textColor = .gray
-                    cell.userLevelLabel.text = "過街老鼠"
-                    cell.replyCountLabel.text = ""
-                    cell.dateLabel.text = ""
-                    cell.contentTextView.attributedText = NSAttributedString.init(string: "你已扑柒此人", attributes: [NSAttributedStringKey.foregroundColor: UIColor.gray])
                     self.blockedUsers.append(self.comments[(indexPath.row)].userID)
                     self.contentTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                 }
@@ -337,6 +279,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         case "WriteReply"?:
             let destination = segue.destination as! ReplyViewController
             destination.topicID = self.threadIdReceived
+            destination.modalPresentationStyle = .popover
+            destination.popoverPresentationController?.delegate = self
         case "quote"?:
             let destination = segue.destination as! ReplyViewController
             destination.topicID = self.threadIdReceived
@@ -440,6 +384,10 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         })
     }
     
+    @IBAction func reportButtonPressed(_ sender: UIButton) {
+        Toast(text:"已傳送舉報",duration:1).show()
+    }
+    
     //MARK: Private Functions
     
     private func updateSequence(action: String) {
@@ -484,7 +432,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self?.contentTableView.isHidden = false
                 self?.contentTableView.tableFooterView = self?.f5View
                 self?.f5View.isHidden = false
-                self?.titleLabel.triggerScrollStart()
                 if (action == "f5") {
                     if (self?.pageNow == 1) {
                         let indexPath = IndexPath(row:comments.count,section:0)
@@ -529,7 +476,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         })
     }
     
-    @IBAction func shareButtonPressed(_ sender: UIButton) {
+    @IBAction func shareButtonPressed(_ sender: Any) {
         let shared = op.title + " // by: " + op.name + "\nShared via 1080-SIGNAL \nhttps://hkgalden.com/view/" + threadIdReceived
         let share = UIActivityViewController(activityItems:[shared],applicationActivities:nil)
         share.excludedActivityTypes = [.airDrop,.addToReadingList,.assignToContact,.openInIBooks,.saveToCameraRoll]
@@ -590,7 +537,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @objc func handleBBCodeToHTMLNotification(notification: Notification) {
         if let html = notification.object as? String {
-            let newContent = "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style type=\"text/css\"> body { color: white; background-color: black; font-family:helvetica; font-size:15 } img{ max-width:280px; } blockquote {color: grey;} a {overflow-wrap: break-word; word-wrap: break-word;} .xbbcode-b {font-weight:bold;} .xbbcode-blockquote {} .xbbcode-center {margin-left:auto;margin-right:auto;display: block;text-align: center;} .xbbcode-code {white-space: pre-wrap;font-family: monospace;} .xbbcode-i {font-style: italic;} .xbbcode-justify {display: block;text-align: justify;} .xbbcode-left {display: block;text-align: left;} .xbbcode-right {display: block;text-align: right;} .xbbcode-s {text-decoration: line-through;} .xbbcode-size-1 {font-size:xx-small;} .xbbcode-size-2 {font-size:x-small;} .xbbcode-size-3 {font-size:medium;} .xbbcode-size-4 {font-size:large;} .xbbcode-size-5 {font-size:x-large;} .xbbcode-size-6 {font-size:xx-large;} .xbbcode-u {text-decoration: underline;} .xbbcode-table {border-collapse:collapse;} .xbbcode-tr {} .xbbcode-table , .xbbcode-th, .xbbcode-td {border: 1px solid #666;} .xbbcode-hide {color: #ffccd5}</style></head><body>\(html)</body></html>"
+            let newContent = "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style type=\"text/css\"> body { color: #555555; background-color: white; font-family:helvetica; font-size:15 } img{ max-width:280px; } blockquote {color: grey;} a {overflow-wrap: break-word; word-wrap: break-word;} .xbbcode-b {font-weight:bold;} .xbbcode-blockquote {} .xbbcode-center {margin-left:auto;margin-right:auto;display: block;text-align: center;} .xbbcode-code {white-space: pre-wrap;font-family: monospace;} .xbbcode-i {font-style: italic;} .xbbcode-justify {display: block;text-align: justify;} .xbbcode-left {display: block;text-align: left;} .xbbcode-right {display: block;text-align: right;} .xbbcode-s {text-decoration: line-through;} .xbbcode-size-1 {font-size:xx-small;} .xbbcode-size-2 {font-size:x-small;} .xbbcode-size-3 {font-size:medium;} .xbbcode-size-4 {font-size:large;} .xbbcode-size-5 {font-size:x-large;} .xbbcode-size-6 {font-size:xx-large;} .xbbcode-u {text-decoration: underline;} .xbbcode-table {border-collapse:collapse;} .xbbcode-tr {} .xbbcode-table , .xbbcode-th, .xbbcode-td {border: 1px solid #666;} .xbbcode-hide {color: #ffccd5}</style></head><body>\(html)</body></html>"
             convertedText = newContent
         }
     }

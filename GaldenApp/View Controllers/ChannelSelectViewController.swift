@@ -9,34 +9,22 @@
 import UIKit
 import KeychainSwift
 
-class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
+class ChannelSelectViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var channelSelected = ""
     let cellIdentifiers: [String] = ["bw","et","ca","fn","gm","ap","it","mp","sp","lv","sy","ed","tm","tr","an","to","mu","vi","dc","st","ts","mb","ia","ac","ep"]
+    let channelTitle: [String] = ["吹水臺","娛樂臺","時事臺","財經臺","遊戲臺","App臺","科技臺","電話臺","體育臺","感情臺","講故臺","飲食臺","番茄臺","旅遊臺","動漫臺","玩具臺","音樂臺","影視臺","攝影臺","學術臺","汽車臺","站務臺","內務臺","活動臺","創意臺"]
     
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        self.collectionView.heroModifiers = [.cascade]
-        self.titleLabel.heroModifiers = [.position(CGPoint.init(x: -100, y: titleLabel.frame.midY))]
-        let keychain = KeychainSwift()
-        if keychain.getData("BackgroundImage") != nil {
-            background.image = UIImage.init(data: keychain.getData("BackgroundImage")!)
-        }
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.titleLabel.heroModifiers = [.fade,.position(CGPoint.init(x: titleLabel.frame.midX, y: -100))]
+        self.tableView.heroModifiers = [.fade,.position(CGPoint.init(x: tableView.frame.midX, y: 500))]
         // Do any additional setup after loading the view.
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellIdentifiers.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifiers[indexPath.item], for: indexPath)
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,86 +32,21 @@ class ChannelSelectViewController: UIViewController,UICollectionViewDelegateFlow
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func selectChannel(_ sender: UIButton) {
-        switch (sender.tag) {
-        case 0:
-            channelSelected = "bw"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 1:
-            channelSelected = "et"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 2:
-            channelSelected = "ca"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 3:
-            channelSelected = "fn"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 4:
-            channelSelected = "gm"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 5:
-            channelSelected = "ap"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 6:
-            channelSelected = "it"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 7:
-            channelSelected = "mp"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 8:
-            channelSelected = "sp"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 9:
-            channelSelected = "lv"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 10:
-            channelSelected = "sy"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 11:
-            channelSelected = "ed"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 12:
-            channelSelected = "tm"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 13:
-            channelSelected = "tr"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 14:
-            channelSelected = "an"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 15:
-            channelSelected = "to"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 16:
-            channelSelected = "mu"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 17:
-            channelSelected = "vi"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 18:
-            channelSelected = "dc"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 19:
-            channelSelected = "st"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 20:
-            channelSelected = "ts"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 21:
-            channelSelected = "mb"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 22:
-            channelSelected = "ia"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 23:
-            channelSelected = "ac"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        case 24:
-            channelSelected = "ep"
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        default:
-            self.performSegue(withIdentifier: "unwindToThreadList", sender: self)
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellIdentifiers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChannelListTableViewCell") as! ChannelListTableViewCell
+        cell.channelIcon.image = UIImage(named: cellIdentifiers[indexPath.row])
+        cell.channelTitle.text = channelTitle[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        channelSelected = cellIdentifiers[indexPath.row]
+        performSegue(withIdentifier: "unwindToThreadList", sender: self)
     }
     
     /*
