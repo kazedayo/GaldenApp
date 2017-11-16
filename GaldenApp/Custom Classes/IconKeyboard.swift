@@ -29,7 +29,7 @@ class IconKeyboard: UIView {
         let xibFileName = "IconKeyboard" // xib extention not included
         let view = Bundle.main.loadNibNamed(xibFileName, owner: self, options: nil)![0] as! UIView
         self.addSubview(view)
-        view.frame = self.bounds
+        view.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 265)
     }
     
     @IBAction func keyTapped(sender: UIButton) {

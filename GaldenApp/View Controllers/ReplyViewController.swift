@@ -18,7 +18,7 @@ class ReplyViewController: UIViewController,UITextViewDelegate,IconKeyboardDeleg
     let api = HKGaldenAPI()
     var topicID = ""
     
-    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 265))
+    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 265))
     
     override func viewDidLoad() {
         super.viewDidLoad()

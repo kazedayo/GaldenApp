@@ -18,7 +18,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     var threadIdReceived: String = ""
     var goToLastPage: Bool = false
-    var channelNow: String = ""
     var isRated: String = ""
     var pageNow: Int = 1
     var convertedText: String = ""
@@ -29,13 +28,14 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var quoteContent = ""
     var blockedUsers = [String]()
     
+    let f5view = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 70, height: 70))
+    
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var pageButton: UIBarButtonItem!
     @IBOutlet weak var goodCount: UIBarButtonItem!
     @IBOutlet weak var badCount: UIBarButtonItem!
     @IBOutlet weak var prevButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var f5View: UIView!
     @IBOutlet weak var goodButton: UIBarButtonItem!
     @IBOutlet weak var badButton: UIBarButtonItem!
     @IBOutlet weak var leaveNameButton: UIBarButtonItem!
@@ -43,6 +43,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     //HKGalden API (NOT included in GitHub repo)
     var api = HKGaldenAPI()
+    let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +52,26 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         contentTableView.dataSource = self
         navigationController?.delegate = self
         
+        let title = MarqueeLabel.init()
+        title.text = self.title
+        title.animationDelay = 1
+        title.marqueeType = .MLLeftRight
+        title.fadeLength = 5
+        navigationItem.titleView = title
+        
+        f5view.setImage(UIImage(named: "F5"), for: .normal)
+        f5view.addTarget(self, action: #selector(f5Button(_:)), for: .touchUpInside)
+        
         self.prevButton.isEnabled = false
         self.nextButton.isEnabled = false
         
-        self.f5View.isHidden = true
         self.contentTableView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(ContentViewController.handleBBCodeToHTMLNotification(notification:)), name: NSNotification.Name("bbcodeToHTMLNotification"), object: nil)
+        
+        if keychain.get("LeaveNameText") == nil {
+            leaveNameButton.isEnabled = false
+        }
         
         self.api.pageCount(postId: threadIdReceived, completion: {
             [weak self] count in
@@ -161,7 +175,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return UITableViewAutomaticDimension
     }
     
-    @IBAction func f5Button(_ sender: UIButton) {
+    @objc func f5Button(_ sender: UIButton) {
         contentTableView.isHidden = true
         self.api.pageCount(postId: threadIdReceived, completion: {
             [weak self] count in
@@ -285,6 +299,8 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let destination = segue.destination as! ReplyViewController
             destination.topicID = self.threadIdReceived
             destination.content = self.quoteContent + "\n"
+            destination.modalPresentationStyle = .popover
+            destination.popoverPresentationController?.delegate = self
         default:
             break
         }
@@ -392,7 +408,6 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     private func updateSequence(action: String) {
         contentTableView.isHidden = true
-        f5View.isHidden = true
         if (goToLastPage == true) {
             pageNow = Int(pageCount)
             goToLastPage = false
@@ -430,8 +445,14 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                 }
                 self?.contentTableView.isHidden = false
-                self?.contentTableView.tableFooterView = self?.f5View
-                self?.f5View.isHidden = false
+                
+                if (self?.pageNow == Int((self?.pageCount)!)) {
+                    self?.contentTableView.tableFooterView = self?.f5view
+                }
+                else {
+                    self?.contentTableView.tableFooterView = nil
+                }
+                
                 if (action == "f5") {
                     if (self?.pageNow == 1) {
                         let indexPath = IndexPath(row:comments.count,section:0)
@@ -537,7 +558,7 @@ class ContentViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @objc func handleBBCodeToHTMLNotification(notification: Notification) {
         if let html = notification.object as? String {
-            let newContent = "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style type=\"text/css\"> body { color: #555555; background-color: white; font-family:helvetica; font-size:15 } img{ max-width:280px; } blockquote {color: grey;} a {overflow-wrap: break-word; word-wrap: break-word;} .xbbcode-b {font-weight:bold;} .xbbcode-blockquote {} .xbbcode-center {margin-left:auto;margin-right:auto;display: block;text-align: center;} .xbbcode-code {white-space: pre-wrap;font-family: monospace;} .xbbcode-i {font-style: italic;} .xbbcode-justify {display: block;text-align: justify;} .xbbcode-left {display: block;text-align: left;} .xbbcode-right {display: block;text-align: right;} .xbbcode-s {text-decoration: line-through;} .xbbcode-size-1 {font-size:xx-small;} .xbbcode-size-2 {font-size:x-small;} .xbbcode-size-3 {font-size:medium;} .xbbcode-size-4 {font-size:large;} .xbbcode-size-5 {font-size:x-large;} .xbbcode-size-6 {font-size:xx-large;} .xbbcode-u {text-decoration: underline;} .xbbcode-table {border-collapse:collapse;} .xbbcode-tr {} .xbbcode-table , .xbbcode-th, .xbbcode-td {border: 1px solid #666;} .xbbcode-hide {color: #ffccd5}</style></head><body>\(html)</body></html>"
+            let newContent = "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><style type=\"text/css\"> body { color: #555555; background-color: white; font-family:helvetica; font-size:15 } img{ max-width:280px; } blockquote {color: #c8c8c8;} a {overflow-wrap: break-word; word-wrap: break-word;} .xbbcode-b {font-weight:bold;} .xbbcode-blockquote {} .xbbcode-center {margin-left:auto;margin-right:auto;display: block;text-align: center;} .xbbcode-code {white-space: pre-wrap;font-family: monospace;} .xbbcode-i {font-style: italic;} .xbbcode-justify {display: block;text-align: justify;} .xbbcode-left {display: block;text-align: left;} .xbbcode-right {display: block;text-align: right;} .xbbcode-s {text-decoration: line-through;} .xbbcode-size-1 {font-size:xx-small;} .xbbcode-size-2 {font-size:x-small;} .xbbcode-size-3 {font-size:medium;} .xbbcode-size-4 {font-size:large;} .xbbcode-size-5 {font-size:x-large;} .xbbcode-size-6 {font-size:xx-large;} .xbbcode-u {text-decoration: underline;} .xbbcode-table {border-collapse:collapse;} .xbbcode-tr {} .xbbcode-table , .xbbcode-th, .xbbcode-td {border: 1px solid #666;} .xbbcode-hide {color: #ffccd5}</style></head><body>\(html)</body></html>"
             convertedText = newContent
         }
     }

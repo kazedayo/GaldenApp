@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import Toaster
 
 class UserDetailViewController: UITableViewController,UINavigationControllerDelegate,UITextFieldDelegate {
 
@@ -61,10 +62,31 @@ class UserDetailViewController: UITableViewController,UINavigationControllerDele
         keychain.set(leaveNameTextField.text!, forKey: "LeaveNameText")
     }
     
+    @IBAction func changeNameButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController.init(title: "改名怪", message: "你想改咩名?", preferredStyle: .alert)
+        alert.addTextField {
+            textField in
+            textField.placeholder = "新名"
+        }
+        alert.addAction(UIAlertAction(title:"改名",style:.default,handler:{
+            [weak alert] _ in
+            let textField = alert?.textFields![0]
+            self.api.changeName(name: (textField?.text)!, completion: {
+                status,newName in
+                if status == "true" {
+                    let keychain = KeychainSwift()
+                    keychain.set(newName, forKey: "userName")
+                    self.loggedIn()
+                } else if status == "false" {
+                    Toast.init(text: "改名失敗", delay: 0, duration: 1).show()
+                }
+            })
+        }))
+        present(alert,animated: true,completion: nil)
+    }
+    
     func loggedIn() {
         let keychain = KeychainSwift()
-        logoutButton.isHidden = false
-        blocklistButton.isHidden = false
         self.userName.text = "已登入為: " + keychain.get("userName")! + " (UID: " + keychain.get("userID")! + ")"
         leaveNameTextField.text = keychain.get("LeaveNameText")
         self.userName.textColor = UIColor.gray

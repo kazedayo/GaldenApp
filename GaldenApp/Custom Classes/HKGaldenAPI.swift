@@ -59,7 +59,6 @@ class HKGaldenAPI {
                 
             case .failure(let error):
                 print(error)
-                completion([],[],error)
             }
         }
     }
@@ -134,8 +133,6 @@ class HKGaldenAPI {
                 
             case .failure(let error):
                 print(error)
-                let op = OP(t: "",n: "",l: "",c: "",cA: NSAttributedString(),a: "",d: "",gd: "",b: "",ge: "",ch: "",qid:"",uid:"")
-                completion(op,[],"",[],error)
             }
         }
     }
@@ -166,7 +163,6 @@ class HKGaldenAPI {
                 completion(userName,id)
             case .failure(let error):
                 print(error)
-                completion("","")
             }
         }
     }
@@ -215,7 +211,6 @@ class HKGaldenAPI {
                 completion(content)
             case .failure(let error):
                 print(error)
-                completion("")
             }
         }
     }
@@ -249,7 +244,6 @@ class HKGaldenAPI {
                 
             case .failure(let error):
                 print(error)
-                completion([])
             }
         }
     }
@@ -441,7 +435,24 @@ class HKGaldenAPI {
                 completion(status)
             case .failure(let error):
                 print(error)
-                completion("false")
+            }
+        }
+    }
+    
+    func changeName(name: String,completion: @escaping (_ status: String,_ newName: String)->Void) {
+        let keychain = KeychainSwift()
+        let head:HTTPHeaders = ["X-GALAPI-KEY": "6ff50828528b419ab5b5a3de1e5ea3b5e3cd4bed", "X-GALUSER-KEY": keychain.get("userKey")!]
+        let par = ["name": name]
+        Alamofire.request("https://api.hkgalden.com/u/changename",method:.post,parameters:par,headers:head).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let status = json["status"].stringValue
+                let newName = json["data"]["username"].stringValue
+                completion(status,newName)
+            case .failure(let error):
+                print(error)
             }
         }
     }

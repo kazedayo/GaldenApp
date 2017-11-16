@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityIndicatorManager.shared.isEnabled = true
         NetworkActivityIndicatorManager.shared.startDelay = 0.0
         NetworkActivityIndicatorManager.shared.completionDelay = 0.2
-        //UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         if (keychain.getBool("isLoggedIn") == nil) {
             self.window?.rootViewController = UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "FirstLaunch")

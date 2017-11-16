@@ -17,7 +17,7 @@ class NewPostViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     var content: String = ""
     
     let api = HKGaldenAPI()
-    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 265))
+    let iconKeyboard = IconKeyboard(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 265))
     
     @IBOutlet weak var channelLabel: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
