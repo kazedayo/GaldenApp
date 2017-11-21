@@ -1,3 +1,5 @@
+# !!! THIS REPOSITORY WAS DEPRECATED !!!
+
 # GaldenApp
 HKGalden app for iOS written in Swift
 
